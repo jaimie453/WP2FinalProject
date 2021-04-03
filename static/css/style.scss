@@ -1,0 +1,79 @@
+@import 'variables';
+@import '../bootstrap/scss/bootstrap.scss';
+
+// Base styles
+
+html,
+body {
+    min-height: 100vh;
+    max-width: 100vw;
+}
+
+body {
+    // & will only apply class to parent element
+    &.fixed-mountain-bg {
+        background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+            url("../travel-images/carousel/mountain.jpg") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+}
+
+img {
+    max-width: 100%;
+}
+
+header {
+    position: relative;
+    z-index: 1;
+}
+
+
+// Home page
+
+// image carousel
+#home-carousel {
+    position: fixed;
+    top: 0;
+}
+
+div.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 1rem;
+}
+
+.carousel-item img {
+    height: 100vh;
+    object-fit: cover;
+}
+
+
+// top/new images box 
+.list-group-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.images-group-close {
+    float: right;
+    color: lightgray;
+    position: relative;
+    top: 4px;
+    border: 0;
+    background: rgba(0, 0, 0, 0);
+    padding-right: 0;
+}
+
+.images-group-close:hover {
+    text-decoration: underline;
+}
+
+#top-images-list,
+#new-images-list {
+    background-color: #1b1b1b;
+}
+
+
+

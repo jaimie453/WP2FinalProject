@@ -57,7 +57,7 @@
 </head>
 
 <body>
-    <header>
+    <header style="background-color: rgba(0, 0, 0, .75);">
         <?php include_once 'components/navbar.php'; ?>
     </header>
 
