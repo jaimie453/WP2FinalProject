@@ -10167,6 +10167,19 @@ header {
   z-index: 1;
 }
 
+.utility-bar {
+  background-color: rgba(5, 81, 96, 0.3);
+}
+.utility-bar a {
+  color: white;
+  font-weight: 200;
+  text-decoration: none;
+}
+
+.navbar-brand {
+  font-family: "Satisfy";
+}
+
 #home-carousel {
   position: fixed;
   top: 0;
