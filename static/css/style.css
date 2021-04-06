@@ -10213,14 +10213,31 @@ div.carousel-caption {
   background: rgba(0, 0, 0, 0);
   padding-right: 0;
 }
-
 .images-group-close:hover {
   text-decoration: underline;
 }
 
-#top-images-list,
-#new-images-list {
-  background-color: #1b1b1b;
+.icon-tabler-star.filled-star {
+  stroke: #cebd66;
+  fill: #cebd66;
+}
+.icon-tabler-star.unfilled-star {
+  stroke: #4c4444;
+}
+
+.icon-tabler-star-half {
+  stroke: #cebd66;
+  fill: #cebd66;
+}
+.icon-tabler-star-half.reversed-star {
+  position: absolute;
+  transform: scale(-1, 1);
+  right: 4px;
+  bottom: -2px;
+  fill: none;
+}
+.icon-tabler-star-half.reversed-star.last {
+  right: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

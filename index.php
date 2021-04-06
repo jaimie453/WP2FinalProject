@@ -1,3 +1,27 @@
+<?php
+
+@include_once './database/dao/imagesDAO.php';
+@include_once './utils/ratingsToStars.php';
+
+$images = new imagesDAO();
+
+$topImages = $images->getTopImages(5);
+$newImages = $images->getNewestImages(5);
+
+// TODO: add link to image page eventually
+function createListItem($title, $avgRating, $totalRatings)
+{
+    echo '<li class="list-group-item d-flex justify-content-between">';
+    echo '<a>' . $title . '</a>';
+    if($totalRatings == 0)
+        echo '<span class="align-self-center flex-shrink-0 ms-3">No ratings yet.</span>';
+    else
+        echo '<span class="align-self-center flex-shrink-0 ms-3">' . convertRatingToStars(round($avgRating * 2)) . '</span>';
+    echo '</li>';
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -6,54 +30,7 @@
 
     <title>Home</title>
 
-    <script>
-        $(document).ready(function() {
-            var isTopImagesActive = false;
-            var isNewImagesActive = false;
-            var imagesContainer = $("#images-container");
-            var topImagesList = $("#top-images-list");
-            var newImagesList = $("#new-images-list")
-
-            $("#top-images-button").click(function() {
-                isTopImagesActive = !isTopImagesActive;
-                isNewImagesActive = false;
-                checkImagesListGroup();
-                checkImagesContainer();
-            });
-
-            $("#new-images-button").click(function() {
-                isNewImagesActive = !isNewImagesActive;
-                isTopImagesActive = false;
-                checkImagesListGroup();
-                checkImagesContainer();
-            });
-
-            function checkImagesContainer() {
-                if (isTopImagesActive || isNewImagesActive)
-                    imagesContainer.slideDown();
-                else
-                    imagesContainer.slideUp();
-            }
-
-            $(".images-group-close").click(function() {
-                isTopImagesActive = false;
-                isNewImagesActive = false;
-                imagesContainer.slideUp();
-            });
-
-            function checkImagesListGroup() {
-                if (isTopImagesActive) {
-                    newImagesList.hide();
-                    topImagesList.show();
-                } else if (isNewImagesActive) {
-                    topImagesList.hide();
-                    newImagesList.show();
-                }
-            }
-
-
-        });
-    </script>
+    <script src="./static/js/home.js"></script>
 </head>
 
 <body>
@@ -80,26 +57,13 @@
                             <span class="list-group-title">Top Images</span>
                             <button class="images-group-close">Close</button>
                         </li>
-                        <li class="list-group-item">
-                            <a>Edworthy Park</a>
-                            <span class="float-end">4.5 / 5</span>
-                        </li>
-                        <li class="list-group-item">
-                            <a>Edworthy Park</a>
-                            <span class="float-end">4.5 / 5</span>
-                        </li>
-                        <li class="list-group-item">
-                            <a>Edworthy Park</a>
-                            <span class="float-end">4.5 / 5</span>
-                        </li>
-                        <li class="list-group-item">
-                            <a>Edworthy Park</a>
-                            <span class="float-end">4.5 / 5</span>
-                        </li>
-                        <li class="list-group-item">
-                            <a>Edworthy Park</a>
-                            <span class="float-end">4.5 / 5</span>
-                        </li>
+
+                        <?php
+
+                        foreach ($topImages as $image)
+                            createListItem($image->title, $image->avgRating, $image->totalRatings);
+
+                        ?>
                     </ul>
                 </div>
                 <div class="card card-body" id="new-images-list" style="display: none;">
@@ -108,26 +72,12 @@
                             <span class="list-group-title">New Images</span>
                             <button class="images-group-close">Close</button>
                         </li>
-                        <li class="list-group-item">
-                            <a>Edworthy Park</a>
-                            <span class="float-end">4.5 / 5</span>
-                        </li>
-                        <li class="list-group-item">
-                            <a>Edworthy Park</a>
-                            <span class="float-end">4.5 / 5</span>
-                        </li>
-                        <li class="list-group-item">
-                            <a>Edworthy Park</a>
-                            <span class="float-end">4.5 / 5</span>
-                        </li>
-                        <li class="list-group-item">
-                            <a>Edworthy Park</a>
-                            <span class="float-end">4.5 / 5</span>
-                        </li>
-                        <li class="list-group-item">
-                            <a>Edworthy Park</a>
-                            <span class="float-end">4.5 / 5</span>
-                        </li>
+                        <?php
+
+                        foreach ($newImages as $image)
+                            createListItem($image->title, $image->avgRating, $image->totalRatings);
+
+                        ?>
                     </ul>
                 </div>
             </div>
