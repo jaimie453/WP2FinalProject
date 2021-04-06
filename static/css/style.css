@@ -10165,9 +10165,6 @@ img {
 header {
   position: relative;
   z-index: 1;
-}
-
-header {
   background-color: rgba(0, 0, 0, 0.75);
 }
 
