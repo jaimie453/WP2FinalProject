@@ -10167,6 +10167,10 @@ header {
   z-index: 1;
 }
 
+header {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
 .utility-bar {
   background-color: rgba(5, 81, 96, 0.3);
 }
