@@ -48,7 +48,7 @@
             echo "<h3>get single city</h3>";
             print_r($cities->fetch(2960));
 
-            // needed pagination for this table specifically lol
+            //needed pagination for this table specifically lol
             echo "<h3>1st 10 cities</h3>";
             print_r($cities->getAll(0, 10));
 
@@ -69,11 +69,14 @@
 
             $images = new imagesDAO();
 
-            echo "<h3>get single image</h3>";
+            echo "<h3>get single image id 1</h3>";
             print_r($images->fetch(1));
 
-            echo "<h3>1st 10 images</h3>";
-            print_r($images->getAll(0, 10));
+            echo "<h3>top 5 rated images</h3>";
+            print_r($images->getTopImages(5));
+
+            echo "<h3>top 5 rated images</h3>";
+            print_r($images->getNewestImages(5));
 
             ?>        
         </div>
