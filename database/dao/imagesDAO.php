@@ -30,8 +30,9 @@ class imagesDAO extends baseDAO
     protected $_primaryKey = 'travelimage.ImageId';
 
     protected function convertToObject($row) {
+        $avgRating = number_format($row['avg'], 1);
         return new Image($row['ImageID'], $row['UID'], $row['Path'], $row['ImageContent'], $row['Title'], 
-            $row['Description'], $row['Latitude'], $row['Longitude'], $row['CityCode'], $row['CountryCodeISO'], $row['avg'], $row['total']);
+            $row['Description'], $row['Latitude'], $row['Longitude'], $row['CityCode'], $row['CountryCodeISO'], $avgRating, $row['total']);
     }
 
     public function getTopImages($numOfResults) {

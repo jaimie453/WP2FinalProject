@@ -1,5 +1,5 @@
-@import 'variables';
-@import '../bootstrap/scss/bootstrap.scss';
+@import "variables";
+@import "../bootstrap/scss/bootstrap.scss";
 
 // Base styles
 
@@ -30,7 +30,6 @@ header {
     z-index: 1;
 }
 
-
 // Home page
 
 // image carousel
@@ -49,8 +48,7 @@ div.carousel-caption {
     object-fit: cover;
 }
 
-
-// top/new images box 
+// top/new images box
 .list-group-title {
     font-size: 1.25rem;
     font-weight: bold;
@@ -64,16 +62,39 @@ div.carousel-caption {
     border: 0;
     background: rgba(0, 0, 0, 0);
     padding-right: 0;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
-.images-group-close:hover {
-    text-decoration: underline;
+$filledStarColor: #cebd66;
+$unfilledStarColor: #4c4444;
+.icon-tabler-star {
+    &.filled-star {
+        stroke: $filledStarColor;
+        fill: $filledStarColor;
+    }
+
+    &.unfilled-star {
+        stroke: $unfilledStarColor;
+    }
 }
 
-#top-images-list,
-#new-images-list {
-    background-color: #1b1b1b;
+.icon-tabler-star-half {
+    stroke: $filledStarColor;
+    fill: $filledStarColor;
+
+    // unfilled half of a half filled star
+    &.reversed-star {
+        position: absolute;
+        transform: scale(-1, 1); // flips relative to y axis
+        right: 4px;
+        bottom: -2px;
+        fill: none;
+
+        &.last {
+            right: 0;
+        }
+    }
 }
-
-
-
