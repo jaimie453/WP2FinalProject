@@ -39,4 +39,8 @@ class User
         $this->email = $email;
         $this->privacy = $privacy;
     }
+
+    public function getName() {
+        return $this->firstName . ' ' . $this->lastName;
+    }
 }

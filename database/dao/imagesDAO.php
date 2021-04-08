@@ -5,7 +5,7 @@
 
 class imagesDAO extends baseDAO
 {
-    // get data from traveluser and traveluserdetails since they have a 1-1 relationship
+    // get data for image and ratings and continent 
     // also get average and total ratings for the image
     protected $_tableName = '
                 travelimage 
@@ -25,14 +25,15 @@ class imagesDAO extends baseDAO
                         WHERE r.ImageID = travelimagerating.ImageID
                     ) total
                 FROM travelimagerating) ratings
-                    on travelimage.ImageID = ratings.ImageID';
+                    on travelimage.ImageID = ratings.ImageID
+            join geocountries on travelimagedetails.CountryCodeISO = geocountries.ISO join geocontinents on geocountries.Continent = geocontinents.ContinentCode';
 
     protected $_primaryKey = 'travelimage.ImageId';
 
     protected function convertToObject($row) {
         $avgRating = number_format($row['avg'], 1);
         return new Image($row['ImageID'], $row['UID'], $row['Path'], $row['ImageContent'], $row['Title'], 
-            $row['Description'], $row['Latitude'], $row['Longitude'], $row['CityCode'], $row['CountryCodeISO'], $avgRating, $row['total']);
+            $row['Description'], $row['Latitude'], $row['Longitude'], $row['CityCode'], $row['CountryCodeISO'], $avgRating, $row['total'], $row['ContinentCode']);
     }
 
     public function getTopImages($numOfResults) {
@@ -44,3 +45,5 @@ class imagesDAO extends baseDAO
         return $this->getAll(0, $numOfResults, "travelImage.ImageId desc");
     }
 }
+
+

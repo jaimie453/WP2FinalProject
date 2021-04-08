@@ -78,6 +78,16 @@
             echo "<h3>top 5 rated images</h3>";
             print_r($images->getNewestImages(5));
 
+            @include_once './database/dao/continentsDAO.php';
+
+            $continents = new continentsDAO();
+
+            echo "<h3>get single continent</h3>";
+            print_r($continents->fetch("AF"));
+
+            echo "<h3>get all continents</h3>";
+            print_r($continents->getAll());
+
             ?>        
         </div>
     </div>

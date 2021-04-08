@@ -25,6 +25,14 @@ img {
     max-width: 100%;
 }
 
+.form-select {
+    display: inline-block;
+}
+
+p {
+    line-height: 2;
+}
+
 // Header
 
 header {
@@ -118,4 +126,40 @@ $unfilledStarColor: #4c4444;
     }
 }
 
+// reverts default link styling
+.link-no-style, .link-no-style:hover {
+    color: currentColor;
+}
 
+.image-card {
+    transition: all .2s ease-in-out;
+    position: relative;
+
+    &:hover {
+        transform:scale(1.1);
+        z-index: 2;
+    }
+}
+
+.flag-img {
+    width: auto;
+    height: 64px;
+    position: relative;
+    top: 12px;
+    margin-right: 1rem;
+}
+
+.small-container {
+    max-width: 800px;
+}
+
+.country-info-container {
+    h6 {
+        display: inline;
+        line-height: 2;
+    }
+
+    span {
+        float: right;
+    }
+}

@@ -1,9 +1,13 @@
+// reference: https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
 // Bootstrap variable overrides
 
 // Colors
+$primary: #055160;
+$secondary: #4c4c4c;
+
 $theme-colors: (
-    "primary": #055160,
-    "secondary": #4c4c4c
+    "primary": $primary,
+    "secondary": $secondary
 );
 
 // Body
@@ -16,3 +20,14 @@ $card-bg: #1b1b1b;
 // List groups
 $list-group-bg: rgba(0,0,0,0);
 $list-group-color: white;  
+
+// Links
+$link-decoration: none;
+
+// Inputs
+// $input-bg: $primary;
+$input-border-color: transparent;
+
+// Selects
+$form-select-bg: $primary;
+$form-select-indicator-color: white;
