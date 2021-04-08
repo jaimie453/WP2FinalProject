@@ -38,6 +38,7 @@ function createListItem($title, $avgRating, $totalRatings, $id)
         <?php include_once 'components/navbar.php'; ?>
     </header>
 
+    
     <div class="container-fluid mt-2 position-relative" style="z-index: 1;">
         <div class="row">
             <div class="col text-end">
@@ -54,7 +55,7 @@ function createListItem($title, $avgRating, $totalRatings, $id)
                 <div class="card card-body" id="top-images-list" style="display: none;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <span class="list-group-title">Top Images</span>
+                            <h5 class="d-inline">Top Images</h5>
                             <button class="images-group-close">Close</button>
                         </li>
 
@@ -69,7 +70,7 @@ function createListItem($title, $avgRating, $totalRatings, $id)
                 <div class="card card-body" id="new-images-list" style="display: none;">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <span class="list-group-title">New Images</span>
+                            <h5 class="d-inline">New Images</h5>
                             <button class="images-group-close">Close</button>
                         </li>
                         <?php
@@ -96,7 +97,7 @@ function createListItem($title, $avgRating, $totalRatings, $id)
                 <img src="static/travel-images/carousel/city.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-block">
                     <a>
-                        <h5>Browse Cities/Countries</h5>
+                        <a href="country.php?id=IT"><h5>Browse Countries</h5></a>
                     </a>
                     <p>Image courtesy of <a href="https://www.pexels.com/photo/reflection-of-buildings-on-body-of-water-1121782/">Pawel L.</a></p>
                 </div>
@@ -105,7 +106,7 @@ function createListItem($title, $avgRating, $totalRatings, $id)
                 <img src="static/travel-images/carousel/road.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-block">
                     <a>
-                        <h5>Browse Posts</h5>
+                        <a href="browse-posts.php"><h5>Browse Posts</h5></a>
                     </a>
                     <p>Image courtesy of <a href="https://www.pexels.com/photo/empty-road-along-the-mountain-2739013/">Mads Thomsen.</a></p>
                 </div>
@@ -114,7 +115,7 @@ function createListItem($title, $avgRating, $totalRatings, $id)
                 <img src="static/travel-images/carousel/mountain.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-block">
                     <a>
-                        <h5>Browse Images</h5>
+                        <a href="browse-images.php"><h5>Browse Images</h5></a>
                     </a>
                     <p>Image courtesy of <a href="https://www.pexels.com/photo/white-and-brown-mountain-under-gray-clouds-5409751/">Brady Knoll.</a></p>
                 </div>

@@ -47,7 +47,7 @@ function createSelectOption($value, $name) {
                         
                         ?>
                     </select>
-                    <select class="form-select d-inline ms-1" aria-label="Default select example" name="countryCode">
+                    <select class="form-select d-inline ms-2" aria-label="Default select example" name="countryCode">
                         <option selected value="All">All Countries</option>
                         <?php 
 
@@ -60,7 +60,7 @@ function createSelectOption($value, $name) {
                         
                         ?>
                     </select>
-                    <button id="image-filter-button" type="submit" class="btn btn-primary ms-1">
+                    <button id="image-filter-button" type="submit" class="btn btn-primary ms-2">
                         <i class="fas fa-search"></i>
                     </button>
                 </form>

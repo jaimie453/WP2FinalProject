@@ -35,20 +35,20 @@ $posts = new postsDAO();
 $post = $posts->getById($image->postId);
 
 @include_once './utils/createCard.php';
-$boxColumnWidths = "col-lg-2 col-md-3 col-sm-4 col-6";
-
 @include_once './utils/ratingsToStars.php';
+
 
 $fullWidthImageColumns = "col-xl-2 col-lg-3 col-md-4 col-6";
 
 $mapContainerClasses = "col-lg-6 mb-5";
 $otherImagePostsContainerClasses = "col-lg-6";
 $otherImagePostsColumns = "col-xl-4 col-lg-6 col-md-4 col-6";
-if(is_null($image->longitude) || is_null($image->latitude)) {
+if (is_null($image->longitude) || is_null($image->latitude)) {
     $mapContainerClasses = "d-none";
     $otherImagePostsContainerClasses = "col";
     $otherImagePostsColumns = $fullWidthImageColumns;
 }
+
 
 
 ?>
@@ -62,12 +62,13 @@ if(is_null($image->longitude) || is_null($image->latitude)) {
 
     <title>Image Details</title>
 
-    <!-- equalize image and review box heights -->
-    <script src='./static/js/image.js'></script>
+    <script type="module" src='./static/js/image.js'></script>
     <script src="./static/js/map.js"></script>
 </head>
 
 <body class="fixed-mountain-bg">
+    <?php include_once 'components/toast.php'; ?>
+
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
@@ -84,11 +85,11 @@ if(is_null($image->longitude) || is_null($image->latitude)) {
                             <span class="float-end text-muted">
                                 <?php
 
-                                if(!is_null($city))
+                                if (!is_null($city))
                                     echo '<a href="city.php?id=' . $city->geoNameId . '">' . $city->asciiName . '</a>';
-                                if(!is_null($city) && !is_null($country))
+                                if (!is_null($city) && !is_null($country))
                                     echo ', ';
-                                if(!is_null($country))
+                                if (!is_null($country))
                                     echo '<a href="country.php?id=' . $country->iso . '">' . $country->countryName . '</a>';
 
                                 ?>
@@ -101,7 +102,8 @@ if(is_null($image->longitude) || is_null($image->latitude)) {
 
                         <p class="card-text"><?= $image->description ?></p>
 
-                        <button class="btn btn-primary">Add to favorites</button>
+                        <button class="btn btn-primary favorite-img" style="display: none;">Favorite</button>
+                        <button class="btn btn-primary unfavorite-img" style="display: none;">Unfavorite</button>
 
                         <a class="btn btn-secondary float-end" href="post.php?id=<?= $post->postId ?>">
                             View post
@@ -116,7 +118,7 @@ if(is_null($image->longitude) || is_null($image->latitude)) {
                     <div class="card-header">
                         <?php
 
-                        if($image->totalRatings > 0) {
+                        if ($image->totalRatings > 0) {
                             echo '<h3 class="d-inline m-0">Reviews (' . $image->totalRatings . ')</h3>';
                             echo '<span>' . convertRatingToStars(round($image->avgRating * 2)) . '</span>';
                         } else {
@@ -127,10 +129,10 @@ if(is_null($image->longitude) || is_null($image->latitude)) {
                         ?>
                     </div>
 
-                    <?php 
+                    <?php
 
-                    if($image->totalRatings > 0) {
-                    echo '<div class="card-body">
+                    if ($image->totalRatings > 0) {
+                        echo '<div class="card-body">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet libero lorem. Vivamus placerat leo at eleifend venenatis. Mauris sed elit porttitor, auctor ligula ut, imperdiet felis. Morbi eu risus massa. Vivamus nisl tortor, scelerisque at elit malesuada, semper pellentesque nulla. Integer sit amet condimentum massa. Proin consectetur sed orci sed aliquam. Integer quis est pharetra erat ullamcorper condimentum eget a elit. Mauris euismod nunc ut diam porttitor, malesuada mattis ipsum condimentum. Interdum et malesuada fames ac ante ipsum primis in faucibus.
 
                             Aenean venenatis eleifend lacinia. Suspendisse et purus vitae elit tempus mattis. Donec at porta elit. Sed rutrum quam ut risus tincidunt congue. Suspendisse accumsan, nunc et sagittis blandit, enim leo commodo neque, eget blandit erat magna quis metus. Mauris molestie lacus ac risus pharetra, ac pharetra leo tristique. Curabitur non dolor et eros ultrices consectetur. Sed luctus lacinia tincidunt. Nulla et tellus a nisi semper feugiat ut et ligula. In eget venenatis ligula. Etiam sodales, libero id auctor iaculis, augue urna blandit felis, vel ultricies dui ligula vel orci. Cras mollis massa vitae diam elementum, ut molestie justo finibus. Phasellus rutrum hendrerit sem, nec faucibus lorem rutrum vitae. Nulla justo leo, facilisis sed interdum pretium, malesuada non odio. Etiam quis imperdiet quam. Donec vitae turpis ac nulla molestie aliquet.

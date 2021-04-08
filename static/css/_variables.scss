@@ -2,7 +2,7 @@
 // Bootstrap variable overrides
 
 // Colors
-$primary: #055160;
+$primary: rgb(5, 81, 96);
 $secondary: #4c4c4c;
 $text-muted: #8d969e;
 
@@ -35,7 +35,15 @@ $link-color: #81beca;
 // Inputs
 // $input-bg: $primary;
 $input-border-color: transparent;
+$input-btn-font-family: 'Montserrat';
+$border-radius: 1rem;
 
 // Selects
 $form-select-bg: $primary;
 $form-select-indicator-color: white;
+
+$toast-background-color: rgb(5, 81, 96, 0.8);
+$toast-header-background-color: $primary;
+$toast-header-border-color: transparent;
+$toast-header-color: white;
+$btn-close-color: white;
