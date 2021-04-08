@@ -1,9 +1,14 @@
+// reference: https://github.com/twbs/bootstrap/blob/main/scss/_variables.scss
 // Bootstrap variable overrides
 
 // Colors
+$primary: rgb(5, 81, 96);
+$secondary: #4c4c4c;
+$text-muted: #8d969e;
+
 $theme-colors: (
-    "primary": #055160,
-    "secondary": #4c4c4c
+    "primary": $primary,
+    "secondary": $secondary
 );
 
 // Body
@@ -16,3 +21,29 @@ $card-bg: #1b1b1b;
 // List groups
 $list-group-bg: rgba(0,0,0,0);
 $list-group-color: white;  
+
+// Accordion
+$accordion-bg: #2b2b2b;
+$accordion-button-bg: $card-bg;
+$accordion-button-active-bg: $card-bg;
+$accordion-button-active-color: $body-color;
+
+// Links
+$link-decoration: none;
+$link-color: #81beca;
+
+// Inputs
+// $input-bg: $primary;
+$input-border-color: transparent;
+$input-btn-font-family: 'Montserrat';
+$border-radius: 1rem;
+
+// Selects
+$form-select-bg: $primary;
+$form-select-indicator-color: white;
+
+$toast-background-color: rgb(5, 81, 96, 0.8);
+$toast-header-background-color: $primary;
+$toast-header-border-color: transparent;
+$toast-header-color: white;
+$btn-close-color: white;

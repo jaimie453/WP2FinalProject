@@ -1,18 +1,19 @@
-$(document).ready(function() {
+$(document).ready(function () {
     var isTopImagesActive = false;
     var isNewImagesActive = false;
     var imagesContainer = $("#images-container");
     var topImagesList = $("#top-images-list");
-    var newImagesList = $("#new-images-list")
+    var newImagesList = $("#new-images-list");
 
-    $("#top-images-button").click(function() {
+
+    $("#top-images-button").click(function () {
         isTopImagesActive = !isTopImagesActive;
         isNewImagesActive = false;
         checkImagesListGroup();
         checkImagesContainer();
     });
 
-    $("#new-images-button").click(function() {
+    $("#new-images-button").click(function () {
         isNewImagesActive = !isNewImagesActive;
         isTopImagesActive = false;
         checkImagesListGroup();
@@ -26,7 +27,7 @@ $(document).ready(function() {
             imagesContainer.slideUp();
     }
 
-    $(".images-group-close").click(function() {
+    $(".images-group-close").click(function () {
         isTopImagesActive = false;
         isNewImagesActive = false;
         imagesContainer.slideUp();
@@ -41,6 +42,4 @@ $(document).ready(function() {
             newImagesList.show();
         }
     }
-
-
 });

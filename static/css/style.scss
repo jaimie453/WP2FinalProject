@@ -12,7 +12,7 @@ body {
 body {
     // & will only apply class to parent element
     &.fixed-mountain-bg {
-        background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+        background: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.95)),
             url("../travel-images/carousel/mountain.jpg") no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
@@ -25,12 +25,40 @@ img {
     max-width: 100%;
 }
 
+.form-select {
+    display: inline-block;
+}
+
+p {
+    line-height: 2;
+}
+
+a {
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat';
+}
+
+h1, h2 {
+    font-weight: 300;
+}
+
+h3, h4, h5 {
+    font-weight: 400;
+}
+
+button:active, a.btn:active {
+    transform: translateY(3px);
+}
+
 // Header
 
 header {
     position: relative;
     z-index: 1;
-    background-color: rgba(0, 0, 0, .75);
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
 // utilities
@@ -67,12 +95,6 @@ div.carousel-caption {
     object-fit: cover;
 }
 
-// top/new images box
-.list-group-title {
-    font-size: 1.25rem;
-    font-weight: bold;
-}
-
 .images-group-close {
     float: right;
     color: lightgray;
@@ -87,6 +109,7 @@ div.carousel-caption {
     }
 }
 
+// Rating stars
 $filledStarColor: #cebd66;
 $unfilledStarColor: #4c4444;
 .icon-tabler-star {
@@ -118,4 +141,85 @@ $unfilledStarColor: #4c4444;
     }
 }
 
+// Links
+.link-no-color,
+.link-no-color:hover {
+    color: currentColor;
+}
 
+// show color only on hover
+a.link-hover-only {
+    color: currentColor;
+}
+
+// Cards
+.image-card {
+    &:hover {
+        // generated with https://html-css-js.com/css/generator/box-shadow/
+        -webkit-box-shadow: 0px 0px 15px 5px rgba(5, 81, 96, 0.85);
+        box-shadow: 0px 0px 15px 5px rgba(5, 81, 96, 0.85);
+    }
+}
+
+// Country Page
+.flag-img {
+    width: auto;
+    height: 64px;
+    position: relative;
+    top: 12px;
+    margin-right: 1rem;
+}
+
+.small-container {
+    max-width: 800px;
+}
+
+.country-info-container {
+    h6 {
+        display: inline;
+        line-height: 2;
+    }
+
+    span {
+        float: right;
+    }
+}
+
+// has to have a predefined height
+#map {
+    height: 500px;
+    border-radius: 1rem;
+}
+
+#review-card {
+    background-color: #2b2b2b;
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card-header,
+    .card-footer {
+        background-color: $card-bg;
+    }
+
+    .card-body {
+        color: #bdbdbd;
+        overflow-y: scroll;
+    }
+}
+
+#toast-container {
+    position: fixed;
+    z-index: 2;
+    right: 50vw;
+    margin-right: -175px;
+    margin-top: 10px;
+}
+
+.toast-title {
+    font-family: 'Satisfy';
+    font-size: 1.1rem;
+}
