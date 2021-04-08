@@ -9,10 +9,10 @@ $topImages = $images->getTopImages(5);
 $newImages = $images->getNewestImages(5);
 
 // TODO: add link to image page eventually
-function createListItem($title, $avgRating, $totalRatings)
+function createListItem($title, $avgRating, $totalRatings, $id)
 {
     echo '<li class="list-group-item d-flex justify-content-between">';
-    echo '<a>' . $title . '</a>';
+    echo '<a href="image.php?id=' . $id . '">' . $title . '</a>';
     if($totalRatings == 0)
         echo '<span class="align-self-center flex-shrink-0 ms-3">No ratings yet.</span>';
     else
@@ -61,7 +61,7 @@ function createListItem($title, $avgRating, $totalRatings)
                         <?php
 
                         foreach ($topImages as $image)
-                            createListItem($image->title, $image->avgRating, $image->totalRatings);
+                            createListItem($image->title, $image->avgRating, $image->totalRatings, $image->imageId);
 
                         ?>
                     </ul>
@@ -75,7 +75,7 @@ function createListItem($title, $avgRating, $totalRatings)
                         <?php
 
                         foreach ($newImages as $image)
-                            createListItem($image->title, $image->avgRating, $image->totalRatings);
+                            createListItem($image->title, $image->avgRating, $image->totalRatings, $image->imageId);
 
                         ?>
                     </ul>

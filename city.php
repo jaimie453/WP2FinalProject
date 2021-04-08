@@ -106,21 +106,10 @@ function listImages($images, $columns)
             <?php
 
             if (!is_null($cityImages)) {
-                // column format for large screen sizes
-                echo '<div class="d-none d-lg-block col-6">';
+                echo '<div class="col-lg-6 col-12">';
                 echo '<div class="container-fluid px-md-5">';
 
-                $columns = "col-xl-4 col-lg-6";
-                listImages($cityImages, $columns);
-
-                echo '</div>';
-                echo '</div>';
-
-                // column format for small screen sizes
-                echo '<div class="d-block d-lg-none col-12">';
-                echo '<div class="container-fluid">';
-
-                $columns = "col-6 col-md-4";
+                $columns = "col-xxl-4 col-lg-6 col-md-4 col-6";
                 listImages($cityImages, $columns);
 
                 echo '</div>';
