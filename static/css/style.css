@@ -10272,4 +10272,8 @@ div.carousel-caption {
   float: right;
 }
 
+#map {
+  height: 500px;
+}
+
 /*# sourceMappingURL=style.css.map */
