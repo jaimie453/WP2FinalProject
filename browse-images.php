@@ -91,7 +91,7 @@ function createSelectOption($value, $name) {
                 
                 echo '<div class="d-flex col-xl-2 col-md-3 col-sm-4 col-6 p-3">';
 
-                $photographer = $users->fetch($image->uId)[0];
+                $photographer = $users->getById($image->uId);
                 createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
                 $total++;
 

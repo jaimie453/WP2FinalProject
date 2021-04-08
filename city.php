@@ -10,14 +10,14 @@ if (!isset($_GET['id']) || $_GET['id'] == null) {
 @include_once './database/dao/citiesDAO.php';
 
 $cities = new citiesDAO();
-$city = $cities->fetch($cityId)[0];
+$city = $cities->getById($cityId);
 
 if (is_null($city))
     header('Location: error.php');
 
 @include_once './database/dao/countriesDAO.php';
 $countries = new countriesDAO();
-$country = $countries->fetch($city->countryCodeISO)[0];
+$country = $countries->getById($city->countryCodeISO);
 
 @include_once './database/dao/imagesDAO.php';
 $images = new imagesDAO();
@@ -38,7 +38,7 @@ function listImages($images, $columns)
     foreach ($images as $image) {
         echo '<div class="d-flex ' . $columns . ' p-3">';
 
-        $photographer = $users->fetch($image->uId)[0];
+        $photographer = $users->getById($image->uId);
         createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
 
         echo '</div>';

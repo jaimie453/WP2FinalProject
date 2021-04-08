@@ -49,14 +49,19 @@ abstract class baseDAO
         return $rows;
     }
 
+    // return single object with primary key (id), or null if none found
+    public function getById($value) {
+        $result = $this->fetch($value, $this->_primaryKey);
+        if(!is_null($result))
+            return $result[0];
+        
+        return null;
+    }
 
-    // gets rows for primary key if no column is specified
-    // $column is a string containing the column name to search $value
-    public function fetch($value, $searchColumn = null)
+    // return rows for search criteria
+    // can only be accessed by other DAOs
+    protected function fetch($value, $searchColumn)
     {
-        if (is_null($searchColumn))
-            $searchColumn = $this->_primaryKey;
-
         $query = $this->__connection->prepare("select * from {$this->_tableName} where {$searchColumn} = ?");
 
         if (is_int($value))
@@ -84,8 +89,6 @@ abstract class baseDAO
 
         if(count($rows) == 0)
             return null;
-        // if (count($rows) == 1)
-        //     return $rows[0];
             
         return $rows;
     }

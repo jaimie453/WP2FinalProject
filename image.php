@@ -10,7 +10,7 @@ if (!isset($_GET['id']) || $_GET['id'] == null) {
 
 @include_once './database/dao/imagesDAO.php';
 $images = new imagesDAO();
-$image = $images->fetch($imageId)[0];
+$image = $images->getById($imageId);
 
 
 if (is_null($image))
@@ -20,19 +20,19 @@ $largeImgPath = './static/travel-images/large/' . $image->path;
 
 @include_once './database/dao/usersDAO.php';
 $users = new usersDAO();
-$photographer = $users->fetch($image->uId)[0];
+$photographer = $users->getById($image->uId);
 
 @include_once './database/dao/countriesDAO.php';
 $countries = new countriesDAO();
-$country = $countries->fetch($image->countryCodeISO)[0];
+$country = $countries->getById($image->countryCodeISO);
 
 @include_once './database/dao/citiesDAO.php';
 $cities = new citiesDAO();
-$city = $cities->fetch($image->cityCode)[0];
+$city = $cities->getById($image->cityCode);
 
 @include_once './database/dao/postsDAO.php';
 $posts = new postsDAO();
-$post = $posts->fetch($image->postId)[0];
+$post = $posts->getById($image->postId);
 
 @include_once './utils/createCard.php';
 $boxColumnWidths = "col-lg-2 col-md-3 col-sm-4 col-6";
@@ -190,7 +190,7 @@ if(is_null($image->longitude) || is_null($image->latitude)) {
                                 continue;
 
                             echo '<div class="p-3 d-flex ' . $otherImagePostsColumns . '">';
-                            $user = $users->fetch($postImage->uId)[0];
+                            $user = $users->getById($postImage->uId);
                             createImageCard($postImage->imageId, $postImage->path, $postImage->title, $user->getName());
                             echo '</div>';
                         }
@@ -219,7 +219,7 @@ if(is_null($image->longitude) || is_null($image->latitude)) {
                     continue;
 
                 echo '<div class="p-3 d-flex ' . $fullWidthImageColumns . '">';
-                $user = $users->fetch($countryImage->uId)[0];
+                $user = $users->getById($countryImage->uId);
                 createImageCard($countryImage->imageId, $countryImage->path, $countryImage->title, $user->getName());
                 echo '</div>';
             }

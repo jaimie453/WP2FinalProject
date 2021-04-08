@@ -10,7 +10,7 @@ if (!isset($_GET['id']) || $_GET['id'] == null) {
 @include_once './database/dao/countriesDAO.php';
 
 $countries = new countriesDAO();
-$country = $countries->fetch($countryId)[0];
+$country = $countries->getById($countryId);
 
 $fileName = './static/travel-images/flags/' . $countryId . '.png';
 $flagPath = null;
@@ -22,7 +22,7 @@ if (is_null($country))
 
 @include_once './database/dao/continentsDAO.php';
 $continents = new continentsDAO();
-$continent = $continents->fetch($country->continent)[0];
+$continent = $continents->getById($country->continent);
 
 @include_once './database/dao/imagesDAO.php';
 $images = new imagesDAO();
@@ -110,7 +110,7 @@ $countryImages = $images->getImagesForCountry($countryId);
             foreach ($countryImages as $image) {
                 echo '<div class="d-flex col-xl-3 col-sm-4 col-6 p-3">';
 
-                $photographer = $users->fetch($image->uId)[0];
+                $photographer = $users->getById($image->uId);
                 createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
 
                 echo '</div>';
