@@ -15,7 +15,7 @@ if (isset($_GET['favImages'])) {
 
         foreach($favImages as $imageId) {
             $favImage = $images->getById($imageId);
-            echo '<div class="col-12">';
+            echo '<div class="d-flex p-3 col-xxl-4 col-lg-6 col-md-4 col-sm-6 col-12">';
 
             $photographer = $users->getById($favImage->uId);
             createImageCard($favImage->imageId, $favImage->path, $favImage->title, $photographer->getName(), true);
@@ -37,10 +37,11 @@ function createImageCard($id, $fileName, $title, $photographerName, $showUnfavor
     echo '<div class="card-body d-flex flex-column">';
     echo '<h5 class="card-title">' . $title . '</h5>';
     echo '<h6 class="card-subtitle mb-2 text-muted">By ' . $photographerName . '</h6>';
-    if($showUnfavoriteButton)
+    if($showUnfavoriteButton) {  
         echo '<button class="btn btn-secondary mt-auto unfavorite-img">Unfavorite</button>';
-    else
-        echo '<button class="btn btn-primary mt-auto">View Post</button>'; // does nothing, just visual
+        echo '<input type="" value="' . $id . '" hidden />';
+    } else
+        echo '<a href="' . $link . '"class="btn btn-primary mt-auto">View Post</a>';
     echo '</div>';
     echo '</div>';
 }
