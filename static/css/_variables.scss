@@ -4,6 +4,7 @@
 // Colors
 $primary: #055160;
 $secondary: #4c4c4c;
+$text-muted: #8d969e;
 
 $theme-colors: (
     "primary": $primary,
@@ -21,8 +22,15 @@ $card-bg: #1b1b1b;
 $list-group-bg: rgba(0,0,0,0);
 $list-group-color: white;  
 
+// Accordion
+$accordion-bg: #2b2b2b;
+$accordion-button-bg: $card-bg;
+$accordion-button-active-bg: $card-bg;
+$accordion-button-active-color: $body-color;
+
 // Links
 $link-decoration: none;
+$link-color: #81beca;
 
 // Inputs
 // $input-bg: $primary;

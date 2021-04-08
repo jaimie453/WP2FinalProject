@@ -69,6 +69,13 @@ abstract class baseDAO
         $query->execute();
 
         $result = $query->get_result();
+
+        // if query failed, generally due to null value
+        if($result == false){
+            $query->close();
+            return null;
+        }
+
         $rows = array();
         foreach($result as $row)
             $rows[] = $this->convertToObject($row);
@@ -77,8 +84,8 @@ abstract class baseDAO
 
         if(count($rows) == 0)
             return null;
-        if (count($rows) == 1)
-            return $rows[0];
+        // if (count($rows) == 1)
+        //     return $rows[0];
             
         return $rows;
     }

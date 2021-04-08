@@ -33,6 +33,10 @@ p {
     line-height: 2;
 }
 
+a {
+    font-weight: 400;
+}
+
 // Header
 
 header {
@@ -95,6 +99,7 @@ div.carousel-caption {
     }
 }
 
+// Rating stars
 $filledStarColor: #cebd66;
 $unfilledStarColor: #4c4444;
 .icon-tabler-star {
@@ -126,11 +131,17 @@ $unfilledStarColor: #4c4444;
     }
 }
 
-// reverts default link styling
-.link-no-style, .link-no-style:hover {
+// Links
+.link-no-color, .link-no-color:hover {
     color: currentColor;
 }
 
+// show color only on hover
+a.link-hover-only {
+    color: currentColor
+}
+
+// Cards
 .image-card {
     transition: all .2s ease-in-out;
     position: relative;
@@ -141,6 +152,7 @@ $unfilledStarColor: #4c4444;
     }
 }
 
+// Country Page
 .flag-img {
     width: auto;
     height: 64px;
@@ -164,6 +176,27 @@ $unfilledStarColor: #4c4444;
     }
 }
 
+// has to have a predefined height
 #map {
     height: 500px;
+}
+
+
+#review-card {
+    background-color: #2b2b2b;
+    
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card-header, .card-footer {
+        background-color: $card-bg;
+    }
+
+    .card-body {
+        color: #BDBDBD;
+        overflow-y: scroll;
+    }
 }

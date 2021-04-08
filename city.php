@@ -10,18 +10,18 @@ if (!isset($_GET['id']) || $_GET['id'] == null) {
 @include_once './database/dao/citiesDAO.php';
 
 $cities = new citiesDAO();
-$city = $cities->fetch($cityId);
+$city = $cities->fetch($cityId)[0];
 
 if (is_null($city))
     header('Location: error.php');
 
 @include_once './database/dao/countriesDAO.php';
 $countries = new countriesDAO();
-$country = $countries->fetch($city->countryCodeISO);
+$country = $countries->fetch($city->countryCodeISO)[0];
 
 @include_once './database/dao/imagesDAO.php';
 $images = new imagesDAO();
-$cityImages = $images->fetch($city->geoNameId, 'CityCode');
+$cityImages = $images->getImagesForCity($cityId);
 
 $cityDescriptionColumns = "col-12 col-lg-6";
 if(is_null($cityImages))
@@ -29,20 +29,16 @@ if(is_null($cityImages))
 
 function listImages($images, $columns)
 {
-    // echo '<div class="row">';
-    // echo '<h3>Images from ' .  $city->asciiName . ', ' . $country->countryName . '</h3>';
-    // echo '</div>';
-
-    echo '<div class="row">';
+    echo '<div class="row justify-content-center">';
 
     @include_once './utils/createCard.php';
     @include_once './database/dao/usersDAO.php';
     $users = new usersDAO();
 
     foreach ($images as $image) {
-        echo '<div class="' . $columns . ' p-3">';
+        echo '<div class="d-flex ' . $columns . ' p-3">';
 
-        $photographer = $users->fetch($image->uId);
+        $photographer = $users->fetch($image->uId)[0];
         createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
 
         echo '</div>';
@@ -73,14 +69,14 @@ function listImages($images, $columns)
     <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="<?= $cityDescriptionColumns ?>">
-                <div class="container-fluid">
+                <div class="container-fluid px-md-5">
                     <div class="row mb-3">
                         <div class="col d-flex align-items-end">
                             <h1 class="d-inline m-0"><?= $city->asciiName ?></h1>
                         </div>
                         <div class="col d-flex justify-content-end align-items-end">
-                            <a href="country.php?id=<?= $country->iso ?>">
-                                <h3 class="text-muted m-0"><?= $country->countryName ?></h3>
+                            <a href="country.php?id=<?= $country->iso ?>" class="text-end">
+                                <h3 class="m-0"><?= $country->countryName ?></h3>
                             </a>
                         </div>
                     </div>
@@ -112,7 +108,7 @@ function listImages($images, $columns)
             if (!is_null($cityImages)) {
                 // column format for large screen sizes
                 echo '<div class="d-none d-lg-block col-6">';
-                echo '<div class="container-fluid">';
+                echo '<div class="container-fluid px-md-5">';
 
                 $columns = "col-xl-4 col-lg-6";
                 listImages($cityImages, $columns);

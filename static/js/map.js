@@ -9,6 +9,6 @@ function initMap() {
             lat: latitude,
             lng: longitude
         },
-        zoom: 8,
+        zoom: 10, // City zoom scale
     });
 }

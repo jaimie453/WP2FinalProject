@@ -15,9 +15,10 @@ class Image
     public $avgRating;
     public $totalRatings;
     public $continentCode;
+    public $postId;
 
     public function __construct($imageId, $uId, $path, $imageContent, $title, $description, $latitude, 
-        $longitude, $cityCode, $countryCodeISO, $avgRating, $totalRatings, $continentCode)
+        $longitude, $cityCode, $countryCodeISO, $avgRating, $totalRatings, $continentCode, $postId)
     {
         $this->imageId = $imageId;
         $this->uId = $uId;
@@ -32,5 +33,6 @@ class Image
         $this->avgRating = $avgRating;
         $this->totalRatings = $totalRatings;
         $this->continentCode = $continentCode;
+        $this->postId = $postId;
     }
 }

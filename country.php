@@ -10,7 +10,7 @@ if (!isset($_GET['id']) || $_GET['id'] == null) {
 @include_once './database/dao/countriesDAO.php';
 
 $countries = new countriesDAO();
-$country = $countries->fetch($countryId);
+$country = $countries->fetch($countryId)[0];
 
 $fileName = './static/travel-images/flags/' . $countryId . '.png';
 $flagPath = null;
@@ -22,11 +22,11 @@ if (is_null($country))
 
 @include_once './database/dao/continentsDAO.php';
 $continents = new continentsDAO();
-$continent = $continents->fetch($country->continent);
+$continent = $continents->fetch($country->continent)[0];
 
 @include_once './database/dao/imagesDAO.php';
 $images = new imagesDAO();
-$countryImages = $images->fetch($country->iso, 'CountryCodeISO');
+$countryImages = $images->getImagesForCountry($countryId);
 
 ?>
 
@@ -48,7 +48,7 @@ $countryImages = $images->fetch($country->iso, 'CountryCodeISO');
 
     <div class="container small-container mt-5 mb-5">
         <div class="row mb-5">
-            <div class="col d-flex align-items-end">
+            <div class="col-8 d-flex align-items-end">
                 <?php
 
                 if (!is_null($flagPath))
@@ -58,7 +58,7 @@ $countryImages = $images->fetch($country->iso, 'CountryCodeISO');
                 <h1 class="d-inline m-0"><?= $country->countryName ?></h1>
 
             </div>
-            <div class="col d-flex justify-content-end align-items-end">
+            <div class="col-4 d-flex justify-content-end align-items-end">
                 <h3 class="text-muted m-0"><?= $continent->continentName ?></h3>
             </div>
         </div>
@@ -97,20 +97,20 @@ $countryImages = $images->fetch($country->iso, 'CountryCodeISO');
         <?php
 
         if (!is_null($countryImages)) {
-            echo '<div class="row">';
-            echo '<h3>Images from ' .  $country->countryName . '</h3>';
-            echo '</div>';
+            // echo '<div class="row">';
+            // echo '<h3>Images from ' .  $country->countryName . '</h3>';
+            // echo '</div>';
 
-            echo '<div class="row">';
+            echo '<div class="row justify-content-center">';
 
             @include_once './utils/createCard.php';
             @include_once './database/dao/usersDAO.php';
             $users = new usersDAO();
 
             foreach ($countryImages as $image) {
-                echo '<div class="col-xl-3 col-sm-4 col-6 p-3">';
+                echo '<div class="d-flex col-xl-3 col-sm-4 col-6 p-3">';
 
-                $photographer = $users->fetch($image->uId);
+                $photographer = $users->fetch($image->uId)[0];
                 createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
 
                 echo '</div>';

@@ -22,12 +22,12 @@ function createSelectOption($value, $name) {
 
 </head>
 
-<body class="d-flex flex-column fixed-mountain-bg">
+<body class="fixed-mountain-bg">
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
 
-    <div class="container mt-5 mb-5 flex-grow-1 d-flex flex-column">
+    <div class="container mt-5 mb-5">
         <div class="row">
             <div class="col-12 col-lg-6">
                 <h1 class="mb-0">All Images</h1>
@@ -66,7 +66,7 @@ function createSelectOption($value, $name) {
                 </form>
             </div>
         </div>
-        <div class="row mt-5 justify-content-center flex-grow-1">
+        <div class="row mt-5 justify-content-center">
             <?php
 
             $continentCode = null;
@@ -89,9 +89,9 @@ function createSelectOption($value, $name) {
                 if(!is_null($countryCode) && $image->countryCodeISO != $countryCode)
                     continue;
                 
-                echo '<div class="col-xl-2 col-md-3 col-sm-4 col-6 p-3">';
+                echo '<div class="d-flex col-xl-2 col-md-3 col-sm-4 col-6 p-3">';
 
-                $photographer = $users->fetch($image->uId);
+                $photographer = $users->fetch($image->uId)[0];
                 createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
                 $total++;
 
@@ -99,7 +99,7 @@ function createSelectOption($value, $name) {
             }
 
             if($total == 0)
-                echo "<div class='col d-flex justify-content-center align-items-center'><h4>No images found.</h4></div>";
+                echo "<div class='col d-flex justify-content-center align-items-center mt-5'><h4>No images found.</h4></div>";
 
             ?>
         </div>
