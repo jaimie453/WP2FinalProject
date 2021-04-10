@@ -4,8 +4,8 @@ $home = "index.php";
 $about = "about.php";
 $advSearch = "search.php";
 
-$browsePosts = "browsePosts.php";
-$browseImages = "browseImages.php";
+$browsePosts = "browse-posts.php";
+$browseImages = "browse-images.php";
 $browseUsers = "browseUsers.php";
 
 $favorites = "favorites.php";
@@ -13,24 +13,35 @@ $account = "#";
 $register = "#";
 $login = "#";
 
+@include_once './database/dao/continentsDAO.php';
+$navContinents = new continentsDAO();
+$navContinents = $navContinents->getAll();
+
+@include_once './database/dao/countriesDAO.php';
+$navCountries = new countriesDAO();
+$navCountries = $navCountries->getCountriesWithImages();
+
+@include_once './database/dao/citiesDAO.php';
+$navCities = new citiesDAO();
+$navCities = $navCities->getCitiesWithImages();
+
 ?>
+
 <div class="container-fluid">
-  <div class="utility-bar  row px-3 py-1">
-    <div class="container-fluid d-flex justify-content-end">
-      <div class="text-light">
-        <a class="utility-link" href="<?php echo $favorites; ?>">
-          <span class="fas fa-star"></span> View Favorites List&nbsp;
-        </a>
-        <a class="utility-link" href="<?php echo $account; ?>">
-          <span class="fas fa-user-circle"></span> My Account&nbsp;
-        </a>
-        <a class="utility-link" href="<?php echo $register; ?>">
-          <span class="fas fa-user-plus"></span> Register&nbsp;
-        </a>
-        <a class="utility-link" href="<?php echo $login; ?>">
-          <span class="fas fa-sign-in-alt"></span> Login
-        </a>
-      </div>
+  <div class="utility-bar row px-2 py-1">
+    <div class="container-fluid d-flex justify-content-end text-light">
+      <a class="utility-link" href="<?php echo $favorites; ?>">
+        <span class="fas fa-star"></span> View Favorites List&nbsp;&nbsp;
+      </a>
+      <a class="utility-link" href="<?php echo $account; ?>">
+        <span class="fas fa-user-circle"></span> My Account&nbsp;&nbsp;
+      </a>
+      <a class="utility-link" href="<?php echo $register; ?>">
+        <span class="fas fa-user-plus"></span> Register&nbsp;&nbsp;
+      </a>
+      <a class="utility-link" href="<?php echo $login; ?>">
+        <span class="fas fa-sign-in-alt"></span> Login
+      </a>
     </div>
   </div>
 
@@ -82,35 +93,54 @@ $login = "#";
   </div>
 
   <div class="row">
-    <nav class="navbar navbar-expand-lg navbar-dark">
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+    <nav class="navbar navbar-expand-lg navbar-dark pt-0">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Continents
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                <?php
+                  foreach ($navContinents as $navContinent) {
+                    echo '<li><a class="dropdown-item" href="search.php?id='
+                      . $navContinent->continentCode . '">';
+                    echo $navContinent->continentName . '</a></li>';
+                  }
+                ?>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Countries
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                <?php
+                  foreach ($navCountries as $navCountry) {
+                    echo '<li><a class="dropdown-item" href="country.php?id='
+                      . $navCountry->iso . '">';
+                    echo $navCountry->countryName . '</a></li>';
+                  }
+                ?>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Cities
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
+                <?php
+                  foreach ($navCities as $navCity) {
+                    echo '<li><a class="dropdown-item" href="city.php?id='
+                      . $navCity->geoNameId . '">';
+                    echo $navCity->asciiName . '</a></li>';
+                  }
+                ?>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   </div>

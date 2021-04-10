@@ -5,11 +5,11 @@
 
 class imagesDAO extends baseDAO
 {
-    // get data for image and ratings and continent 
+    // get data for image and ratings and continent
     // also get average and total ratings for the images
     // also get the post this image is apart of
     protected $_tableName = '
-                travelimage 
+                travelimage
             JOIN
                 travelimagedetails
                     on travelimage.ImageID = travelimagedetails.ImageID
@@ -27,13 +27,13 @@ class imagesDAO extends baseDAO
                     ) total
                 FROM travelimagerating) ratings
                     on travelimage.ImageID = ratings.ImageID
-            join 
-                geocountries 
-                    on travelimagedetails.CountryCodeISO = geocountries.ISO 
-            join 
-                geocontinents 
+            join
+                geocountries
+                    on travelimagedetails.CountryCodeISO = geocountries.ISO
+            join
+                geocontinents
                     on geocountries.Continent = geocontinents.ContinentCode
-            join 
+            join
                 travelpostimages
                     on travelimage.ImageID = travelpostimages.ImageID';
 
@@ -42,8 +42,8 @@ class imagesDAO extends baseDAO
 
     protected function convertToObject($row) {
         $avgRating = number_format($row['avg'], 1);
-        return new Image($row['ImageID'], $row['UID'], $row['Path'], $row['ImageContent'], $row['Title'], 
-            $row['Description'], $row['Latitude'], $row['Longitude'], $row['CityCode'], $row['CountryCodeISO'], 
+        return new Image($row['ImageID'], $row['UID'], $row['Path'], $row['ImageContent'], $row['Title'],
+            $row['Description'], $row['Latitude'], $row['Longitude'], $row['CityCode'], $row['CountryCodeISO'],
             $avgRating, $row['total'], $row['ContinentCode'], $row['PostID']);
     }
 
@@ -68,5 +68,3 @@ class imagesDAO extends baseDAO
         return $this->fetch($postId, 'PostID');
     }
 }
-
-

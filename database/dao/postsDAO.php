@@ -11,4 +11,10 @@ class postsDAO extends baseDAO
     protected function convertToObject($row) {
         return new Post($row['PostID'], $row['UID'], $row['ParentPost'], $row['Title'], $row['Message'], $row['PostTime']);
     }
+
+    public function getPostsForUser($uId) {
+        return $this->fetch($uId, 'uId');
+    }
 }
+
+?>

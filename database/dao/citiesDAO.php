@@ -8,7 +8,40 @@ class citiesDAO extends baseDAO
     protected $_primaryKey = 'GeoNameID';
 
     protected function convertToObject($row) {
-        return new City($row['GeoNameID'], $row['AsciiName'], $row['CountryCodeISO'], $row['Latitude'], $row['Longitude'], 
+        return new City($row['GeoNameID'], $row['AsciiName'], $row['CountryCodeISO'], $row['Latitude'], $row['Longitude'],
             $row['FeatureCode'], $row['Admin1Code'], $row['Admin2Code'], $row['Population'], $row['Elevation'], $row['TimeZone']);
+    }
+
+    public function getCitiesWithImages() {
+      $query = $this->__connection->prepare("
+        select *
+        from {$this->_tableName}
+        where GeoNameID in (
+          select CityCode
+          from travelimagedetails
+          group by CityCode
+        )
+      ");
+
+      $query->execute();
+
+      $result = $query->get_result();
+
+      // if query failed, generally due to null value
+      if($result == false){
+          $query->close();
+          return null;
+      }
+
+      $rows = array();
+      foreach($result as $row)
+          $rows[] = $this->convertToObject($row);
+
+      $query->close();
+
+      if(count($rows) == 0)
+          return null;
+
+      return $rows;
     }
 }

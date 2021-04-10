@@ -10187,6 +10187,14 @@ button:active, a.btn:active {
   transform: translateY(3px);
 }
 
+.truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 header {
   position: relative;
   z-index: 1;
@@ -10196,7 +10204,7 @@ header {
 .utility-bar {
   background-color: rgba(5, 81, 96, 0.3);
 }
-.utility-bar a {
+.utility-bar .utility-link {
   color: white;
   font-weight: 200;
   text-decoration: none;
@@ -10209,6 +10217,7 @@ header {
 #home-carousel {
   position: fixed;
   top: 0;
+  width: 100%;
 }
 
 div.carousel-caption {
