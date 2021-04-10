@@ -6,7 +6,7 @@ $advSearch = "search.php";
 
 $browsePosts = "browse-posts.php";
 $browseImages = "browse-images.php";
-$browseUsers = "browseUsers.php";
+$browseUsers = "browse-users.php";
 
 $favorites = "favorites.php";
 $account = "#";

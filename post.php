@@ -1,6 +1,6 @@
 <?php
 
-$postId = 1;
+$postId = -1;
 if (!isset($_GET['id']) || $_GET['id'] == null) {
     header('Location: error.php');
 } else {
@@ -27,10 +27,8 @@ $author = $users->getById($post->uId);
 <head>
     <?php include 'components/head.php'; ?>
 
-    <title>Image Details</title>
-
-    <script type="module" src='./static/js/image.js'></script>
-    <script src="./static/js/map.js"></script>
+    <title>Post Details</title>
+    
 </head>
 
 <body class="fixed-mountain-bg">

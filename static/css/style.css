@@ -10335,4 +10335,8 @@ a.link-hover-only {
   font-size: 1.1rem;
 }
 
+.user-deets td {
+  padding: 0px 5px;
+}
+
 /*# sourceMappingURL=style.css.map */

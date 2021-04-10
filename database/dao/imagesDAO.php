@@ -67,4 +67,8 @@ class imagesDAO extends baseDAO
     public function getImagesForPost($postId) {
         return $this->fetch($postId, 'PostID');
     }
+
+    public function getImagesForUser($uId) {
+        return $this->fetch($uId, 'UID');
+    }
 }

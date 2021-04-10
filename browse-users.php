@@ -1,10 +1,10 @@
 <?php
 
-@include_once './database/dao/postsDAO.php';
-@include_once './utils/displayPosts.php';
+@include_once './database/dao/usersDAO.php';
+@include_once './utils/displayUsers.php';
 
-$posts = new postsDAO();
-$allPosts = $posts->getAll();
+$users = new usersDAO();
+$allUsers = $users->getAll();
 
 ?>
 
@@ -14,7 +14,7 @@ $allPosts = $posts->getAll();
 <head>
     <?php include 'components/head.php'; ?>
 
-    <title>Browse Posts</title>
+    <title>Browse Users</title>
 
 </head>
 
@@ -26,26 +26,22 @@ $allPosts = $posts->getAll();
   <!-- Page Content -->
   <main>
     <div class="row pt-5 mx-5">
-      <h1>User Posts</h1>
+      <h1>Users</h1>
 
       <hr class="text-secondary my-4">
     </div>
 
     <div class="row d-flex justify-content-start px-5">
       <?php
-      @include_once './database/dao/usersDAO.php';
-      $users = new usersDAO();
-
       $total = 0;
-      foreach ($allPosts as $post) {
+      foreach ($allUsers as $user) {
 
-          $author = $users->getById($post->uId);
-          createPostListing(
-            $post->postId,
-            $author->getName(),
-            $post->title,
-            $post->message,
-            $post->postTime
+          createUserListing(
+            $user->uId,
+            $user->userName,
+            date("M-d-Y", strtotime($user->dateJoined)),
+            date("M-d-Y", strtotime($user->dateLastModified)),
+            $user->getName()
           );
           $total++;
 
