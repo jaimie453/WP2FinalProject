@@ -41,7 +41,7 @@ function createImageCard($id, $fileName, $title, $photographerName, $showUnfavor
         echo '<button class="btn btn-secondary mt-auto unfavorite-img">Unfavorite</button>';
         echo '<input type="" value="' . $id . '" hidden />';
     } else
-        echo '<a href="' . $link . '"class="btn btn-primary mt-auto">View Post</a>';
+        echo '<a href="' . $link . '"class="btn btn-primary mt-auto">View Image</a>';
     echo '</div>';
     echo '</div>';
 }

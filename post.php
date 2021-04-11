@@ -29,6 +29,7 @@ $author = $users->getById($post->uId);
 
     <title>Post Details</title>
     
+    <script type="module" src='./static/js/post.js'></script>
 </head>
 
 <body class="fixed-mountain-bg">
@@ -52,10 +53,8 @@ $author = $users->getById($post->uId);
           </div>
 
           <div class="col-md-4">
-            <a class="btn btn-outline-secondary text-primary mb-4"
-                href="favorites.php?id=<?= $post->postId ?>">
-              <i class="fas fa-heart"></i> Add to Favorites List
-            </a>
+            <button class="btn btn-primary favorite-post" style="display: none;">Favorite</button>
+            <button class="btn btn-primary unfavorite-post" style="display: none;">Unfavorite</button>
 
             <table class="table table-borderless">
               <thead>
