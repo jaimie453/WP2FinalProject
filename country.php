@@ -47,7 +47,7 @@ $countryImages = $images->getImagesForCountry($countryId);
     </header>
 
     <div class="container small-container mt-5 mb-5">
-        <div class="row mb-5">
+        <div class="row mb-3">
             <div class="col-8 d-flex align-items-end">
                 <?php
 
@@ -61,6 +61,7 @@ $countryImages = $images->getImagesForCountry($countryId);
             <div class="col-4 d-flex justify-content-end align-items-end">
                 <h3 class="text-muted m-0"><?= $continent->continentName ?></h3>
             </div>
+            <hr class="text-secondary my-4">
         </div>
         <div class="row mb-5">
 
@@ -71,7 +72,7 @@ $countryImages = $images->getImagesForCountry($countryId);
                 $description = "This country has no description.";
 
             echo '<div class="col-sm-8 col-12 pe-5">';
-            echo '<p>' . $description . '</p>';
+            echo '<p class="line-height-2">' . $description . '</p>';
             echo '</div>';
 
             ?>
@@ -108,7 +109,7 @@ $countryImages = $images->getImagesForCountry($countryId);
             $users = new usersDAO();
 
             foreach ($countryImages as $image) {
-                echo '<div class="d-flex col-xl-3 col-sm-4 col-6 p-3">';
+                echo '<div class="d-flex col-sm-4 col-6 p-3">';
 
                 $photographer = $users->getById($image->uId);
                 createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());

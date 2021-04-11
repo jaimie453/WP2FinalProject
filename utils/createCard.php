@@ -15,7 +15,7 @@ if (isset($_GET['favImages'])) {
 
         foreach($favImages as $imageId) {
             $favImage = $images->getById($imageId);
-            echo '<div class="d-flex p-3 col-xxl-4 col-lg-6 col-md-4 col-sm-6 col-12">';
+            echo '<div class="d-flex p-3 col-lg-6 col-md-4 col-sm-6 col-12">';
 
             $photographer = $users->getById($favImage->uId);
             createImageCard($favImage->imageId, $favImage->path, $favImage->title, $photographer->getName(), true);
@@ -41,7 +41,7 @@ function createImageCard($id, $fileName, $title, $photographerName, $showUnfavor
         echo '<button class="btn btn-secondary mt-auto unfavorite-img">Unfavorite</button>';
         echo '<input type="" value="' . $id . '" hidden />';
     } else
-        echo '<a href="' . $link . '"class="btn btn-primary mt-auto">View Post</a>';
+        echo '<a href="' . $link . '"class="btn btn-primary mt-auto">View Image</a>';
     echo '</div>';
     echo '</div>';
 }

@@ -10163,10 +10163,6 @@ img {
   display: inline-block;
 }
 
-p {
-  line-height: 2;
-}
-
 a {
   font-weight: 400;
 }
@@ -10195,9 +10191,13 @@ button:active, a.btn:active {
   text-overflow: ellipsis;
 }
 
+.line-height-2 {
+  line-height: 2;
+}
+
 header {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   background-color: rgba(0, 0, 0, 0.75);
 }
 
@@ -10324,7 +10324,7 @@ a.link-hover-only {
 
 #toast-container {
   position: fixed;
-  z-index: 2;
+  z-index: 3;
   right: 50vw;
   margin-right: -175px;
   margin-top: 10px;

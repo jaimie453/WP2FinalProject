@@ -65,8 +65,9 @@ function createSelectOption($value, $name) {
                     </button>
                 </form>
             </div>
+            <hr class="text-secondary my-4">
         </div>
-        <div class="row mt-5 justify-content-center">
+        <div class="row justify-content-center">
             <?php
 
             $continentCode = null;

@@ -10,9 +10,9 @@ function createUserListing($uId, $userName, $dateJoined, $dateLastModified, $nam
 
     echo '<div class="card-body">';
 
-    echo '<h5 class="card-title">' . $userName . '</h5>';
+    echo '<h5 class="card-title">' . $name . '</h5>';
     echo '<h6 class="card-subtitle mb-2 text-muted">';
-    echo $name . '<br>';
+    echo $userName . '<br>';
     echo '</h6>';
 
     echo '<p class="card-text">';

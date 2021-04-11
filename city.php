@@ -109,7 +109,7 @@ function listImages($images, $columns)
                 echo '<div class="col-lg-6 col-12">';
                 echo '<div class="container-fluid px-md-5">';
 
-                $columns = "col-xxl-4 col-lg-6 col-md-4 col-6";
+                $columns = "col-lg-6 col-md-4 col-6";
                 listImages($cityImages, $columns);
 
                 echo '</div>';
