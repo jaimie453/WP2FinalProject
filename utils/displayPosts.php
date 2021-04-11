@@ -23,19 +23,21 @@ if (isset($_GET['favPosts'])) {
                 $post->title,
                 $post->message,
                 $post->postTime,
-                $showUnfavoriteButton = true
+                $showUnfavoriteButton = true,
+                $columns = "col-lg-6 col-md-4 col-sm-6 col-12"
             );
         }
     }
 }
 
-function createPostListing($postId, $userName, $title, $message, $postTime, $showUnfavoriteButton = false)
+function createPostListing($postId, $userName, $title, $message, $postTime, 
+                            $showUnfavoriteButton = false, $columns = "col-sm-12 col-md-6 col-lg-4 col-xl-3")
 {
     $link = 'post.php?id=' . $postId;
     $message = str_replace("<p>", "", $message);
     $message = str_replace("</p>", "<br>", $message);
 
-    echo '<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 my-3">';
+    echo '<div class="' . $columns . ' my-3">';
     echo '<div class="card image-card">';
     echo '<a class="link-no-color" href="' . $link . '">';
 
@@ -53,7 +55,7 @@ function createPostListing($postId, $userName, $title, $message, $postTime, $sho
     echo '</a>';
 
     if ($showUnfavoriteButton) {
-        echo '<button class="btn btn-secondary mt-auto unfavorite-post">Unfavorite</button>';
+        echo '<button class="btn btn-secondary mt-auto unfavorite-post m-3">Unfavorite</button>';
         echo '<input type="" value="' . $postId . '" hidden />';
     }
     echo '</div>';
