@@ -42,7 +42,7 @@ $fullWidthImageColumns = "col-xl-2 col-lg-3 col-md-4 col-6";
 
 $mapContainerClasses = "col-lg-6 mb-5";
 $otherImagePostsContainerClasses = "col-lg-6";
-$otherImagePostsColumns = "col-xl-4 col-lg-6 col-md-4 col-6";
+$otherImagePostsColumns = "col-lg-6 col-md-4 col-6";
 if (is_null($image->longitude) || is_null($image->latitude)) {
     $mapContainerClasses = "d-none";
     $otherImagePostsContainerClasses = "col";
@@ -73,7 +73,7 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
         <?php include_once 'components/navbar.php'; ?>
     </header>
 
-    <div class="container mt-3 mb-5 p-lg-5">
+    <div class="container mt-3 mb-5 px-lg-5">
         <div class="row mb-5">
             <div class="col-lg-6 p-xl-5 mb-5">
                 <!-- Image Card -->

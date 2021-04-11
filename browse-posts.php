@@ -12,32 +12,33 @@ $allPosts = $posts->getAll();
 <html lang="en">
 
 <head>
-    <?php include 'components/head.php'; ?>
+  <?php include 'components/head.php'; ?>
 
-    <title>Browse Posts</title>
+  <title>Browse Posts</title>
 
 </head>
 
 <body class="fixed-mountain-bg">
-    <header>
-        <?php include_once 'components/navbar.php'; ?>
-    </header>
+  <header>
+    <?php include_once 'components/navbar.php'; ?>
+  </header>
 
   <!-- Page Content -->
   <main>
-    <div class="row pt-5 mx-5">
-      <h1>User Posts</h1>
+    <div class="container">
+      <div class="row pt-5 mx-5">
+        <h1>All Posts</h1>
 
-      <hr class="text-secondary my-4">
-    </div>
+        <hr class="text-secondary my-4">
+      </div>
 
-    <div class="row d-flex justify-content-start px-5">
-      <?php
-      @include_once './database/dao/usersDAO.php';
-      $users = new usersDAO();
+      <div class="row d-flex justify-content-center px-5">
+        <?php
+        @include_once './database/dao/usersDAO.php';
+        $users = new usersDAO();
 
-      $total = 0;
-      foreach ($allPosts as $post) {
+        $total = 0;
+        foreach ($allPosts as $post) {
 
           $author = $users->getById($post->uId);
           createPostListing(
@@ -48,15 +49,15 @@ $allPosts = $posts->getAll();
             $post->postTime
           );
           $total++;
-
-      }
-      if($total == 0)
+        }
+        if ($total == 0)
           echo "<div class='col d-flex justify-content-center align-items-center mt-5'><h4>No posts found.</h4></div>";
-      ?>
+        ?>
+      </div>
+
     </div>
-
-
   </main>
 
 </body>
+
 </html>
