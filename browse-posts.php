@@ -39,7 +39,6 @@ $allPosts = $posts->getAll();
 
         $total = 0;
         foreach ($allPosts as $post) {
-
           $author = $users->getById($post->uId);
           createPostListing(
             $post->postId,

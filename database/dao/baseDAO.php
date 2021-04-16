@@ -42,7 +42,7 @@ abstract class baseDAO
         if ($result = $this->__connection->query($query)) {
             foreach($result as $row)
                 $rows[] = $this->convertToObject($row);
-            
+
             $result->close();
         }
 
@@ -54,7 +54,7 @@ abstract class baseDAO
         $result = $this->fetch($value, $this->_primaryKey);
         if(!is_null($result))
             return $result[0];
-        
+
         return null;
     }
 
@@ -84,12 +84,12 @@ abstract class baseDAO
         $rows = array();
         foreach($result as $row)
             $rows[] = $this->convertToObject($row);
-        
+
         $query->close();
 
         if(count($rows) == 0)
             return null;
-            
+
         return $rows;
     }
 }

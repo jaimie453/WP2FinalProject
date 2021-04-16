@@ -71,4 +71,43 @@ class imagesDAO extends baseDAO
     public function getImagesForUser($uId) {
         return $this->fetch($uId, 'UID');
     }
+
+    public function searchImageTitles($query, $cityId, $countryId, $sortAsc) {
+      {
+          if ($sortAsc == "true")
+            $sort = "asc";
+          else
+            $sort = "desc";
+
+          $query = $this->__connection->prepare("
+            select *
+            from {$this->_tableName}
+            where CityCode like '{$cityId}'
+            and CountryCodeISO like '{$countryId}'
+            and Title like '%{$query}%'
+            order by Title {$sort}
+          ");
+
+          $query->execute();
+
+          $result = $query->get_result();
+
+          // if query failed, generally due to null value
+          if($result == false){
+              $query->close();
+              return null;
+          }
+
+          $rows = array();
+          foreach($result as $row)
+              $rows[] = $this->convertToObject($row);
+
+          $query->close();
+
+          if(count($rows) == 0)
+              return null;
+
+          return $rows;
+        }
+    }
 }

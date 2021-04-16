@@ -85,6 +85,30 @@ header {
     font-family: "Satisfy";
 }
 
+.nav-search {
+    input, input:focus {
+      color: black;
+      height: 29px;
+      margin-top: 5px;
+      border-radius: 1rem;
+      max-width: 250px;
+    }
+
+    button {
+      font-size: small;
+      height: 27px;
+      width: 40px;
+      margin-top: 6px;
+      margin-left: -40px;
+      padding: auto;
+      color: rgb(18, 19, 22);
+      text-decoration: none;
+      background-color: rgb(208, 215, 221);
+      border: 1px solid rgb(208, 215, 221);
+      border-radius: 1rem;
+    }
+}
+
 // Home page
 
 // image carousel
@@ -248,7 +272,28 @@ a.link-hover-only {
 // User Page
 
 .user-deets {
-  td {
-    padding: 0px 5px;
-  }
+    td {
+      padding: 0px 5px;
+    }
+}
+
+// Search page
+
+.sorter {
+    button, button:focus {
+      box-shadow: 0 0 rgba(0, 0, 0, 0);
+      margin-top: 3px;
+    }
+}
+
+.search-dropdown {
+    max-width: 250px;
+
+    option {
+      font-family: default;
+    }
+}
+
+#imageTitle, #postTitle {
+    max-width: 83%;
 }

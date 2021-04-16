@@ -15,6 +15,41 @@ class postsDAO extends baseDAO
     public function getPostsForUser($uId) {
         return $this->fetch($uId, 'uId');
     }
+
+    public function searchPostTitles($keyword, $sortAsc) {
+        if ($sortAsc == "true")
+          $sort = "asc";
+        else
+          $sort = "desc";
+
+        $query = $this->__connection->prepare("
+          select *
+          from {$this->_tableName}
+          where Title like '%{$keyword}%'
+          order by Title {$sort}
+        ");
+
+        $query->execute();
+
+        $result = $query->get_result();
+
+        // if query failed, generally due to null value
+        if($result == false){
+            $query->close();
+            return null;
+        }
+
+        $rows = array();
+        foreach($result as $row)
+            $rows[] = $this->convertToObject($row);
+
+        $query->close();
+
+        if(count($rows) == 0)
+            return null;
+
+        return $rows;
+      }
 }
 
 ?>

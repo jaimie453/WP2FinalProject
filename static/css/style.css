@@ -10214,6 +10214,27 @@ header {
   font-family: "Satisfy";
 }
 
+.nav-search input, .nav-search input:focus {
+  color: black;
+  height: 29px;
+  margin-top: 5px;
+  border-radius: 1rem;
+  max-width: 250px;
+}
+.nav-search button {
+  font-size: small;
+  height: 27px;
+  width: 40px;
+  margin-top: 6px;
+  margin-left: -40px;
+  padding: auto;
+  color: #121316;
+  text-decoration: none;
+  background-color: #d0d7dd;
+  border: 1px solid #d0d7dd;
+  border-radius: 1rem;
+}
+
 #home-carousel {
   position: fixed;
   top: 0;
@@ -10337,6 +10358,22 @@ a.link-hover-only {
 
 .user-deets td {
   padding: 0px 5px;
+}
+
+.sorter button, .sorter button:focus {
+  box-shadow: 0 0 rgba(0, 0, 0, 0);
+  margin-top: 3px;
+}
+
+.search-dropdown {
+  max-width: 250px;
+}
+.search-dropdown option {
+  font-family: default;
+}
+
+#imageTitle, #postTitle {
+  max-width: 83%;
 }
 
 /*# sourceMappingURL=style.css.map */
