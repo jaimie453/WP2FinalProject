@@ -28,8 +28,6 @@ $author = $users->getById($post->uId);
     <?php include 'components/head.php'; ?>
 
     <title>Post Details</title>
-
-    <!-- <script type="module" src='./static/js/post.js'></script> -->
 </head>
 
 <body class="fixed-mountain-bg">

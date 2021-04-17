@@ -60,7 +60,7 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
 
     <title>Image Details</title>
 
-    <!-- <script type="module" src='./static/js/image.js'></script> -->
+    <script src='./static/js/image.js'></script>
     <script src="./static/js/map.js"></script>
 </head>
 

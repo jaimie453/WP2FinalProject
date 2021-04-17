@@ -16,7 +16,6 @@ unset($_GET['countryId']);
 
     <title>Advanced Search</title>
 
-    <script type="module" src='./static/js/image.js'></script>
     <script src="./static/js/map.js"></script>
     <script src="./static/js/search.js"></script>
 </head>

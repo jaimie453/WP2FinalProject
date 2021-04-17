@@ -1,30 +1,5 @@
 <?php
 
-// needed for ajax request on favorites.php
-if (isset($_GET['favImages'])) {
-    $favImages = $_GET['favImages'];
-
-    // empty array contains [""] in ajax request
-    if($favImages[0] == "") {
-        echo '<h3>You haven\'t favorited any images yet.</h3>';
-    } else {
-        @include_once __DIR__ . '/../database/dao/usersDAO.php';
-        @include_once __DIR__ . '/../database/dao/imagesDAO.php';
-        $users = new usersDAO();
-        $images = new imagesDAO();
-
-        foreach($favImages as $imageId) {
-            $favImage = $images->getById($imageId);
-            echo '<div class="d-flex p-3 col-lg-6 col-md-4 col-sm-6 col-12">';
-
-            $photographer = $users->getById($favImage->uId);
-            createImageCard($favImage->imageId, $favImage->path, $favImage->title, $photographer->getName());
-
-            echo '</div>';
-        }
-    }
-}
-
 function createImageCard($id, $fileName, $title, $photographerName)
 {
     $path = './static/travel-images/square-medium/' . $fileName;

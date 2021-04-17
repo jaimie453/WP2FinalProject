@@ -1,33 +1,5 @@
 <?php
 
-// needed for ajax request on favorites.php
-if (isset($_GET['favPosts'])) {
-    $favPosts = $_GET['favPosts'];
-
-    // empty array contains [""] in ajax request
-    if ($favPosts[0] == "") {
-        echo '<h3>You haven\'t favorited any posts yet.</h3>';
-    } else {
-        @include_once '../database/dao/usersDAO.php';
-        @include_once '../database/dao/postsDAO.php';
-        $users = new usersDAO();
-        $posts = new postsDAO();
-
-        foreach ($favPosts as $postId) {
-            $post = $posts->getById($postId);
-            $author = $users->getById($post->uId);
-
-            createPostListing(
-                $post->postId,
-                $author->getName(),
-                $post->title,
-                $post->message,
-                $post->postTime,
-                $columns = "col-lg-6 col-md-4 col-sm-6 col-12"
-            );
-        }
-    }
-}
 
 function createPostListing($postId, $userName, $title, $message, $postTime, 
                             $columns = "col-sm-12 col-md-6 col-lg-4 col-xl-3")

@@ -33,7 +33,6 @@ if (isset($_GET['countryId']) && $_GET['countryId'] != "NULL")
 
   <title>Search Results</title>
 
-  <script type="module" src='./static/js/image.js'></script>
   <script src="./static/js/map.js"></script>
 </head>
 
