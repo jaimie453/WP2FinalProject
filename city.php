@@ -31,7 +31,7 @@ function listImages($images, $columns)
 {
     echo '<div class="row justify-content-center">';
 
-    @include_once './utils/createCard.php';
+    @include_once './utils/displayImage.php';
     @include_once './database/dao/usersDAO.php';
     $users = new usersDAO();
 
@@ -62,6 +62,8 @@ function listImages($images, $columns)
 </head>
 
 <body class="fixed-mountain-bg">
+    <?php include_once 'components/toast.php'; ?>
+
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>

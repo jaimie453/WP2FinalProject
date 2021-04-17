@@ -1,7 +1,7 @@
 <?php
 
 @include_once './database/dao/imagesDAO.php';
-@include_once './utils/createCard.php';
+@include_once './utils/displayImage.php';
 
 $images = new imagesDAO();
 $allImages = $images->getAll();
@@ -23,6 +23,8 @@ function createSelectOption($value, $name) {
 </head>
 
 <body class="fixed-mountain-bg">
+    <?php include_once 'components/toast.php'; ?>
+
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
@@ -90,7 +92,7 @@ function createSelectOption($value, $name) {
                 if(!is_null($countryCode) && $image->countryCodeISO != $countryCode)
                     continue;
                 
-                echo '<div class="d-flex col-xl-2 col-md-3 col-sm-4 col-6 p-3">';
+                echo '<div class="d-flex col-xl-3 col-md-4 col-6 p-3">';
 
                 $photographer = $users->getById($image->uId);
                 createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());

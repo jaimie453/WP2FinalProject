@@ -23,7 +23,6 @@ if (isset($_GET['favPosts'])) {
                 $post->title,
                 $post->message,
                 $post->postTime,
-                $showUnfavoriteButton = true,
                 $columns = "col-lg-6 col-md-4 col-sm-6 col-12"
             );
         }
@@ -31,17 +30,22 @@ if (isset($_GET['favPosts'])) {
 }
 
 function createPostListing($postId, $userName, $title, $message, $postTime, 
-                            $showUnfavoriteButton = false, $columns = "col-sm-12 col-md-6 col-lg-4 col-xl-3")
+                            $columns = "col-sm-12 col-md-6 col-lg-4 col-xl-3")
 {
     $link = 'post.php?id=' . $postId;
     $message = str_replace("<p>", "", $message);
     $message = str_replace("</p>", "<br>", $message);
+    
+    if(!isset($_SESSION['postFavs']))
+        $isFavorited = false;
+    else 
+        $isFavorited = in_array($postId, $_SESSION['postFavs']);
 
-    echo '<div class="' . $columns . ' my-3">';
-    echo '<div class="card image-card">';
+    echo '<div class="d-flex ' . $columns . ' my-3">';
+    echo '<div class="card image-card d-flex flex-column">';
     echo '<a class="link-no-color" href="' . $link . '">';
 
-    echo '<div class="card-body">';
+    echo '<div class="card-body d-flex flex-column">';
 
     echo '<h5 class="card-title">' . $title . '</h5>';
     echo '<h6 class="card-subtitle mb-2 text-muted">';
@@ -50,14 +54,22 @@ function createPostListing($postId, $userName, $title, $message, $postTime,
     echo '</h6>';
     echo '<p class="card-text truncate">' . $message . '</p>';
 
-    echo '</div>';
-
     echo '</a>';
 
-    if ($showUnfavoriteButton) {
-        echo '<button class="btn btn-secondary mt-auto unfavorite-post m-3">Unfavorite</button>';
-        echo '<input type="" value="' . $postId . '" hidden />';
+    echo '<div class="d-flex mt-auto pt-3">';
+    echo '<a href="' . $link . '"class="btn btn-primary flex-grow-1">View Post</a>';
+    echo '<form action="utils/modifyFavorites.php" method="post" class="d-flex">';
+    if($isFavorited) {    
+        echo '<input type="text" value="' . $postId . '" name="postId" hidden />';
+        echo '<button class="button-no-style ms-3"><i class="fas fa-heart fa-lg text-muted"></i></button>';
+    } else {
+        echo '<input type="text" value="' . $postId . '" name="postId" hidden />';
+        echo '<button class="button-no-style ms-3"><i class="far fa-heart fa-lg text-muted"></i></button>';
     }
+    echo '</form>';
+    echo '</div>';
+
+    echo '</div>';
     echo '</div>';
     echo '</div>';
 }

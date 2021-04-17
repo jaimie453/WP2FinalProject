@@ -40,7 +40,7 @@ function loadFavoriteImages() {
     if (favImages.length === 0)
         favImages = [""];
 
-    $.get("utils/createCard.php", { favImages: favImages }, function (response) {
+    $.get("utils/displayImage.php", { favImages: favImages }, function (response) {
         $("#fav-image-container").html(response);
         loadDocument(); 
     });

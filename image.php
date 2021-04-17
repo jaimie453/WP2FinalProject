@@ -34,11 +34,11 @@ $city = $cities->getById($image->cityCode);
 $posts = new postsDAO();
 $post = $posts->getById($image->postId);
 
-@include_once './utils/createCard.php';
+@include_once './utils/displayImage.php';
 @include_once './utils/ratingsToStars.php';
 
 
-$fullWidthImageColumns = "col-xl-2 col-lg-3 col-md-4 col-6";
+$fullWidthImageColumns = "col-xl-3 col-lg-4 col-md-6 col-6";
 
 $mapContainerClasses = "col-lg-6 mb-5";
 $otherImagePostsContainerClasses = "col-lg-6";
@@ -48,8 +48,6 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
     $otherImagePostsContainerClasses = "col";
     $otherImagePostsColumns = $fullWidthImageColumns;
 }
-
-
 
 ?>
 
@@ -62,7 +60,7 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
 
     <title>Image Details</title>
 
-    <script type="module" src='./static/js/image.js'></script>
+    <!-- <script type="module" src='./static/js/image.js'></script> -->
     <script src="./static/js/map.js"></script>
 </head>
 
@@ -102,8 +100,22 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
 
                         <p class="card-text"><?= $image->description ?></p>
 
-                        <button class="btn btn-primary favorite-img" style="display: none;">Favorite</button>
-                        <button class="btn btn-primary unfavorite-img" style="display: none;">Unfavorite</button>
+                        <form action="./utils/modifyFavorites.php" method="post" class="d-inline">
+                        <?php
+                            if(!isset($_SESSION['imageFavs']))
+                                $isFavorited = false;
+                            else
+                                $isFavorited = in_array($imageId, $_SESSION['imageFavs']);
+
+                            if($isFavorited) {
+                                echo '<input type="text" value="' . $imageId . '" name="imageId" hidden />';
+                                echo '<button class="btn btn-primary"><i class="fas fa-heart"></i> Unfavorite</button>';
+                            } else {
+                                echo '<input type="text" value="' . $imageId . '" name="imageId" hidden />';
+                                echo '<button class="btn btn-primary"><i class="far fa-heart"></i> Favorite</button>';
+                            } 
+                        ?>
+                        </form>
 
                         <a class="btn btn-secondary float-end" href="post.php?id=<?= $post->postId ?>">
                             View post
@@ -178,7 +190,7 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
                     <div class="row text-lg-end">
                         <h3>Other Images from
                             <a href="post.php?id=<?= $post->postId ?>">
-                                <i><?= $post->title ?></i>
+                                <i style="color: currentColor;"><?= $post->title ?></i>
                             </a>
                         </h3>
                     </div>
