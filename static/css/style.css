@@ -10235,6 +10235,23 @@ header {
   border-radius: 1rem;
 }
 
+@media screen and (max-width: 991px) {
+  .dropdown-columns {
+    height: 200px;
+    overflow-y: scroll;
+  }
+}
+@media screen and (min-width: 992px) {
+  .dropdown-columns {
+    -moz-column-count: 4;
+    /* Firefox */
+    -webkit-column-count: 4;
+    /* Safari and Chrome */
+    column-count: 4;
+    width: 600px;
+    height: 280px;
+  }
+}
 #home-carousel {
   position: fixed;
   top: 0;
