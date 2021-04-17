@@ -75,7 +75,7 @@ if (isset($_GET['countryId']) && $_GET['countryId'] != "NULL")
         @include_once './utils/displayPosts.php';
         foreach ($resultPosts as $post) {
           $author = $users->getById($post->uId);
-          otherUserPost(
+          createPostListing(
             $post->postId,
             $author->getName(),
             $post->title,

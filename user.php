@@ -124,7 +124,7 @@ else {
 
         $total = 0;
         foreach ($userPosts as $userPost) {
-            otherUserPost(
+          createPostListing(
               $userPost->postId,
               $user->getName(),
               $userPost->title,
