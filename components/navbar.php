@@ -28,6 +28,8 @@ $relevantCities = $navCities->getCitiesWithImages();
 
 ?>
 
+<script src="./static/js/nav.js"></script>
+
 <div class="container-fluid">
   <div class="utility-bar row px-2 py-1">
     <div class="container-fluid d-flex justify-content-end text-light">
@@ -112,7 +114,8 @@ $relevantCities = $navCities->getCitiesWithImages();
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
                 <?php
                   foreach ($navContinents as $navContinent) {
-                    echo '<li><a class="dropdown-item" href="search.php?id='
+                    echo '<li><a class="dropdown-item"
+                      href="search.php?type=image&continentId='
                       . $navContinent->continentCode . '">';
                     echo $navContinent->continentName . '</a></li>';
                   }
@@ -126,7 +129,8 @@ $relevantCities = $navCities->getCitiesWithImages();
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
                 <?php
                   foreach ($relevantCountries as $navCountry) {
-                    echo '<li><a class="dropdown-item" href="country.php?id='
+                    echo '<li><a class="dropdown-item"
+                      href="country.php?id='
                       . $navCountry->iso . '">';
                     echo $navCountry->countryName . '</a></li>';
                   }

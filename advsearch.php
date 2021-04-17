@@ -16,8 +16,6 @@ unset($_GET['countryId']);
 
     <title>Advanced Search</title>
 
-    <script type="module" src='./static/js/image.js'></script>
-    <script src="./static/js/map.js"></script>
     <script src="./static/js/search.js"></script>
 </head>
 
@@ -26,10 +24,10 @@ unset($_GET['countryId']);
         <?php include_once 'components/navbar.php'; ?>
     </header>
 
-    <main class="container pt-4 px-5">
+    <main class="container pt-5 px-5">
         <h2 class="row mb-4">Advanced Search</h2>
-        <div class="row col-4 col-md-3 col-sm-4 ms-0 mb-4">
-          <select id="form-select" class="form-select" aria-label="search-select"
+        <div class="row col-4 col-md-3 col-sm-4 ms-4 mb-4">
+          <select id="form-select" class="search-dropdown form-select" aria-label="search-select"
               onchange="formSelect();" autocomplete="off">
             <option selected value="post">
               Post

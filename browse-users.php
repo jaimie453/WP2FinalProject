@@ -24,15 +24,15 @@ $allUsers = $users->getAll();
   </header>
 
   <!-- Page Content -->
-  <main>
+  <main class="mx-4">
     <div class="container">
-      <div class="row pt-5 mx-5">
+      <div class="row mt-5">
         <h1>All Users</h1>
 
         <hr class="text-secondary my-4">
       </div>
 
-      <div class="row d-flex justify-content-center px-5">
+      <div class="row d-flex justify-content-start mb-5">
         <?php
         $total = 0;
         foreach ($allUsers as $user) {

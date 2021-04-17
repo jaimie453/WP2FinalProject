@@ -10360,20 +10360,24 @@ a.link-hover-only {
   padding: 0px 5px;
 }
 
+.results-header {
+  display: inline;
+}
+
 .sorter button, .sorter button:focus {
   box-shadow: 0 0 rgba(0, 0, 0, 0);
   margin-top: 3px;
 }
 
 .search-dropdown {
-  max-width: 250px;
+  max-width: 200px;
 }
 .search-dropdown option {
   font-family: default;
 }
 
 #imageTitle, #postTitle {
-  max-width: 83%;
+  max-width: 60%;
 }
 
 /*# sourceMappingURL=style.css.map */
