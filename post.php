@@ -90,7 +90,7 @@ $author = $users->getById($post->uId);
                 @include_once './utils/displayImage.php';
 
                 $images = new imagesDAO();
-                $userImages = $images->getImagesForPost($post->uId);
+                $userImages = $images->getImagesForPost($post->postId);
 
                 @include_once './database/dao/usersDAO.php';
                 $users = new usersDAO();
@@ -122,6 +122,9 @@ $author = $users->getById($post->uId);
 
                 $total = 0;
                 foreach ($userPosts as $userPost) {
+                    if ($post->postId == $userPost->postId)
+                      continue;
+
                     createPostListing(
                         $userPost->postId,
                         $author->getName(),
@@ -134,7 +137,7 @@ $author = $users->getById($post->uId);
                 }
 
                 if ($total == 0)
-                    echo "<div class='col d-flex justify-content-center align-items-center mt-5'><h4>No posts found.</h4></div>";
+                    echo "<div class='col d-flex justify-content-center align-items-center my-5'><h4>No posts found.</h4></div>";
 
                 ?>
             </div>

@@ -53,7 +53,7 @@ $allPosts = $posts->getAll();
           $total++;
         }
         if ($total == 0)
-          echo "<div class='col d-flex justify-content-center align-items-center mt-5'><h4>No posts found.</h4></div>";
+          echo "<div class='col d-flex justify-content-center align-items-center my-5'><h4>No posts found.</h4></div>";
         ?>
       </div>
 

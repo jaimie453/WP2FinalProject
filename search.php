@@ -127,7 +127,7 @@ if (isset($_GET['countryId']) && $_GET['countryId'] != "NULL")
           }
 
           if($total == 0)
-            echo "<div class='col d-flex justify-content-center align-items-center mt-5'><h4>No images found.</h4></div>";
+            echo "<div class='col d-flex justify-content-center align-items-center my-5'><h4>No images found.</h4></div>";
 
           echo '</div>';
         }

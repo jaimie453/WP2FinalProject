@@ -114,7 +114,7 @@ else {
         </div>
 
         <div class="row d-flex justify-content-start mb-4">
-          <h3 class="mb-3">Other Posts By User</h3>
+          <h3 class="mb-3">Posts By User</h3>
 
           <?php
           @include_once './database/dao/postsDAO.php';
@@ -143,7 +143,7 @@ else {
 
         <div class="row d-flex justify-content-start mb-4">
           <h3 class="mb-3">User Images</h3>
-          
+
           <?php
           @include_once './database/dao/imagesDAO.php';
           @include_once './utils/displayImage.php';
@@ -163,7 +163,7 @@ else {
           }
 
           if($total == 0)
-            echo "<div class='col d-flex justify-content-center align-items-center mt-5'><h4>No images found.</h4></div>";
+            echo "<div class='col d-flex justify-content-center align-items-center my-5'><h4>No images found.</h4></div>";
 
           ?>
 
