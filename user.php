@@ -125,7 +125,7 @@ else {
 
           $total = 0;
           foreach ($userPosts as $userPost) {
-              otherUserPost(
+            createPostListing(
                 $userPost->postId,
                 $user->getName(),
                 $userPost->title,
@@ -146,7 +146,7 @@ else {
           
           <?php
           @include_once './database/dao/imagesDAO.php';
-          @include_once './utils/createCard.php';
+          @include_once './utils/displayImage.php';
 
           $images = new imagesDAO();
           $userImages = $images->getImagesForUser($user->uId);

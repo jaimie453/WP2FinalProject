@@ -79,7 +79,7 @@ if (isset($_GET['countryId']) && $_GET['countryId'] != "NULL")
             @include_once './utils/displayPosts.php';
             foreach ($resultPosts as $post) {
                 $author = $users->getById($post->uId);
-                otherUserPost(
+                createPostListing(
                   $post->postId,
                   $author->getName(),
                   $post->title,
@@ -108,7 +108,7 @@ if (isset($_GET['countryId']) && $_GET['countryId'] != "NULL")
 
           $total = 0;
           if ($resultImages) {
-            @include_once './utils/createCard.php';
+            @include_once './utils/displayImage.php';
             foreach ($resultImages as $image) {
               echo '<div class="d-flex col-xl-2 col-md-3 col-sm-4 col-6 p-3">';
 
