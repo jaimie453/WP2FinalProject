@@ -10171,20 +10171,40 @@ a {
   font-weight: 400;
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+h1, .h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5 {
   font-family: "Montserrat";
 }
 
-h1, .h1, h2, .h2 {
+h1, .h1,
+h2,
+.h2 {
   font-weight: 300;
 }
 
-h3, .h3, h4, .h4, h5, .h5 {
+h3, .h3,
+h4,
+.h4,
+h5,
+.h5 {
   font-weight: 400;
 }
 
-button:active, a.btn:active {
+button:active,
+a.btn:active {
   transform: translateY(3px);
+}
+
+.card:hover {
+  -webkit-box-shadow: 0px 0px 15px 5px rgba(5, 81, 96, 0.85);
+  box-shadow: 0px 0px 15px 5px rgba(5, 81, 96, 0.85);
 }
 
 .truncate {
@@ -10206,6 +10226,37 @@ button:active, a.btn:active {
   background-color: transparent;
 }
 
+.small-container {
+  max-width: 800px;
+}
+
+.link-no-color,
+.link-no-color:hover {
+  color: currentColor;
+}
+
+a.link-hover-only {
+  color: currentColor;
+}
+
+#map {
+  height: 500px;
+  border-radius: 1rem;
+}
+
+#toast-container {
+  position: fixed;
+  z-index: 3;
+  right: 50vw;
+  margin-right: -175px;
+  margin-top: 10px;
+}
+
+.toast-title {
+  font-family: "Satisfy";
+  font-size: 1.1rem;
+}
+
 header {
   position: relative;
   z-index: 2;
@@ -10225,7 +10276,8 @@ header {
   font-family: "Satisfy";
 }
 
-.nav-search input, .nav-search input:focus {
+.nav-search input,
+.nav-search input:focus {
   color: black;
   height: 29px;
   margin-top: 5px;
@@ -10315,20 +10367,6 @@ div.carousel-caption {
   right: 0;
 }
 
-.link-no-color,
-.link-no-color:hover {
-  color: currentColor;
-}
-
-a.link-hover-only {
-  color: currentColor;
-}
-
-.image-card:hover {
-  -webkit-box-shadow: 0px 0px 15px 5px rgba(5, 81, 96, 0.85);
-  box-shadow: 0px 0px 15px 5px rgba(5, 81, 96, 0.85);
-}
-
 .flag-img {
   width: auto;
   height: 64px;
@@ -10337,21 +10375,12 @@ a.link-hover-only {
   margin-right: 1rem;
 }
 
-.small-container {
-  max-width: 800px;
-}
-
 .country-info-container h6, .country-info-container .h6 {
   display: inline;
   line-height: 2;
 }
 .country-info-container span {
   float: right;
-}
-
-#map {
-  height: 500px;
-  border-radius: 1rem;
 }
 
 #review-card {
@@ -10371,19 +10400,6 @@ a.link-hover-only {
   overflow-y: scroll;
 }
 
-#toast-container {
-  position: fixed;
-  z-index: 3;
-  right: 50vw;
-  margin-right: -175px;
-  margin-top: 10px;
-}
-
-.toast-title {
-  font-family: "Satisfy";
-  font-size: 1.1rem;
-}
-
 .user-deets td {
   padding: 0px 5px;
 }
@@ -10392,7 +10408,8 @@ a.link-hover-only {
   display: inline;
 }
 
-.sorter button, .sorter button:focus {
+.sorter button,
+.sorter button:focus {
   box-shadow: 0 0 rgba(0, 0, 0, 0);
   margin-top: 3px;
 }
@@ -10404,7 +10421,8 @@ a.link-hover-only {
   font-family: default;
 }
 
-#imageTitle, #postTitle {
+#imageTitle,
+#postTitle {
   max-width: 60%;
 }
 
