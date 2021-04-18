@@ -51,10 +51,10 @@ $author = $users->getById($post->uId);
 
                         if ($isFavorited) {
                             echo '<input type="text" value="' . $postId . '" name="postId" hidden />';
-                            echo '<button class="btn btn-primary"><i class="fas fa-heart"></i> Unfavorite</button>';
+                            echo '<button class="btn btn-primary"><i class="fas fa-heart"></i><span class="d-sm-inline d-none"> Unfavorite</span></button>';
                         } else {
                             echo '<input type="text" value="' . $postId . '" name="postId" hidden />';
-                            echo '<button class="btn btn-primary"><i class="far fa-heart"></i> Favorite</button>';
+                            echo '<button class="btn btn-primary"><i class="far fa-heart"></i><span class="d-sm-inline d-none"> Favorite</span></button>';
                         }
                         ?>
                     </form>
