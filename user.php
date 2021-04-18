@@ -154,7 +154,7 @@ else {
           $total = 0;
           foreach ($userImages as $userImage) {
 
-            echo '<div class="d-flex col-xl-2 col-md-3 col-sm-4 col-6 p-3">';
+            echo '<div class="d-flex col-xl-3 col-md-4 col-sm-6 col-12 p-3">';
 
             createImageCard($userImage->imageId, $userImage->path, $userImage->title, $user->getName());
             $total++;

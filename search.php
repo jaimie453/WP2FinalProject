@@ -110,7 +110,7 @@ if (isset($_GET['countryId']) && $_GET['countryId'] != "NULL")
           if ($resultImages) {
             @include_once './utils/displayImage.php';
             foreach ($resultImages as $image) {
-              echo '<div class="d-flex col-xl-2 col-md-3 col-sm-4 col-6 p-3">';
+              echo '<div class="d-flex col-xl-3 col-md-4 col-sm-6 col-12 p-3">';
 
               $author = $users->getById($image->uId);
               createImageCard(
