@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-12 col-lg-6">
                 <div class="container-fluid mb-5 mb-lg-0">
-                    <div class="row">
+                    <div class="row justify-content-center">
                         <?php
 
                         if (!isset($_SESSION['imageFavs']) || count($_SESSION['imageFavs']) == 0)
@@ -53,7 +53,7 @@
             </div>
             <div class="col-12 col-lg-6">
                 <div class="container-fluid mb-5 mb-lg-0">
-                    <div class="row">
+                    <div class="row justify-content-center">
                         <?php
 
                         if (!isset($_SESSION['postFavs']) || count($_SESSION['postFavs']) == 0)
