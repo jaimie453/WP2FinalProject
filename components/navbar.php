@@ -96,7 +96,7 @@ $relevantCities = $navCities->getCitiesWithImages();
             <input class="form-control" name="query" type="search" placeholder="Search" aria-label="Search">
             <input type="hidden" name="type" value="image">
             <button type="submit">
-              <i class="fas fa-search"></i>
+              <i class="fas fa-search text-muted"></i>
             </button>
           </form>
         </div>
