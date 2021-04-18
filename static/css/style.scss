@@ -37,21 +37,38 @@ a {
     font-weight: 400;
 }
 
-h1, h2, h3, h4, h5 {
-    font-family: 'Montserrat';
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: "Montserrat";
 }
 
-h1, h2 {
+h1,
+h2 {
     font-weight: 300;
 }
 
-h3, h4, h5 {
+h3,
+h4,
+h5 {
     font-weight: 400;
 }
 
-button:active, a.btn:active {
+button:active,
+a.btn:active {
     transform: translateY(3px);
 }
+
+.card:hover {
+    // generated with https://html-css-js.com/css/generator/box-shadow/
+    -webkit-box-shadow: 0px 0px 15px 5px rgba(5, 81, 96, 0.85);
+    box-shadow: 0px 0px 15px 5px rgba(5, 81, 96, 0.85);
+}
+
+
+// Utility classes
 
 .truncate {
     display: -webkit-box;
@@ -66,11 +83,51 @@ button:active, a.btn:active {
 }
 
 .button-no-style {
-    padding: 0; 
+    padding: 0;
     margin: 0;
     border: 0;
     background-color: transparent;
 }
+
+.small-container {
+    max-width: 800px;
+}
+
+.link-no-color,
+.link-no-color:hover {
+    color: currentColor;
+}
+
+
+// show color only on hover
+a.link-hover-only {
+    color: currentColor;
+}
+
+
+// Google Maps
+
+#map {
+    height: 500px;
+    border-radius: 1rem;
+}
+
+
+// Toast Messages
+
+#toast-container {
+    position: fixed;
+    z-index: 3;
+    right: 50vw;
+    margin-right: -175px;
+    margin-top: 10px;
+}
+
+.toast-title {
+    font-family: "Satisfy";
+    font-size: 1.1rem;
+}
+
 
 // Header
 
@@ -80,7 +137,7 @@ header {
     background-color: rgba(0, 0, 0, 0.75);
 }
 
-// utilities
+// Utility bar
 .utility-bar {
     .utility-link {
         color: white;
@@ -97,45 +154,47 @@ header {
 }
 
 .nav-search {
-    input, input:focus {
-      color: black;
-      height: 29px;
-      margin-top: 5px;
-      border-radius: 1rem;
-      max-width: 250px;
+    input,
+    input:focus {
+        color: black;
+        height: 29px;
+        margin-top: 5px;
+        border-radius: 1rem;
+        max-width: 250px;
     }
 
     button {
-      font-size: small;
-      height: 27px;
-      width: 40px;
-      margin-top: 6px;
-      margin-left: -40px;
-      padding: auto;
-      color: rgb(18, 19, 22);
-      text-decoration: none;
-      background-color: rgb(208, 215, 221);
-      border: 1px solid rgb(208, 215, 221);
-      border-radius: 1rem;
+        font-size: small;
+        height: 27px;
+        width: 40px;
+        margin-top: 6px;
+        margin-left: -40px;
+        padding: auto;
+        color: rgb(18, 19, 22);
+        text-decoration: none;
+        background-color: rgb(208, 215, 221);
+        border: 1px solid rgb(208, 215, 221);
+        border-radius: 1rem;
     }
 }
 
-@media screen and (max-width: 991px){
-    .dropdown-columns{
+@media screen and (max-width: 991px) {
+    .dropdown-columns {
         height: 200px;
-        overflow-y:scroll;
+        overflow-y: scroll;
     }
 }
 
-@media screen and (min-width: 992px){
-    .dropdown-columns{
-        -moz-column-count:4; /* Firefox */
-        -webkit-column-count:4; /* Safari and Chrome */
-        column-count:4;
+@media screen and (min-width: 992px) {
+    .dropdown-columns {
+        -moz-column-count: 4; /* Firefox */
+        -webkit-column-count: 4; /* Safari and Chrome */
+        column-count: 4;
         width: 600px;
-        height:280px;
+        height: 280px;
     }
 }
+
 
 // Home page
 
@@ -170,19 +229,9 @@ div.carousel-caption {
     }
 }
 
-// About Page
-
-body{
-  &.about-body {
-    // background: rgb(128,128,128);
-    // -webkit-background-size: cover;
-    // -moz-background-size: cover;
-    // -o-background-size: cover;
-    // background-size: cover;
-  }
-}
 
 // Rating stars
+
 $filledStarColor: #cebd66;
 $unfilledStarColor: #4c4444;
 .icon-tabler-star {
@@ -214,37 +263,15 @@ $unfilledStarColor: #4c4444;
     }
 }
 
-// Links
-.link-no-color,
-.link-no-color:hover {
-    color: currentColor;
-}
-
-// show color only on hover
-a.link-hover-only {
-    color: currentColor;
-}
-
-// Cards
-.image-card {
-    &:hover {
-        // generated with https://html-css-js.com/css/generator/box-shadow/
-        -webkit-box-shadow: 0px 0px 15px 5px rgba(5, 81, 96, 0.85);
-        box-shadow: 0px 0px 15px 5px rgba(5, 81, 96, 0.85);
-    }
-}
 
 // Country Page
+
 .flag-img {
     width: auto;
     height: 64px;
     position: relative;
     top: 12px;
     margin-right: 1rem;
-}
-
-.small-container {
-    max-width: 800px;
 }
 
 .country-info-container {
@@ -258,11 +285,8 @@ a.link-hover-only {
     }
 }
 
-// has to have a predefined height
-#map {
-    height: 500px;
-    border-radius: 1rem;
-}
+
+// Image Page
 
 #review-card {
     background-color: #2b2b2b;
@@ -284,26 +308,15 @@ a.link-hover-only {
     }
 }
 
-#toast-container {
-    position: fixed;
-    z-index: 3;
-    right: 50vw;
-    margin-right: -175px;
-    margin-top: 10px;
-}
-
-.toast-title {
-    font-family: 'Satisfy';
-    font-size: 1.1rem;
-}
 
 // User Page
 
 .user-deets {
     td {
-      padding: 0px 5px;
+        padding: 0px 5px;
     }
 }
+
 
 // Search page
 
@@ -312,9 +325,10 @@ a.link-hover-only {
 }
 
 .sorter {
-    button, button:focus {
-      box-shadow: 0 0 rgba(0, 0, 0, 0);
-      margin-top: 3px;
+    button,
+    button:focus {
+        box-shadow: 0 0 rgba(0, 0, 0, 0);
+        margin-top: 3px;
     }
 }
 
@@ -322,10 +336,11 @@ a.link-hover-only {
     max-width: 200px;
 
     option {
-      font-family: default;
+        font-family: default;
     }
 }
 
-#imageTitle, #postTitle {
+#imageTitle,
+#postTitle {
     max-width: 60%;
 }

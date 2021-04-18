@@ -5,7 +5,7 @@ function createUserListing($uId, $userName, $dateJoined, $dateLastModified, $nam
     $link = 'user.php?id=' . $uId;
 
     echo '<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 my-3">';
-    echo '<div class="card image-card">';
+    echo '<div class="card">';
     echo '<a class="link-no-color" href="' . $link . '">';
 
     echo '<div class="card-body">';
@@ -34,7 +34,7 @@ function otherUser($postId, $userName, $title, $message, $postTime)
     $message = str_replace("</p>", "<br>", $message);
 
     echo '<div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 my-3">';
-    echo '<div class="card image-card">';
+    echo '<div class="card">';
 
     echo '<div class="card-body">';
 
