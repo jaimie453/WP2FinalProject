@@ -120,6 +120,23 @@ header {
     }
 }
 
+@media screen and (max-width: 991px){
+    .dropdown-columns{
+        height: 200px;
+        overflow-y:scroll;
+    }
+}
+
+@media screen and (min-width: 992px){
+    .dropdown-columns{
+        -moz-column-count:4; /* Firefox */
+        -webkit-column-count:4; /* Safari and Chrome */
+        column-count:4;
+        width: 600px;
+        height:280px;
+    }
+}
+
 // Home page
 
 // image carousel
@@ -290,6 +307,10 @@ a.link-hover-only {
 
 // Search page
 
+.results-header {
+    display: inline;
+}
+
 .sorter {
     button, button:focus {
       box-shadow: 0 0 rgba(0, 0, 0, 0);
@@ -298,7 +319,7 @@ a.link-hover-only {
 }
 
 .search-dropdown {
-    max-width: 250px;
+    max-width: 200px;
 
     option {
       font-family: default;
@@ -306,5 +327,5 @@ a.link-hover-only {
 }
 
 #imageTitle, #postTitle {
-    max-width: 83%;
+    max-width: 60%;
 }

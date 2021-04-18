@@ -16,6 +16,7 @@ $allPosts = $posts->getAll();
 
   <title>Browse Posts</title>
 
+  <script type="module" src='./static/js/post.js'></script>
 </head>
 
 <body class="fixed-mountain-bg">
@@ -26,15 +27,15 @@ $allPosts = $posts->getAll();
   </header>
 
   <!-- Page Content -->
-  <main>
+  <main class="mx-4">
     <div class="container">
-      <div class="row pt-5 mx-5">
+      <div class="row pt-5">
         <h1>All Posts</h1>
 
         <hr class="text-secondary my-4">
       </div>
 
-      <div class="row d-flex justify-content-center px-5">
+      <div class="row d-flex justify-content-center">
         <?php
         @include_once './database/dao/usersDAO.php';
         $users = new usersDAO();

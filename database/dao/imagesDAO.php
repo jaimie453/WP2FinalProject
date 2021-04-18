@@ -72,7 +72,7 @@ class imagesDAO extends baseDAO
         return $this->fetch($uId, 'UID');
     }
 
-    public function searchImageTitles($query, $cityId, $countryId, $sortAsc) {
+    public function searchImageTitles($query, $cityId, $countryId, $continentId, $sortAsc) {
       {
           if ($sortAsc == "true")
             $sort = "asc";
@@ -84,6 +84,7 @@ class imagesDAO extends baseDAO
             from {$this->_tableName}
             where CityCode like '{$cityId}'
             and CountryCodeISO like '{$countryId}'
+            and ContinentCode like '{$continentId}'
             and Title like '%{$query}%'
             order by Title {$sort}
           ");

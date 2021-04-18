@@ -28,6 +28,8 @@ $relevantCities = $navCities->getCitiesWithImages();
 
 ?>
 
+<script src="./static/js/nav.js"></script>
+
 <div class="container-fluid">
   <div class="utility-bar row px-2 py-1">
     <div class="container-fluid d-flex justify-content-end text-light">
@@ -50,7 +52,9 @@ $relevantCities = $navCities->getCitiesWithImages();
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="<?php echo $home; ?>">Everyone Travels</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -70,7 +74,7 @@ $relevantCities = $navCities->getCitiesWithImages();
                 Advanced Search
               </a>
             </li>
-            <li class="nav-item dropdown">
+            <li id="browseMenu" class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Browse
               </a>
@@ -109,10 +113,11 @@ $relevantCities = $navCities->getCitiesWithImages();
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Continents
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+              <ul id="continentsMenu" class="dropdown-menu" aria-labelledby="navbarDropdown2">
                 <?php
                   foreach ($navContinents as $navContinent) {
-                    echo '<li><a class="dropdown-item" href="search.php?id='
+                    echo '<li><a class="dropdown-item"
+                      href="search.php?type=image&continentId='
                       . $navContinent->continentCode . '">';
                     echo $navContinent->continentName . '</a></li>';
                   }
@@ -123,10 +128,11 @@ $relevantCities = $navCities->getCitiesWithImages();
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Countries
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+              <ul id="countriesMenu" class="dropdown-menu" aria-labelledby="navbarDropdown3">
                 <?php
                   foreach ($relevantCountries as $navCountry) {
-                    echo '<li><a class="dropdown-item" href="country.php?id='
+                    echo '<li><a class="dropdown-item"
+                      href="country.php?id='
                       . $navCountry->iso . '">';
                     echo $navCountry->countryName . '</a></li>';
                   }
@@ -137,12 +143,17 @@ $relevantCities = $navCities->getCitiesWithImages();
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Cities
               </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
+              <ul id="citiesMenu" class="dropdown-menu dropdown-columns" aria-labelledby="navbarDropdown4">
                 <?php
+                  $item = 0;
                   foreach ($relevantCities as $navCity) {
+
+
                     echo '<li><a class="dropdown-item" href="city.php?id='
                       . $navCity->geoNameId . '">';
                     echo $navCity->asciiName . '</a></li>';
+
+                    $item = $item + 1;
                   }
                 ?>
               </ul>
