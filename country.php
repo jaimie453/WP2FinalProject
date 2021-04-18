@@ -100,10 +100,6 @@ $countryImages = $images->getImagesForCountry($countryId);
         <?php
 
         if (!is_null($countryImages)) {
-            // echo '<div class="row">';
-            // echo '<h3>Images from ' .  $country->countryName . '</h3>';
-            // echo '</div>';
-
             echo '<div class="row justify-content-center">';
 
             @include_once './utils/displayImage.php';
@@ -111,7 +107,7 @@ $countryImages = $images->getImagesForCountry($countryId);
             $users = new usersDAO();
 
             foreach ($countryImages as $image) {
-                echo '<div class="d-flex col-sm-4 col-6 p-3">';
+                echo '<div class="d-flex col-md-4 col-sm-6 col-12 p-3">';
 
                 $photographer = $users->getById($image->uId);
                 createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
