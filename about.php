@@ -8,7 +8,6 @@
 
 </head>
 <body class="fixed-mountain-bg">
-
     <header class="mb-3">
       <?php include_once 'components/navbar.php'; ?>
     </header>

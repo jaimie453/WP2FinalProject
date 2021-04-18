@@ -5,15 +5,15 @@ if (isset($_GET['continentId']) && $_GET['continentId'] != "NULL")
 
 $query = '%';
 if (isset($_GET['query']) && $_GET['query'] != "NULL")
-    $query = $_GET['query'];
+  $query = $_GET['query'];
 
 $type = "both";
 if (isset($_GET['type']) && $_GET['type'] != "NULL")
-    $type = $_GET['type'];
+  $type = $_GET['type'];
 
 $sortAsc = "true";
 if (isset($_GET['sortAsc']) && $_GET['sortAsc'] != "NULL")
-    $sortAsc = $_GET['sortAsc'];
+  $sortAsc = $_GET['sortAsc'];
 
 @include_once './database/dao/usersDAO.php';
 $users = new usersDAO();
@@ -21,23 +21,20 @@ $users = new usersDAO();
 
 $cityId = "%";
 if (isset($_GET['cityId']) && $_GET['cityId'] != "NULL")
-    $cityId = $_GET['cityId'];
+  $cityId = $_GET['cityId'];
 
 $countryId = "%";
 if (isset($_GET['countryId']) && $_GET['countryId'] != "NULL")
-    $countryId = $_GET['countryId'];
+  $countryId = $_GET['countryId'];
 ?>
 
 <!doctype html>
 <html lang="en">
 
 <head>
-    <?php include 'components/head.php'; ?>
+  <?php include 'components/head.php'; ?>
 
-    <title>Search Results</title>
-
-    <script type="module" src='./static/js/image.js'></script>
-    <script type="module" src='./static/js/post.js'></script>
+  <title>Search Results</title>
 </head>
 
 <body class="fixed-mountain-bg">
@@ -138,7 +135,7 @@ if (isset($_GET['countryId']) && $_GET['countryId'] != "NULL")
 
       </div>
 
-    </main>
+  </main>
 
 </body>
 

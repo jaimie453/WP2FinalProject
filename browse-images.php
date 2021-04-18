@@ -1,7 +1,7 @@
 <?php
 
 @include_once './database/dao/imagesDAO.php';
-@include_once './utils/createCard.php';
+@include_once './utils/displayImage.php';
 
 $images = new imagesDAO();
 $allImages = $images->getAll();
@@ -108,7 +108,45 @@ function createSelectOption($value, $name) {
 
                 ?>
             </div>
-          </div>
+            <hr class="text-secondary my-4">
+        </div>
+        <div class="row justify-content-center">
+            <?php
+
+            $continentCode = null;
+            $countryCode = null;
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if($_POST['continentCode'] != "All")
+                    $continentCode = $_POST['continentCode'];
+                if($_POST['countryCode'] != "All")
+                    $countryCode = $_POST['countryCode'];
+            }
+
+            @include_once './database/dao/usersDAO.php';
+            $users = new usersDAO();
+
+            $total = 0;
+            foreach ($allImages as $image) {
+                if(!is_null($continentCode) && $image->continentCode != $continentCode)
+                    continue;
+                    
+                if(!is_null($countryCode) && $image->countryCodeISO != $countryCode)
+                    continue;
+                
+                echo '<div class="d-flex col-xl-3 col-md-4 col-6 p-3">';
+
+                $photographer = $users->getById($image->uId);
+                createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
+                $total++;
+
+                echo '</div>';
+            }
+
+            if($total == 0)
+                echo "<div class='col d-flex justify-content-center align-items-center mt-5'><h4>No images found.</h4></div>";
+
+            ?>
+        </div>
     </div>
 </body>
 

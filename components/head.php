@@ -21,3 +21,52 @@
 <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+<?php
+
+if (session_status() !== PHP_SESSION_ACTIVE)
+    session_start();
+
+if (isset($_SESSION['showImageMessage']) && $_SESSION['showImageMessage'])
+    showImageMessage($_SESSION['isAdding']);
+else if (isset($_SESSION['showPostMessage']) && $_SESSION['showPostMessage'])
+    showPostMessage($_SESSION['isAdding']);
+
+
+function showImageMessage($isAdding)
+{
+    $message = "Removed image from favorites.";
+    if ($isAdding)
+        $message = "Added image to favorites!";
+
+    echo    '<script type="text/javascript"> 
+                $(document).ready(function () {
+                    var toast = new bootstrap.Toast($(".toast")[0]);
+                    var toastText = $("#toast-text")[0];
+                    toastText.innerText = "' . $message . '";
+                    toast.show();
+                });
+            </script>';
+
+    $_SESSION['showImageMessage'] = false;
+}
+
+function showPostMessage($isAdding)
+{
+    $message = "Removed post from favorites.";
+    if ($isAdding)
+        $message = "Added post to favorites!";
+
+    echo    '<script "text/javascript"> 
+                $(document).ready(function () {
+                    var toast = new bootstrap.Toast($(".toast")[0]);
+                    var toastText = $("#toast-text")[0];
+                    toastText.innerText = "' . $message . '";
+                    toast.show();
+                });
+            </script>';
+    
+    $_SESSION['showPostMessage'] = false;
+}
+
+?>

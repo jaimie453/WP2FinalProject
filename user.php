@@ -143,7 +143,7 @@ else {
 
         <div class="row d-flex justify-content-start mb-4">
           <h3 class="mb-3">User Images</h3>
-
+          
           <?php
           @include_once './database/dao/imagesDAO.php';
           @include_once './utils/createCard.php';

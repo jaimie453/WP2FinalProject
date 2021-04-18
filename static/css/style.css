@@ -10155,6 +10155,10 @@ body.fixed-mountain-bg {
   background-size: cover;
 }
 
+i {
+  color: white;
+}
+
 img {
   max-width: 100%;
 }
@@ -10193,6 +10197,13 @@ button:active, a.btn:active {
 
 .line-height-2 {
   line-height: 2;
+}
+
+.button-no-style {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
 }
 
 header {
