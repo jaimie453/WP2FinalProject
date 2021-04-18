@@ -39,7 +39,7 @@
                             foreach ($imageIds as $imageId) {
                                 $image = $images->getById($imageId);
 
-                                echo '<div class="p-3 d-flex col-lg-6 col-12">';
+                                echo '<div class="p-3 d-flex col-xl-6 col-lg-12 col-md-6 col-12">';
                                 $photographer = $users->getById($image->uId);
                                 createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
                                 echo '</div>';
@@ -78,7 +78,7 @@
                                     $post->title,
                                     $post->message,
                                     $post->postTime,
-                                    $columns = "col-lg-6 col-md-4 col-sm-6 col-12"
+                                    $columns = "col-xl-6 col-lg-12 col-md-6 col-12"
                                 );
                             }
                         }

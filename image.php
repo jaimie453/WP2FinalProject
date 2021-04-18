@@ -38,11 +38,11 @@ $post = $posts->getById($image->postId);
 @include_once './utils/ratingsToStars.php';
 
 
-$fullWidthImageColumns = "col-xl-3 col-lg-4 col-md-6 col-6";
+$fullWidthImageColumns = "col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12";
 
 $mapContainerClasses = "col-lg-6 mb-5";
 $otherImagePostsContainerClasses = "col-lg-6";
-$otherImagePostsColumns = "col-lg-6 col-md-4 col-6";
+$otherImagePostsColumns = "col-xl-6 col-lg-12 col-md-4 col-sm-6 col-12";
 if (is_null($image->longitude) || is_null($image->latitude)) {
     $mapContainerClasses = "d-none";
     $otherImagePostsContainerClasses = "col";
