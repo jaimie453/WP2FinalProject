@@ -14,7 +14,7 @@ function createPostListing($postId, $userName, $title, $message, $postTime,
         $isFavorited = in_array($postId, $_SESSION['postFavs']);
 
     echo '<div class="d-flex ' . $columns . ' my-3">';
-    echo '<div class="card d-flex flex-column">';
+    echo '<div class="card card-hover d-flex flex-column">';
     echo '<a class="link-no-color" href="' . $link . '">';
 
     echo '<div class="card-body d-flex flex-column">';

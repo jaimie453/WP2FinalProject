@@ -9,7 +9,7 @@ function createImageCard($id, $fileName, $title, $photographerName)
     else 
         $isFavorited = in_array($id, $_SESSION['imageFavs']);
 
-    echo '<div class="card flex-grow-1">';
+    echo '<div class="card card-hover flex-grow-1">';
     echo '<a class="link-no-color d-flex flex-column flex-grow-1" href="' . $link . '">';
     echo '<img src="' . $path . '" class="card-img-top" alt="' . $title . '">';
     echo '</a>';
