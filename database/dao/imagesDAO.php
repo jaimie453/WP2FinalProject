@@ -38,7 +38,7 @@ class imagesDAO extends baseDAO
                     on travelimage.ImageID = travelpostimages.ImageID';
 
 
-    protected $_primaryKey = 'travelimage.ImageId';
+    protected $_primaryKey = 'travelimage.ImageID';
 
     protected function convertToObject($row) {
         $avgRating = number_format($row['avg'], 1);
@@ -53,7 +53,7 @@ class imagesDAO extends baseDAO
 
     // newest images have the highest id I guess?
     public function getNewestImages($numOfResults) {
-        return $this->getAll(0, $numOfResults, "travelImage.ImageId desc");
+        return $this->getAll(0, $numOfResults, "travelImage.ImageID desc");
     }
 
     public function getImagesForCity($cityCode) {
