@@ -40,8 +40,8 @@
               <h5>Trey Phillips</h5>
               <ul>
                 <li>About Page</li>
-                <li>Browse Poses</li>
-                <li>Display Single User, Post</li>
+                <li>Browse Posts and Users</li>
+                <li>Searches</li>
                 <li>Nav</li>
               </ul>
             </div>

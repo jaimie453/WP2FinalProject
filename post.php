@@ -74,7 +74,7 @@ $author = $users->getById($post->uId);
             </div>
 
 
-            <div class="row justify-content-between">
+            <div class="row justify-content-between mb-3">
                 <?php
                 $message = str_replace('<p>', '</p><p>', $post->message);
                 $message = str_replace('</p>', '', $message);
