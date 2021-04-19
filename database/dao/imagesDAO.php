@@ -53,7 +53,7 @@ class imagesDAO extends baseDAO
 
     // newest images have the highest id I guess?
     public function getNewestImages($numOfResults) {
-        return $this->getAll(0, $numOfResults, "travelImage.ImageID desc");
+        return $this->getAll(0, $numOfResults, "travelimage.ImageID desc");
     }
 
     public function getImagesForCity($cityCode) {

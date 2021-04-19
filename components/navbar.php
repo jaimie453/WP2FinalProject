@@ -1,4 +1,5 @@
 <?php
+// link variables (allow for easy edit and recall)
 
 $home = "index.php";
 $about = "about.php";
@@ -13,6 +14,9 @@ $favorites = "favorites.php";
 $account = "#";
 $register = "#";
 $login = "#";
+
+
+// get continents, countries, and cities for nav
 
 @include_once './database/dao/continentsDAO.php';
 $navContinents = new continentsDAO();
@@ -31,6 +35,7 @@ $relevantCities = $navCities->getCitiesWithImages();
 <script src="./static/js/nav.js"></script>
 
 <div class="container-fluid">
+  <!-- Utilities, 1st Row -->
   <div class="utility-bar row px-2 py-1">
     <div class="container-fluid d-flex justify-content-end text-light">
       <a class="utility-link" href="<?php echo $favorites; ?>">
@@ -48,10 +53,12 @@ $relevantCities = $navCities->getCitiesWithImages();
     </div>
   </div>
 
+  <!-- Main Nav, 2nd Row -->
   <div class="row">
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="<?php echo $home; ?>">Everyone Travels</a>
+        <!-- toggles 2nd and 3rd rows -->
         <button class="navbar-toggler" type="button"
             data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,6 +66,7 @@ $relevantCities = $navCities->getCitiesWithImages();
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <!-- items -->
             <li class="nav-item">
               <a class="nav-link" aria-current="page" href="<?php echo $home; ?>">
                 Home Page
@@ -91,7 +99,7 @@ $relevantCities = $navCities->getCitiesWithImages();
               </ul>
             </li>
           </ul>
-
+          <!-- search -->
           <form class="nav-search d-flex" action="<?= $search ?>" method="get">
             <input class="form-control" name="query" type="search" placeholder="Search" aria-label="Search">
             <input type="hidden" name="type" value="image">
@@ -104,17 +112,22 @@ $relevantCities = $navCities->getCitiesWithImages();
     </nav>
   </div>
 
+  <!-- Location Pages Sub Nav, 3rd Row -->
   <div class="row">
     <nav class="navbar navbar-expand-lg navbar-dark pt-0">
       <div class="container-fluid">
+        <!-- will collapse from 2nd row nav toggle -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+            <!-- items -->
+            <!-- continents -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Continents
               </a>
               <ul id="continentsMenu" class="dropdown-menu" aria-labelledby="navbarDropdown2">
                 <?php
+                  // for each continent, print search link
                   foreach ($navContinents as $navContinent) {
                     echo '<li><a class="dropdown-item"
                       href="search.php?type=image&continentId='
@@ -124,12 +137,15 @@ $relevantCities = $navCities->getCitiesWithImages();
                 ?>
               </ul>
             </li>
+
+            <!-- countries -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Countries
               </a>
               <ul id="countriesMenu" class="dropdown-menu" aria-labelledby="navbarDropdown3">
                 <?php
+                  // for each country, print link
                   foreach ($relevantCountries as $navCountry) {
                     echo '<li><a class="dropdown-item"
                       href="country.php?id='
@@ -139,21 +155,19 @@ $relevantCities = $navCities->getCitiesWithImages();
                 ?>
               </ul>
             </li>
+
+            <!-- cities -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Cities
               </a>
               <ul id="citiesMenu" class="dropdown-menu dropdown-columns" aria-labelledby="navbarDropdown4">
                 <?php
-                  $item = 0;
+                  // for each city, print link
                   foreach ($relevantCities as $navCity) {
-
-
                     echo '<li><a class="dropdown-item" href="city.php?id='
                       . $navCity->geoNameId . '">';
                     echo $navCity->asciiName . '</a></li>';
-
-                    $item = $item + 1;
                   }
                 ?>
               </ul>

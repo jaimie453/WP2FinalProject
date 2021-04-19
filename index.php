@@ -38,7 +38,7 @@ function createListItem($title, $avgRating, $totalRatings, $id)
         <?php include_once 'components/navbar.php'; ?>
     </header>
 
-    
+
     <div class="container-fluid mt-2 position-relative" style="z-index: 1;">
         <div class="row">
             <div class="col text-end">
