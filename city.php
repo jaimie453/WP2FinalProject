@@ -88,9 +88,9 @@ function listImages($images, $columns)
                             <?php
 
                             if (!is_null($city->population))
-                                echo '<b>Population: </b>' . $city->population;
+                                echo '<b>Population: </b>' . number_format($city->population);
                             if (!is_null($city->elevation))
-                                echo '<span class="float-end"><b>Elevation: </b>' . $city->elevation . ' m</span>';
+                                echo '<span class="float-end"><b>Elevation: </b>' . number_format($city->elevation) . ' m</span>';
 
                             ?>
                         </div>

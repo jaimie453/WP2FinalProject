@@ -76,7 +76,10 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
             <div class="col-lg-6 p-xl-5 mb-5">
                 <!-- Image Card -->
                 <div class="card" id="image-page-card">
-                    <img src="<?= $largeImgPath ?>" class="card-img-top" alt="...">
+                    <button type="button" class="button-no-style button-no-animation" data-bs-toggle="modal" data-bs-target="#lightbox">
+                        <img src="<?= $largeImgPath ?>" class="card-img-top" alt="...">
+                    </button>
+
                     <div class="card-body">
                         <h5 class="card-title">
                             <?= $image->title ?>
@@ -101,20 +104,20 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
                         <p class="card-text"><?= $image->description ?></p>
 
                         <form action="./utils/modifyFavorites.php" method="post" class="d-inline">
-                        <?php
-                            if(!isset($_SESSION['imageFavs']))
+                            <?php
+                            if (!isset($_SESSION['imageFavs']))
                                 $isFavorited = false;
                             else
                                 $isFavorited = in_array($imageId, $_SESSION['imageFavs']);
 
-                            if($isFavorited) {
+                            if ($isFavorited) {
                                 echo '<input type="text" value="' . $imageId . '" name="imageId" hidden />';
                                 echo '<button class="btn btn-primary"><i class="fas fa-heart"></i> Unfavorite</button>';
                             } else {
                                 echo '<input type="text" value="' . $imageId . '" name="imageId" hidden />';
                                 echo '<button class="btn btn-primary"><i class="far fa-heart"></i> Favorite</button>';
-                            } 
-                        ?>
+                            }
+                            ?>
                         </form>
 
                         <a class="btn btn-secondary float-end" href="post.php?id=<?= $post->postId ?>">
@@ -238,6 +241,17 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
                 echo '</div>';
             }
             ?>
+        </div>
+    </div>
+
+
+
+    <!-- Lightbox -->
+    <div class="modal fade" id="lightbox" tabindex="-1" aria-labelledby="lightboxLabel" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered justify-content-center mw-100">
+            <div>
+                <img src="<?= $largeImgPath ?>" id="lightbox-img" alt="...">
+            </div>
         </div>
     </div>
 
