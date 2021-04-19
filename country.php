@@ -82,10 +82,10 @@ $countryImages = $images->getImagesForCountry($countryId);
                 <?php
 
                 if (!is_null($country->area))
-                    echo '<h6>Area:</h6><span>' . $country->area . '</span><br>';
+                    echo '<h6>Area:</h6><span>' . number_format($country->area) . ' km<sup>2</sup></span><br>';
 
                 if (!is_null($country->population))
-                    echo '<h6>Population:</h6><span>' . $country->population . '</span><br>';
+                    echo '<h6>Population:</h6><span>' . number_format($country->population) . '</span><br>';
 
                 if (!is_null($country->capital))
                     echo '<h6>Capital:</h6><span>' . $country->capital . '</span><br>';
