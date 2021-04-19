@@ -21,6 +21,10 @@
             <p>Well then, this site was made for the course
               CS 44106 - WP2 at Kent State University, which was,
               undoubtedly, taught by Dr. A. Guercio.</p>
+            <p>This site was built using SASS, Bootstrap 5.0,
+              PHP, MariaDB on PHPMyAdmin, jQuery,
+              FontAwesome, Google Maps API, Google Fonts,
+              & Javascript.</p>
           </div>
           <div class="col-md-4 ms-auto">
             <h4>The Team</h4>

@@ -54,11 +54,25 @@ if (isset($_GET['countryId']) && $_GET['countryId'] != "NULL")
             </button>
             <form class="dropdown-menu" aria-labelledby="sortDropdown">
               <li><a class="dropdown-item"
-                    href="<?= $search ?>?query=calgary&sortAsc=true&type=<?= $type ?>">
+                    href="<?php
+                      echo $search . '?';
+                      echo 'continentId=' . $continentId;
+                      echo '&query=' . $query;
+                      echo '&type=' . $type;
+                      echo '&city=' . $cityId;
+                      echo '&country=' . $countryId;
+                    ?>&sortAsc=true">
                   Ascending
                 </a></li>
               <li><a class="dropdown-item"
-                    href="<?= $search ?>?query=calgary&sortAsc=false&type=<?= $type ?>">
+                    href="<?php
+                      echo $search . '?';
+                      echo 'continentId=' . $continentId;
+                      echo '&query=' . $query;
+                      echo '&type=' . $type;
+                      echo '&city=' . $cityId;
+                      echo '&country=' . $countryId;
+                    ?>&sortAsc=false">
                   Descending
                 </a></li>
             </form>
