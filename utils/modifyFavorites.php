@@ -1,13 +1,15 @@
 <?php
-
+// updates favorites in session
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if(session_status() !== PHP_SESSION_ACTIVE) 
+    if(session_status() !== PHP_SESSION_ACTIVE)
         session_start();
 
+    // set flag for showing toast
     $_SESSION['isAdding'] = true;
-    
-    if (isset($_POST['imageId'])) {    
+
+    // if image, add
+    if (isset($_POST['imageId'])) {
         $_SESSION['showImageMessage'] = true;
         $imageId = $_POST['imageId'];
 
@@ -26,7 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         print_r($_SESSION['imageFavs']);
-    } else if (isset($_POST['postId'])) {
+    }
+
+    // else if post, add
+    else if (isset($_POST['postId'])) {
         $_SESSION['showPostMessage'] = true;
         $postId = $_POST['postId'];
 
@@ -44,5 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
+    // go back
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }

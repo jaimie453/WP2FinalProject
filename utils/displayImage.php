@@ -1,12 +1,15 @@
 <?php
 
+// displays image given its id, the associated file, title, and author name
 function createImageCard($id, $fileName, $title, $photographerName)
 {
+    // initialize vars
     $path = './static/travel-images/square-medium/' . $fileName;
     $link = 'image.php?id=' . $id;
+    // see if favorited
     if(!isset($_SESSION['imageFavs']))
         $isFavorited = false;
-    else 
+    else
         $isFavorited = in_array($id, $_SESSION['imageFavs']);
 
     echo '<div class="card card-hover flex-grow-1">';
@@ -20,7 +23,9 @@ function createImageCard($id, $fileName, $title, $photographerName)
     echo '<div class="d-flex mt-auto">';
     echo '<a href="' . $link . '"class="btn btn-primary flex-grow-1">View Image</a>';
     echo '<form action="utils/modifyFavorites.php" method="post" class="d-flex">';
-    if($isFavorited) {   
+
+    // if favoried, show heart. else, dont
+    if($isFavorited) {
         echo '<input type="text" value="' . $id . '" name="imageId" hidden />';
         echo '<button type="submit" class="button-no-style ms-3"><i class="fas fa-heart fa-lg text-muted"></i></button>';
     } else {
@@ -29,7 +34,9 @@ function createImageCard($id, $fileName, $title, $photographerName)
     }
     echo '</form>';
     echo '</div>';
-        
+
     echo '</div>';
     echo '</div>';
 }
+
+?>

@@ -5,6 +5,7 @@
 
 $images = new imagesDAO();
 
+// find images for dropdown boxes
 $topImages = $images->getTopImages(5);
 $newImages = $images->getNewestImages(5);
 
@@ -38,7 +39,7 @@ function createListItem($title, $avgRating, $totalRatings, $id)
         <?php include_once 'components/navbar.php'; ?>
     </header>
 
-
+    <!-- dropdown boxes -->
     <div class="container-fluid mt-2 position-relative" style="z-index: 1;">
         <div class="row">
             <div class="col text-end">
@@ -84,8 +85,8 @@ function createListItem($title, $avgRating, $totalRatings, $id)
             </div>
         </div>
     </div>
-    </div>
 
+    <!-- carousel -->
     <div id="home-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#home-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>

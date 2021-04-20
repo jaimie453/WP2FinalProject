@@ -19,11 +19,13 @@
             <h1>My Favorites</h1>
         </div>
         <div class="row">
+            <!-- images -->
             <div class="col-12 col-lg-6">
                 <div class="container-fluid mb-5 mb-lg-0">
                     <div class="row justify-content-center">
                         <?php
 
+                        // if none set, print error message
                         if (!isset($_SESSION['imageFavs']) || count($_SESSION['imageFavs']) == 0)
                             echo "<h5>You haven't favorited any images yet.</h5>";
                         else {
@@ -34,13 +36,15 @@
                             $users = new usersDAO();
                             $images = new imagesDAO();
 
+                            // get favorited images
                             $imageIds = $_SESSION['imageFavs'];
 
                             foreach ($imageIds as $imageId) {
+                                // get image and author
                                 $image = $images->getById($imageId);
+                                $photographer = $users->getById($image->uId);
 
                                 echo '<div class="p-3 d-flex col-xl-6 col-lg-12 col-md-6 col-12">';
-                                $photographer = $users->getById($image->uId);
                                 createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
                                 echo '</div>';
                             }
@@ -51,11 +55,14 @@
                     </div>
                 </div>
             </div>
+
+            <!-- posts -->
             <div class="col-12 col-lg-6">
                 <div class="container-fluid mb-5 mb-lg-0">
                     <div class="row justify-content-center">
                         <?php
 
+                        // if none set, print error message
                         if (!isset($_SESSION['postFavs']) || count($_SESSION['postFavs']) == 0)
                             echo "<h5>You haven't favorited any posts yet.</h5>";
                         else {
@@ -66,9 +73,11 @@
                             $users = new usersDAO();
                             $posts = new postsDAO();
 
+                            // get favorited posts
                             $postIds = $_SESSION['postFavs'];
 
                             foreach ($postIds as $postId) {
+                                // find post and author
                                 $post = $posts->getById($postId);
                                 $author = $users->getById($post->uId);
 

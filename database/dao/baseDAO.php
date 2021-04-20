@@ -14,6 +14,10 @@ abstract class baseDAO
     public function __construct()
     {
         $this->__connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+        if (!$this->__connection->set_charset("utf8mb4")) {
+            printf("Error loading character set utf8mb4: %s\n", $mysqli->error);
+            exit();
+        }
     }
 
 

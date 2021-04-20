@@ -1,5 +1,6 @@
 <?php
 
+// if id isnt set, error. else proceed
 $postId = -1;
 if (!isset($_GET['id']) || $_GET['id'] == null) {
     header('Location: error.php');
@@ -7,14 +8,17 @@ if (!isset($_GET['id']) || $_GET['id'] == null) {
     $postId = $_GET['id'];
 }
 
+// find post
 @include_once './utils/displayPosts.php';
 @include_once './database/dao/postsDAO.php';
 $posts = new postsDAO();
 $post = $posts->getById($postId);
 
+// if not found, error
 if (is_null($post))
     header('Location: error.php');
 
+// find author
 @include_once './database/dao/usersDAO.php';
 $users = new usersDAO();
 $author = $users->getById($post->uId);
@@ -39,6 +43,7 @@ $author = $users->getById($post->uId);
 
     <main class="pt-4">
         <div class="container small-container px-5 mb-4">
+          <!-- title -->
             <div class="row">
                 <div class="col d-flex align-items-center">
                     <h2 class="mb-1 d-inline"><?= $post->title ?></h2>
@@ -61,6 +66,7 @@ $author = $users->getById($post->uId);
                 </div>
             </div>
 
+            <!-- author tag -->
             <div class="row">
                 <h6 class="text-muted mb-3">
                     By
@@ -73,7 +79,7 @@ $author = $users->getById($post->uId);
                 </h6>
             </div>
 
-
+            <!-- post -->
             <div class="row justify-content-between mb-3">
                 <?php
                 $message = str_replace('<p>', '</p><p>', $post->message);
@@ -82,6 +88,7 @@ $author = $users->getById($post->uId);
                 ?>
             </div>
 
+            <!-- post images -->
             <div class="row d-flex justify-content-start mb-4">
                 <h3 class="mb-3">Post Images</h3>
 
@@ -89,19 +96,15 @@ $author = $users->getById($post->uId);
                 @include_once './database/dao/imagesDAO.php';
                 @include_once './utils/displayImage.php';
 
+                // get post images
                 $images = new imagesDAO();
                 $userImages = $images->getImagesForPost($post->postId);
 
-                @include_once './database/dao/usersDAO.php';
-                $users = new usersDAO();
-
                 $total = 0;
                 foreach ($userImages as $userImage) {
-
                     echo '<div class="d-flex col-xl-4 col-sm-6 col-12 p-3">';
 
-                    $photographer = $users->getById($userImage->uId);
-                    createImageCard($userImage->imageId, $userImage->path, $userImage->title, $photographer->getName());
+                    createImageCard($userImage->imageId, $userImage->path, $userImage->title, $author->getName());
                     $total++;
 
                     echo '</div>';
@@ -114,6 +117,7 @@ $author = $users->getById($post->uId);
 
             </div>
 
+            <!-- user posts -->
             <div class="row d-flex justify-content-start mb-4">
                 <h3 class="mb-3">Other Posts By User</h3>
 
@@ -122,6 +126,7 @@ $author = $users->getById($post->uId);
 
                 $total = 0;
                 foreach ($userPosts as $userPost) {
+                    // if current post, go to next
                     if ($post->postId == $userPost->postId)
                       continue;
 

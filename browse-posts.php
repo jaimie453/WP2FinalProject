@@ -3,6 +3,7 @@
 @include_once './database/dao/postsDAO.php';
 @include_once './utils/displayPosts.php';
 
+// get posts
 $posts = new postsDAO();
 $allPosts = $posts->getAll();
 
@@ -35,6 +36,7 @@ $allPosts = $posts->getAll();
         <hr class="text-secondary my-4">
       </div>
 
+      <!-- posts -->
       <div class="row d-flex justify-content-center">
         <?php
         @include_once './database/dao/usersDAO.php';
@@ -42,7 +44,9 @@ $allPosts = $posts->getAll();
 
         $total = 0;
         foreach ($allPosts as $post) {
+          // get author
           $author = $users->getById($post->uId);
+
           createPostListing(
             $post->postId,
             $author->getName(),

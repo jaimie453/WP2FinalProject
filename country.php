@@ -1,5 +1,6 @@
 <?php
 
+// if country isnt set, error. else, proceed
 $countryId = "";
 if (!isset($_GET['id']) || $_GET['id'] == null) {
     header('Location: error.php');
@@ -9,21 +10,26 @@ if (!isset($_GET['id']) || $_GET['id'] == null) {
 
 @include_once './database/dao/countriesDAO.php';
 
+// get country
 $countries = new countriesDAO();
 $country = $countries->getById($countryId);
 
+// if not found, error
+if (is_null($country))
+    header('Location: error.php');
+
+// find flag image if exists
 $fileName = './static/travel-images/flags/' . $countryId . '.png';
 $flagPath = null;
 if (file_exists($fileName))
     $flagPath = $fileName;
 
-if (is_null($country))
-    header('Location: error.php');
-
+// find country's continent
 @include_once './database/dao/continentsDAO.php';
 $continents = new continentsDAO();
 $continent = $continents->getById($country->continent);
 
+// find country images
 @include_once './database/dao/imagesDAO.php';
 $images = new imagesDAO();
 $countryImages = $images->getImagesForCountry($countryId);
@@ -49,6 +55,7 @@ $countryImages = $images->getImagesForCountry($countryId);
     </header>
 
     <div class="container small-container mt-5 mb-5">
+        <!-- title -->
         <div class="row mb-3">
             <div class="col-8 d-flex align-items-end">
                 <?php
@@ -65,8 +72,9 @@ $countryImages = $images->getImagesForCountry($countryId);
             </div>
             <hr class="text-secondary my-4">
         </div>
-        <div class="row mb-5">
 
+        <!-- info -->
+        <div class="row mb-5">
             <?php
 
             $description = $country->countryDescription;
@@ -78,8 +86,10 @@ $countryImages = $images->getImagesForCountry($countryId);
             echo '</div>';
 
             ?>
+
             <div class="col-sm-4 col-12 country-info-container">
                 <?php
+                // print info if exists
 
                 if (!is_null($country->area))
                     echo '<h6>Area:</h6><span>' . number_format($country->area) . ' km<sup>2</sup></span><br>';
@@ -97,8 +107,10 @@ $countryImages = $images->getImagesForCountry($countryId);
             </div>
         </div>
 
+        <!-- images -->
         <?php
 
+        /// if images exist, format and print the images
         if (!is_null($countryImages)) {
             echo '<div class="row justify-content-center">';
 
@@ -109,7 +121,9 @@ $countryImages = $images->getImagesForCountry($countryId);
             foreach ($countryImages as $image) {
                 echo '<div class="d-flex col-md-4 col-sm-6 col-12 p-3">';
 
+                // get author
                 $photographer = $users->getById($image->uId);
+                
                 createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
 
                 echo '</div>';

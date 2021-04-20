@@ -19,7 +19,7 @@ class User
     public $email;
     public $privacy;
 
-    public function __construct($uId, $userName, $pass, $state, $dateJoined, $dateLastModified, $firstName, 
+    public function __construct($uId, $userName, $pass, $state, $dateJoined, $dateLastModified, $firstName,
         $lastName, $address, $city, $region, $country, $postal, $phone, $email, $privacy)
     {
         $this->uId = $uId;
@@ -40,6 +40,7 @@ class User
         $this->privacy = $privacy;
     }
 
+    // formats full name
     public function getName() {
         return $this->firstName . ' ' . $this->lastName;
     }

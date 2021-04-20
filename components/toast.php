@@ -1,3 +1,4 @@
+<!-- popup for adding/removing favorites -->
 <div id="toast-container">
     <div class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">

@@ -1,7 +1,7 @@
 <?php
 
 // returns 5 svg star icons based on avg rating
-// avg rating is an integer 1-10 
+// avg rating is an integer 1-10
 function convertRatingToStars($rating) {
     $numFilledStars = intval($rating / 2);
     $hasHalfStar = ($rating % 2 == 1);
@@ -11,7 +11,7 @@ function convertRatingToStars($rating) {
     for($i = 0; $i < $numFilledStars; $i++)
         $result .= getFilledStar();
 
-    if($hasHalfStar) 
+    if($hasHalfStar)
         $result .= getHalfFilledStar($numFilledStars == 4);
 
     for($i = 0; $i < $numUnfilledStars; $i++)
@@ -20,6 +20,7 @@ function convertRatingToStars($rating) {
     return $result;
 }
 
+// print filled star
 function getFilledStar() {
     return '
     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star filled-star" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffd700" fill="#ffd700" stroke-linecap="round" stroke-linejoin="round">
@@ -28,6 +29,7 @@ function getFilledStar() {
     </svg>';
 }
 
+// print half filled star
 function getHalfFilledStar($isLastStar) {
     $class = 'reversed-star';
     if($isLastStar)
@@ -47,6 +49,7 @@ function getHalfFilledStar($isLastStar) {
     ';
 }
 
+// print empty star
 function getUnfilledStar() {
     return '
     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-star unfilled-star" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#B6B6B6" fill="none" stroke-linecap="round" stroke-linejoin="round">

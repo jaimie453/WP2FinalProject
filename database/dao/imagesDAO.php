@@ -47,31 +47,38 @@ class imagesDAO extends baseDAO
             $avgRating, $row['total'], $row['ContinentCode'], $row['PostID']);
     }
 
+    // find top five avg rated images
     public function getTopImages($numOfResults) {
         return $this->getAll(0, $numOfResults, "avg desc");
     }
 
-    // newest images have the highest id I guess?
+    // newest images have the highest id
     public function getNewestImages($numOfResults) {
         return $this->getAll(0, $numOfResults, "travelimage.ImageID desc");
     }
 
+    // get images for city id
     public function getImagesForCity($cityCode) {
         return $this->fetch($cityCode, 'CityCode');
     }
 
+    // get images for country id
     public function getImagesForCountry($countryCode) {
         return $this->fetch($countryCode, 'CountryCodeISO');
     }
 
+    // get images for post id
     public function getImagesForPost($postId) {
         return $this->fetch($postId, 'PostID');
     }
 
+    // get images for user id
     public function getImagesForUser($uId) {
         return $this->fetch($uId, 'UID');
     }
 
+    // search keyword, city country and continent ids, in image
+    // $sortAsc is bool, if true asc, else desc
     public function searchImageTitles($query, $cityId, $countryId, $continentId, $sortAsc) {
       {
           if ($sortAsc == "true")
@@ -79,6 +86,7 @@ class imagesDAO extends baseDAO
           else
             $sort = "desc";
 
+          // select all from table where image matches parameters, sort
           $query = $this->__connection->prepare("
             select *
             from {$this->_tableName}

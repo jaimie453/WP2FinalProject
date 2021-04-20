@@ -12,16 +12,20 @@ class postsDAO extends baseDAO
         return new Post($row['PostID'], $row['UID'], $row['ParentPost'], $row['Title'], $row['Message'], $row['PostTime']);
     }
 
+    // get posts for user id
     public function getPostsForUser($uId) {
         return $this->fetch($uId, 'uId');
     }
 
+    // search keyword in post titles
+    // $sortAsc is bool, if true asc, else desc
     public function searchPostTitles($keyword, $sortAsc) {
         if ($sortAsc == "true")
           $sort = "asc";
         else
           $sort = "desc";
 
+        // select all from table where title matches keyword, sort
         $query = $this->__connection->prepare("
           select *
           from {$this->_tableName}

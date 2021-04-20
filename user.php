@@ -1,5 +1,6 @@
 <?php
 
+// if user id isnt set, error. else, proceed
 $imageId = -1;
 if (!isset($_GET['id']) || $_GET['id'] == null) {
     header('Location: error.php');
@@ -8,14 +9,16 @@ if (!isset($_GET['id']) || $_GET['id'] == null) {
 }
 
 
+// get user
 @include_once './database/dao/usersDAO.php';
 $users = new usersDAO();
 $user = $users->getById($uId);
 
-
+// if not found, error
 if (is_null($user))
     header('Location: error.php');
 
+// if private, set to hidden. else, recall
 if ($user->privacy == 2) {
     $address = "hidden";
     $postal = "hidden";
@@ -49,6 +52,7 @@ else {
     <main class="pt-5 mx-4">
       <div class="container">
         <div class="row mb-4 justify-content-between">
+          <!-- title -->
           <div class="col-xl-4 mb-2">
             <h1><?= $user->getName() ?></h1>
             <h4 class="mb-3"><?= $user->userName ?></h4>
@@ -56,6 +60,7 @@ else {
             <h6><?= $phone ?></h6>
           </div>
 
+          <!-- activity -->
           <div class="col-xl-4">
             <p>
               <h3>Activity</h3>
@@ -64,6 +69,7 @@ else {
             </p>
           </div>
 
+          <!-- additional details -->
           <div class="col-xl-4">
             <table class="user-deets mt-3">
               <thead>
@@ -109,10 +115,11 @@ else {
                 </tr>
               </tbody>
             </table>
-
           </div>
+
         </div>
 
+        <!-- user posts -->
         <div class="row d-flex justify-content-start mb-4">
           <h3 class="mb-3">Posts By User</h3>
 
@@ -120,6 +127,7 @@ else {
           @include_once './database/dao/postsDAO.php';
           @include_once './utils/displayPosts.php';
 
+          // get posts
           $posts = new postsDAO();
           $userPosts = $posts->getPostsForUser($user->uId);
 
@@ -141,6 +149,7 @@ else {
           ?>
         </div>
 
+        <!-- user images -->
         <div class="row d-flex justify-content-start mb-4">
           <h3 class="mb-3">User Images</h3>
 
@@ -148,6 +157,7 @@ else {
           @include_once './database/dao/imagesDAO.php';
           @include_once './utils/displayImage.php';
 
+          // get images
           $images = new imagesDAO();
           $userImages = $images->getImagesForUser($user->uId);
 

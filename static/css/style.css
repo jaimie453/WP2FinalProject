@@ -10180,7 +10180,7 @@ h4,
 .h4,
 h5,
 .h5 {
-  font-family: "Montserrat";
+  font-family: "Montserrat", sans-serif;
 }
 
 h1, .h1,
@@ -10323,6 +10323,27 @@ header {
     height: 280px;
   }
 }
+.post-img {
+  width: 330px;
+  height: 238px;
+  opacity: 0.3;
+}
+
+.post-img[alt]:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 330px;
+  height: 238px;
+  background-color: #1B1B1B;
+  content: attr(alt);
+}
+
+.card-body .text-muted {
+  text-shadow: 0 1px black;
+}
+
 #home-carousel {
   position: fixed;
   top: 0;

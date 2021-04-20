@@ -11,6 +11,7 @@
 <!-- Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
+<!-- Custom CSS -->
 <link rel="stylesheet" type="text/css" href="static/css/style.css?v=<?php echo time(); ?>">
 
 <!-- FA Icons -->
@@ -27,19 +28,20 @@
 if (session_status() !== PHP_SESSION_ACTIVE)
     session_start();
 
+// checks for toast flags
 if (isset($_SESSION['showImageMessage']) && $_SESSION['showImageMessage'])
     showImageMessage($_SESSION['isAdding']);
 else if (isset($_SESSION['showPostMessage']) && $_SESSION['showPostMessage'])
     showPostMessage($_SESSION['isAdding']);
 
-
+// image in favorites
 function showImageMessage($isAdding)
 {
     $message = "Removed image from favorites.";
     if ($isAdding)
         $message = "Added image to favorites!";
 
-    echo    '<script type="text/javascript"> 
+    echo    '<script type="text/javascript">
                 $(document).ready(function () {
                     var toast = new bootstrap.Toast($(".toast")[0]);
                     var toastText = $("#toast-text")[0];
@@ -51,13 +53,14 @@ function showImageMessage($isAdding)
     $_SESSION['showImageMessage'] = false;
 }
 
+// post in favorites
 function showPostMessage($isAdding)
 {
     $message = "Removed post from favorites.";
     if ($isAdding)
         $message = "Added post to favorites!";
 
-    echo    '<script "text/javascript"> 
+    echo    '<script "text/javascript">
                 $(document).ready(function () {
                     var toast = new bootstrap.Toast($(".toast")[0]);
                     var toastText = $("#toast-text")[0];
@@ -65,7 +68,7 @@ function showPostMessage($isAdding)
                     toast.show();
                 });
             </script>';
-    
+
     $_SESSION['showPostMessage'] = false;
 }
 

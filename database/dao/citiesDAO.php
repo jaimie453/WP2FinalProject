@@ -12,7 +12,9 @@ class citiesDAO extends baseDAO
             $row['FeatureCode'], $row['Admin1Code'], $row['Admin2Code'], $row['Population'], $row['Elevation'], $row['TimeZone']);
     }
 
+    // finds only cities with associated images
     public function getCitiesWithImages() {
+      // find from table all where GeoNameID is found in all CityCodes
       $query = $this->__connection->prepare("
         select *
         from {$this->_tableName}

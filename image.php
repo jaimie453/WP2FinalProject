@@ -1,5 +1,6 @@
 <?php
 
+// if not set, error. else, proceed
 $imageId = -1;
 if (!isset($_GET['id']) || $_GET['id'] == null) {
     header('Location: error.php');
@@ -7,14 +8,16 @@ if (!isset($_GET['id']) || $_GET['id'] == null) {
     $imageId = $_GET['id'];
 }
 
-
+// get image
 @include_once './database/dao/imagesDAO.php';
 $images = new imagesDAO();
 $image = $images->getById($imageId);
 
-
+// if not found, error
 if (is_null($image))
     header('Location: error.php');
+
+// get image info
 
 $largeImgPath = './static/travel-images/large/' . $image->path;
 
@@ -37,9 +40,9 @@ $post = $posts->getById($image->postId);
 @include_once './utils/displayImage.php';
 @include_once './utils/ratingsToStars.php';
 
-
 $fullWidthImageColumns = "col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12";
 
+// modify column display depending on coords
 $mapContainerClasses = "col-lg-6 mb-5";
 $otherImagePostsContainerClasses = "col-lg-6";
 $otherImagePostsColumns = "col-xl-6 col-lg-12 col-md-4 col-sm-6 col-12";
@@ -86,6 +89,7 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
                             <span class="float-end text-muted">
                                 <?php
 
+                                // if info exists, print
                                 if (!is_null($city))
                                     echo '<a href="city.php?id=' . $city->geoNameId . '">' . $city->asciiName . '</a>';
                                 if (!is_null($city) && !is_null($country))
@@ -105,6 +109,8 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
 
                         <form action="./utils/modifyFavorites.php" method="post" class="d-inline">
                             <?php
+
+                            // check if image is favorited
                             if (!isset($_SESSION['imageFavs']))
                                 $isFavorited = false;
                             else
@@ -117,6 +123,7 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
                                 echo '<input type="text" value="' . $imageId . '" name="imageId" hidden />';
                                 echo '<button class="btn btn-primary"><i class="far fa-heart"></i> Favorite</button>';
                             }
+
                             ?>
                         </form>
 
@@ -133,6 +140,7 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
                     <div class="card-header">
                         <?php
 
+                        // if ratings exist, show average. else, print error
                         if ($image->totalRatings > 0) {
                             echo '<h3 class="d-inline m-0">Reviews (' . $image->totalRatings . ')</h3>';
                             echo '<span>' . convertRatingToStars(round($image->avgRating * 2)) . '</span>';
@@ -146,6 +154,7 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
 
                     <?php
 
+                    // if rating exists, show placeholder
                     if ($image->totalRatings > 0) {
                         echo '<div class="card-body">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet libero lorem. Vivamus placerat leo at eleifend venenatis. Mauris sed elit porttitor, auctor ligula ut, imperdiet felis. Morbi eu risus massa. Vivamus nisl tortor, scelerisque at elit malesuada, semper pellentesque nulla. Integer sit amet condimentum massa. Proin consectetur sed orci sed aliquam. Integer quis est pharetra erat ullamcorper condimentum eget a elit. Mauris euismod nunc ut diam porttitor, malesuada mattis ipsum condimentum. Interdum et malesuada fames ac ante ipsum primis in faucibus.
@@ -201,13 +210,18 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
                     <div class="row justify-content-lg-end">
                         <?php
 
+                        // get images from same post
                         $postImages = $images->getImagesForPost($image->postId);
+
                         foreach ($postImages as $postImage) {
+                            // if same image that post was found from, skip
                             if ($postImage->imageId == $imageId)
                                 continue;
 
-                            echo '<div class="p-3 d-flex ' . $otherImagePostsColumns . '">';
+                            // get author
                             $user = $users->getById($postImage->uId);
+
+                            echo '<div class="p-3 d-flex ' . $otherImagePostsColumns . '">';
                             createImageCard($postImage->imageId, $postImage->path, $postImage->title, $user->getName());
                             echo '</div>';
                         }
@@ -230,13 +244,18 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
         <div class="row">
             <?php
 
+            // get images from same country
             $countryImages = $images->getImagesForCountry($image->countryCodeISO);
+
             foreach ($countryImages as $countryImage) {
+                // if current image, skip
                 if ($countryImage->imageId == $imageId)
                     continue;
 
-                echo '<div class="p-3 d-flex ' . $fullWidthImageColumns . '">';
+                // get user
                 $user = $users->getById($countryImage->uId);
+
+                echo '<div class="p-3 d-flex ' . $fullWidthImageColumns . '">';
                 createImageCard($countryImage->imageId, $countryImage->path, $countryImage->title, $user->getName());
                 echo '</div>';
             }

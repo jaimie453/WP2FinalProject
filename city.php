@@ -1,5 +1,6 @@
 <?php
 
+// if city isnt set, error. else, proceed
 $cityId = "";
 if (!isset($_GET['id']) || $_GET['id'] == null) {
     header('Location: error.php');
@@ -9,24 +10,30 @@ if (!isset($_GET['id']) || $_GET['id'] == null) {
 
 @include_once './database/dao/citiesDAO.php';
 
+// get city
 $cities = new citiesDAO();
 $city = $cities->getById($cityId);
 
+// if not found, error
 if (is_null($city))
     header('Location: error.php');
 
+// get city's country
 @include_once './database/dao/countriesDAO.php';
 $countries = new countriesDAO();
 $country = $countries->getById($city->countryCodeISO);
 
+// get city images
 @include_once './database/dao/imagesDAO.php';
 $images = new imagesDAO();
 $cityImages = $images->getImagesForCity($cityId);
 
+// adjust columns based on city image results
 $cityDescriptionColumns = "col-12 col-lg-6";
 if(is_null($cityImages))
     $cityDescriptionColumns = "col-8";
 
+// print images according to columns
 function listImages($images, $columns)
 {
     echo '<div class="row justify-content-center">';
@@ -38,7 +45,9 @@ function listImages($images, $columns)
     foreach ($images as $image) {
         echo '<div class="d-flex ' . $columns . ' p-3">';
 
+        // get author
         $photographer = $users->getById($image->uId);
+
         createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
 
         echo '</div>';
@@ -70,8 +79,10 @@ function listImages($images, $columns)
 
     <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
+            <!-- info -->
             <div class="<?= $cityDescriptionColumns ?>">
                 <div class="container-fluid px-md-5">
+                    <!-- title -->
                     <div class="row mb-3">
                         <div class="col d-flex align-items-end">
                             <h1 class="d-inline m-0"><?= $city->asciiName ?></h1>
@@ -83,10 +94,12 @@ function listImages($images, $columns)
                         </div>
                     </div>
 
+                    <!-- subtitle -->
                     <div class="row mb-3">
                         <div class="col text-muted">
                             <?php
 
+                            // if not null, print info
                             if (!is_null($city->population))
                                 echo '<b>Population: </b>' . number_format($city->population);
                             if (!is_null($city->elevation))
@@ -107,6 +120,7 @@ function listImages($images, $columns)
 
             <?php
 
+            // if images exist, format and print the images
             if (!is_null($cityImages)) {
                 echo '<div class="col-lg-6 col-12">';
                 echo '<div class="container-fluid px-md-5">';

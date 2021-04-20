@@ -8,7 +8,7 @@ $(document).ready(function() {
     });
 
      // equalize the height of the image page card and the reviews card
-    function setReviewCardHeight() {   
-        reviewCard.css("max-height", imageCard.height()); 
+    function setReviewCardHeight() {
+        reviewCard.css("max-height", imageCard.height());
     }
 });

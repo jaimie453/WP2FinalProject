@@ -1,5 +1,7 @@
 <?php
 
+// get rid of previous search
+
 unset($_GET['query']);
 unset($_GET['type']);
 unset($_GET['sortAsc']);
@@ -26,6 +28,8 @@ unset($_GET['countryId']);
 
     <main class="container pt-5 px-5">
         <h2 class="row mb-4">Advanced Search</h2>
+
+        <!-- search selection -->
         <div class="row col-4 col-md-3 col-sm-4 ms-4 mb-4">
           <select id="form-select" class="search-dropdown form-select" aria-label="search-select"
               onchange="formSelect();" autocomplete="off">
@@ -39,49 +43,57 @@ unset($_GET['countryId']);
         </div>
 
         <div class="row col-md-8 col-sm-12">
+          <!-- post search -->
           <form id="post" action=<?= $search ?> method="get">
             <div class="container">
+              <!-- keyword -->
               <label for="postTitle" class="form-label">Title</label>
               <input id="postTitle" class="form-control" name="query">
 
+              <!-- make post search and send -->
               <input type="hidden" name="type" value="post">
               <button class="mt-5 btn btn-primary" type="submit">Submit</button>
             </div>
           </form>
 
+          <!-- image search -->
           <form id="image" style="display: none;" action=<?= $search ?> method="get">
             <div class="container">
+              <!-- keyword -->
               <label class="form-label" for="imageTitle" >Title</label>
               <input id="imageTitle" class="form-control mb-4" name="query">
 
+              <!-- dropdowns -->
               <div class="row justify-content-start ms-1">
+                <!-- city -->
                 <select class="col-sm-6 search-dropdown form-select mb-3 me-5"
                     name="cityId">
                   <option selected value="NULL">City</option>
                   <?php
-                    foreach ($relevantCities as $city) {
-                      echo '<option value="' . $city->geoNameId . '">';
-                      echo $city->asciiName . '</option>';
-                    }
+                    // for each city, present option
+                    foreach ($relevantCities as $city)
+                      createSelectOption($city->geoNameId, $city->asciiName);
                   ?>
                 </select>
 
+                <!-- country -->
                 <select class="col-sm-6 search-dropdown form-select mb-3"
                     name="countryId">
                   <option selected value="NULL">Country</option>
                   <?php
-                    foreach ($relevantCountries as $country) {
-                      echo '<option value="' . $country->iso . '">';
-                      echo $country->countryName . '</option>';
-                    }
+                    // for each country, present option
+                    foreach ($relevantCountries as $country)
+                      createSelectOption($country->iso, $country->countryName);
                   ?>
                 </select>
               </div>
 
+              <!-- make image search and send -->
               <input type="hidden" name="type" value="image">
               <button class="mt-5 btn btn-primary" type="submit">Submit</button>
             </div>
           </form>
+
         </div>
     </main>
 

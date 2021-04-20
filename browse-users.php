@@ -3,6 +3,7 @@
 @include_once './database/dao/usersDAO.php';
 @include_once './utils/displayUsers.php';
 
+// get users
 $users = new usersDAO();
 $allUsers = $users->getAll();
 
@@ -32,6 +33,7 @@ $allUsers = $users->getAll();
         <hr class="text-secondary my-4">
       </div>
 
+      <!-- users -->
       <div class="row d-flex justify-content-start mb-5">
         <?php
         $total = 0;
