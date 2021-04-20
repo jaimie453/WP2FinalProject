@@ -37,6 +37,8 @@ $allImages = $images->getAll();
             <!-- filters -->
             <div class="col-12 col-lg-6 d-flex mt-3 mt-xl-0 align-items-center justify-content-lg-end">
                 <form action="browse-images.php" method="post" class="d-flex text-end">
+                    <?php @include_once './utils/general.php'; ?>
+
                     <!-- continents -->
                     <select class="form-select d-inline" aria-label="Default select example" name="continentCode">
                         <option selected value="All">All Continents</option>
@@ -106,7 +108,7 @@ $allImages = $images->getAll();
 
                     // get author
                     $photographer = $users->getById($image->uId);
-                    
+
                     createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
                     $total++;
 
