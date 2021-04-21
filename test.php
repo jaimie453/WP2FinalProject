@@ -88,6 +88,16 @@
             echo "<h3>get all continents</h3>";
             print_r($continents->getAll());
 
+            @include_once './database/dao/reviewsDAO.php';
+
+            $reviews = new reviewsDAO();
+
+            echo "<h3>get all ratings</h3>";
+            print_r($reviews->getAll());
+
+            echo "<h3>get ratings for image id 1</h3>";
+            print_r($reviews->getReviewsForImage(1));
+
             ?>        
         </div>
     </div>
