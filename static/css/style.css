@@ -10220,6 +10220,11 @@ textarea.form-control {
   font-size: 0.9rem;
 }
 
+.travel-card-img {
+  height: 300px;
+  object-fit: cover;
+}
+
 .truncate {
   display: -webkit-box;
   -webkit-line-clamp: 3;

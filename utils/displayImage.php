@@ -4,7 +4,7 @@
 function createImageCard($id, $fileName, $title, $photographerName)
 {
     // initialize vars
-    $path = './static/travel-images/square-medium/' . $fileName;
+    $path = './static/travel-images/medium/' . $fileName;
     $link = 'image.php?id=' . $id;
     // see if favorited
     if(!isset($_SESSION['imageFavs']))
@@ -14,7 +14,7 @@ function createImageCard($id, $fileName, $title, $photographerName)
 
     echo '<div class="card card-hover flex-grow-1">';
     echo '<a class="link-no-color d-flex flex-column flex-grow-1" href="' . $link . '">';
-    echo '<img src="' . $path . '" class="card-img-top" alt="' . $title . '">';
+    echo '<img src="' . $path . '" class="card-img-top travel-card-img" alt="' . $title . '">';
     echo '</a>';
     echo '<div class="card-body d-flex flex-column">';
     echo '<h5 class="card-title">' . $title . '</h5>';
