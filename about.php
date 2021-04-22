@@ -11,8 +11,9 @@
     <header class="mb-3">
       <?php include_once 'components/navbar.php'; ?>
     </header>
+    <?php include_once 'components/ads.php'; ?>
 
-    <main class="pt-4 mx-4">
+    <main class="col pt-4 mx-4">
       <div class="container">
         <div class="row">
           <!-- Project Description -->
@@ -56,6 +57,10 @@
         </div>
       </div>
     </main>
+
+  <!-- for ads -->
+  </div>
+
 </body>
 
 </html>

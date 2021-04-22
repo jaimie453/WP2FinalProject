@@ -195,6 +195,17 @@ header {
     }
 }
 
+// Ads
+
+#top-ad {
+    min-width: 390px;
+}
+
+#left-ad {
+    width: 140px;
+    max-height: 600px;
+}
+
 // Posts
 
 .post-img {
@@ -371,6 +382,6 @@ $unfilledStarColor: #4c4444;
 
 #imageTitle,
 #postTitle {
-    max-width: 60%;
+    max-width: 360px;
     color: black;
 }

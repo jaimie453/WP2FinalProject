@@ -53,11 +53,12 @@ $countryImages = $images->getImagesForCountry($countryId);
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
+    <?php include_once 'components/ads.php'; ?>
 
-    <div class="container small-container mt-5 mb-5">
+    <div class="col container small-container mb-5 pe-4">
         <!-- title -->
         <div class="row mb-3">
-            <div class="col-8 d-flex align-items-end">
+            <div class="col d-flex align-items-end">
                 <?php
 
                 if (!is_null($flagPath))
@@ -67,7 +68,8 @@ $countryImages = $images->getImagesForCountry($countryId);
                 <h1 class="d-inline m-0"><?= $country->countryName ?></h1>
 
             </div>
-            <div class="col-4 d-flex justify-content-end align-items-end">
+            <div class="w-100 d-block d-sm-none"></div>
+            <div class="col-4 d-flex justify-content-end align-items-end ms-4 mt-3">
                 <h3 class="text-muted m-0"><?= $continent->continentName ?></h3>
             </div>
             <hr class="text-secondary my-4">
@@ -112,7 +114,7 @@ $countryImages = $images->getImagesForCountry($countryId);
 
         /// if images exist, format and print the images
         if (!is_null($countryImages)) {
-            echo '<div class="row justify-content-center">';
+            echo '<div class="row justify-content-end">';
 
             @include_once './utils/displayImage.php';
             @include_once './database/dao/usersDAO.php';
@@ -123,7 +125,7 @@ $countryImages = $images->getImagesForCountry($countryId);
 
                 // get author
                 $photographer = $users->getById($image->uId);
-                
+
                 createImageCard($image->imageId, $image->path, $image->title, $photographer->getName());
 
                 echo '</div>';
@@ -133,6 +135,10 @@ $countryImages = $images->getImagesForCountry($countryId);
         }
         ?>
     </div>
+
+    <!-- for ads -->
+    </div>
+
 </body>
 
 </html>

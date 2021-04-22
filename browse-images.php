@@ -26,8 +26,9 @@ $allImages = $images->getAll();
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
+    <?php include_once 'components/ads.php'; ?>
 
-    <div class="my-5 mx-4">
+    <div class="col mb-5 mx-4">
         <div class="container">
           <div class="row">
             <div class="col-12 col-lg-6">
@@ -122,6 +123,9 @@ $allImages = $images->getAll();
             </div>
             <hr class="text-secondary my-4">
         </div>
+    </div>
+
+    <!-- for ads -->
     </div>
 </body>
 

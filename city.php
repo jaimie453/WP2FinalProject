@@ -76,18 +76,21 @@ function listImages($images, $columns)
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
+    <?php include_once 'components/ads.php'; ?>
 
-    <div class="container mt-5 mb-5">
+
+    <div class="col container mb-5 pe-4">
         <div class="row justify-content-center">
             <!-- info -->
             <div class="<?= $cityDescriptionColumns ?>">
-                <div class="container-fluid px-md-5">
+                <div class="container-fluid">
                     <!-- title -->
                     <div class="row mb-3">
                         <div class="col d-flex align-items-end">
                             <h1 class="d-inline m-0"><?= $city->asciiName ?></h1>
                         </div>
-                        <div class="col d-flex justify-content-end align-items-end">
+                        <div class="w-100 d-block d-sm-none"></div>
+                        <div class="col-4 d-flex justify-content-end align-items-end ms-5">
                             <a href="country.php?id=<?= $country->iso ?>" class="text-end">
                                 <h3 class="m-0"><?= $country->countryName ?></h3>
                             </a>
@@ -102,8 +105,9 @@ function listImages($images, $columns)
                             // if not null, print info
                             if (!is_null($city->population))
                                 echo '<b>Population: </b>' . number_format($city->population);
+                            echo '<div class="w-100 d-block d-sm-none"></div>';
                             if (!is_null($city->elevation))
-                                echo '<span class="float-end"><b>Elevation: </b>' . number_format($city->elevation) . ' m</span>';
+                                echo '<span class="float-sm-end"><b>Elevation: </b>' . number_format($city->elevation) . ' m</span>';
 
                             ?>
                         </div>
@@ -138,6 +142,10 @@ function listImages($images, $columns)
     <!-- Google Maps -->
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOY5BOnwhmmXeVB6eQRUUJuOdHaNMFnug&callback=initMap&libraries=&v=weekly" async></script>
+
+    <!-- for ads -->
+    </div>
+
 </body>
 
 </html>

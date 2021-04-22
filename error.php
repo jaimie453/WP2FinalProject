@@ -12,10 +12,15 @@
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
+    <?php include_once 'components/ads.php'; ?>
 
-    <div class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
+    <div class="col d-flex flex-column flex-grow-1 justify-content-center align-items-center">
         <h4>An error occurred. Please try again.</h4>
     </div>
+
+    <!-- for ads -->
+    </div>
+
 </body>
 
 </html>

@@ -23,18 +23,20 @@ $allUsers = $users->getAll();
   <header>
     <?php include_once 'components/navbar.php'; ?>
   </header>
+  <?php include_once 'components/ads.php'; ?>
 
   <!-- Page Content -->
-  <main class="mx-4">
+  <div class="w-100 d-block d-sm-none"></div>
+  <main class="col mx-4">
     <div class="container">
-      <div class="row mt-5">
+      <div class="row">
         <h1>All Users</h1>
 
         <hr class="text-secondary my-4">
       </div>
 
       <!-- users -->
-      <div class="row d-flex justify-content-start mb-5">
+      <div class="row d-flex justify-content-center mb-5">
         <?php
         $total = 0;
         foreach ($allUsers as $user) {
@@ -55,6 +57,9 @@ $allUsers = $users->getAll();
 
     </div>
   </main>
+
+  <!-- for ads -->
+  </div>
 
 </body>
 

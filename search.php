@@ -46,8 +46,9 @@ $users = new usersDAO();
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
+    <?php include_once 'components/ads.php'; ?>
 
-    <main class="pt-5 px-4">
+    <main class="col-7 col-sm pe-4">
       <div class="container">
         <div class="row mb-4">
           <h3 class="results-header mb-2">Results</h3>
@@ -90,7 +91,7 @@ $users = new usersDAO();
         <!-- post results (if selected) -->
         <?php
         if ($type == "both" || $type == "post") {
-          echo '<div class="row d-flex justify-content-start mb-4">
+          echo '<div class="row d-flex justify-content-center mb-4">
             <h3 class="mb-3">Posts</h3>';
 
           // find posts
@@ -127,7 +128,7 @@ $users = new usersDAO();
         <!-- image results (if selected) -->
         <?php
         if ($type == "both" || $type == "image") {
-          echo '<div class="row d-flex justify-content-start mb-4">
+          echo '<div class="row d-flex justify-content-center mb-4">
             <h3 class="mb-3">Images</h3>';
 
           // find images
@@ -168,6 +169,9 @@ $users = new usersDAO();
       </div>
 
   </main>
+
+  <!-- for ads -->
+  </div>
 
 </body>
 

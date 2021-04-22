@@ -73,8 +73,9 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
+    <?php include_once 'components/ads.php'; ?>
 
-    <div class="container mt-3 mb-5 px-lg-5">
+    <div class="col container mb-5 me-5 px-lg-5">
         <div class="row mb-5">
             <div class="col-lg-6 p-xl-5 mb-5">
                 <!-- Image Card -->
@@ -86,7 +87,7 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
                     <div class="card-body">
                         <h5 class="card-title">
                             <?= $image->title ?>
-                            <span class="float-end text-muted">
+                            <span class="float-sm-end text-muted">
                                 <?php
 
                                 // if info exists, print
@@ -126,8 +127,8 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
 
                             ?>
                         </form>
-
-                        <a class="btn btn-secondary float-end" href="post.php?id=<?= $post->postId ?>">
+                        <div class="w-100 d-block d-sm-none"></div>
+                        <a class="btn btn-secondary float-sm-end mt-2 mt-sm-0" href="post.php?id=<?= $post->postId ?>">
                             View post
                         </a>
                     </div>
@@ -272,6 +273,9 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
                 <img src="<?= $largeImgPath ?>" id="lightbox-img" alt="...">
             </div>
         </div>
+    </div>
+
+    <!-- for ads -->
     </div>
 
     <!-- Google Maps -->

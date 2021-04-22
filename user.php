@@ -48,8 +48,9 @@ else {
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
+    <?php include_once 'components/ads.php'; ?>
 
-    <main class="pt-5 mx-4">
+    <main class="col-8 mx-auto">
       <div class="container">
         <div class="row mb-4 justify-content-between">
           <!-- title -->
@@ -120,7 +121,7 @@ else {
         </div>
 
         <!-- user posts -->
-        <div class="row d-flex justify-content-start mb-4">
+        <div class="row d-flex justify-content-center mb-4">
           <h3 class="mb-3">Posts By User</h3>
 
           <?php
@@ -150,7 +151,7 @@ else {
         </div>
 
         <!-- user images -->
-        <div class="row d-flex justify-content-start mb-4">
+        <div class="row d-flex justify-content-center mb-4">
           <h3 class="mb-3">User Images</h3>
 
           <?php
@@ -180,6 +181,9 @@ else {
         </div>
       </div>
     </main>
+
+    <!-- for ads -->
+    </div>
 
 </body>
 

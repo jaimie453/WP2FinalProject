@@ -26,11 +26,13 @@ $allPosts = $posts->getAll();
   <header>
     <?php include_once 'components/navbar.php'; ?>
   </header>
+  <?php include_once 'components/ads.php'; ?>
 
   <!-- Page Content -->
-  <main class="mx-4">
+  <div class="w-100 d-block d-sm-none"></div>
+  <main class="col mx-4">
     <div class="container">
-      <div class="row pt-5">
+      <div class="row">
         <h1>All Posts</h1>
 
         <hr class="text-secondary my-4">
@@ -63,6 +65,9 @@ $allPosts = $posts->getAll();
 
     </div>
   </main>
+
+  <!-- for ads -->
+  </div>
 
 </body>
 

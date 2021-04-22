@@ -40,9 +40,10 @@ $author = $users->getById($post->uId);
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
+    <?php include_once 'components/ads.php'; ?>
 
-    <main class="pt-4">
-        <div class="container small-container px-5 mb-4">
+    <main class="col-7">
+        <div class="container small-container pe-5 mb-4">
           <!-- title -->
             <div class="row">
                 <div class="col d-flex align-items-center">
@@ -89,7 +90,7 @@ $author = $users->getById($post->uId);
             </div>
 
             <!-- post images -->
-            <div class="row d-flex justify-content-start mb-4">
+            <div class="row d-flex justify-content-center mb-4">
                 <h3 class="mb-3">Post Images</h3>
 
                 <?php
@@ -118,7 +119,7 @@ $author = $users->getById($post->uId);
             </div>
 
             <!-- user posts -->
-            <div class="row d-flex justify-content-start mb-4">
+            <div class="row d-flex justify-content-center mb-4">
                 <h3 class="mb-3">Other Posts By User</h3>
 
                 <?php
@@ -148,6 +149,10 @@ $author = $users->getById($post->uId);
             </div>
         </div>
     </main>
+
+    <!-- for ads -->
+    </div>
+
 </body>
 
 </html>

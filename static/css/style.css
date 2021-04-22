@@ -10323,6 +10323,15 @@ header {
     height: 280px;
   }
 }
+#top-ad {
+  min-width: 390px;
+}
+
+#left-ad {
+  width: 140px;
+  max-height: 600px;
+}
+
 .post-img {
   width: 330px;
   height: 238px;
@@ -10461,7 +10470,7 @@ div.carousel-caption {
 
 #imageTitle,
 #postTitle {
-  max-width: 60%;
+  max-width: 360px;
   color: black;
 }
 

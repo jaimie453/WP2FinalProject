@@ -13,10 +13,11 @@
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
+    <?php include_once 'components/ads.php'; ?>
 
-    <div class="container mt-5 mb-5">
+    <div class="col container mb-5">
         <div class="row mb-5">
-            <h1>My Favorites</h1>
+            <h1 class="ms-4">My Favorites</h1>
         </div>
         <div class="row">
             <!-- images -->
@@ -99,6 +100,10 @@
             </div>
         </div>
     </div>
+
+    <!-- for ads -->
+    </div>
+
 </body>
 
 </html>

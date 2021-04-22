@@ -38,6 +38,9 @@ function createListItem($title, $avgRating, $totalRatings, $id)
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
+    <?php //include_once 'components/ads.php'; ?>
+
+    <div class="col-10">
 
     <!-- dropdown boxes -->
     <div class="container-fluid mt-2 position-relative" style="z-index: 1;">
@@ -131,6 +134,11 @@ function createListItem($title, $avgRating, $totalRatings, $id)
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+
+  <!-- </div>
+ for ads
+    </div> -->
+
 </body>
 
 </html>

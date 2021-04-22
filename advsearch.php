@@ -27,12 +27,13 @@ unset($_GET['countryId']);
     <header>
         <?php include_once 'components/navbar.php'; ?>
     </header>
+    <?php include_once 'components/ads.php'; ?>
 
-    <main class="container pt-5 px-5">
+    <main class="col container pt-5 px-5">
         <h2 class="row mb-4">Advanced Search</h2>
 
         <!-- search selection -->
-        <div class="row col-4 col-md-3 col-sm-4 ms-4 mb-4">
+        <div class="row mb-4">
           <select id="form-select" class="search-dropdown form-select" aria-label="search-select"
               onchange="formSelect();" autocomplete="off">
             <option selected value="post">
@@ -44,10 +45,9 @@ unset($_GET['countryId']);
           </select>
         </div>
 
-        <div class="row col-md-8 col-sm-12">
+        <div class="row">
           <!-- post search -->
           <form id="post" action=<?= $search ?> method="get">
-            <div class="container">
               <!-- keyword -->
               <label for="postTitle" class="form-label">Title</label>
               <input id="postTitle" class="form-control" name="query">
@@ -55,12 +55,10 @@ unset($_GET['countryId']);
               <!-- make post search and send -->
               <input type="hidden" name="type" value="post">
               <button class="mt-5 btn btn-primary" type="submit">Submit</button>
-            </div>
           </form>
 
           <!-- image search -->
           <form id="image" style="display: none;" action=<?= $search ?> method="get">
-            <div class="container">
               <!-- keyword -->
               <label class="form-label" for="imageTitle" >Title</label>
               <input id="imageTitle" class="form-control mb-4" name="query">
@@ -93,11 +91,13 @@ unset($_GET['countryId']);
               <!-- make image search and send -->
               <input type="hidden" name="type" value="image">
               <button class="mt-5 btn btn-primary" type="submit">Submit</button>
-            </div>
           </form>
 
         </div>
     </main>
+
+    <!-- for ads -->
+    </div>
 
 </body>
 
