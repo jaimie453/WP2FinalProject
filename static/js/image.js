@@ -19,6 +19,9 @@ $(document).ready(function () {
         });
     });
 
+    // each review listing contains a hidden input after the delete button
+    // place the value of this input into the userId input within the delete review modal
+    // before opening
     $(".delete-review-btn").click(function () {
         const userId = $(this).next().val();
         $("#deleteReviewUserId").val(userId);
