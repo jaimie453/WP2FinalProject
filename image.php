@@ -58,15 +58,16 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
 }
 
 
-function createReviewListing($review, $rating, $authorName)
+function createReviewListing($review, $rating, $authorName, $userId)
 {
     echo '<div class="review-listing">';
 
     echo '<div class="mb-2">';
     echo '<h6 class="d-inline">' . $authorName . '</h6>';
 
-    // add administrator check here
+    // add administrator/current user check here
     echo '<button class="delete-review-btn button-no-style"><i class="far fa-trash-alt"></i></button>';
+    echo '<input value="' . $userId . '" hidden>';
 
     echo '<span class="float-end">' . convertRatingToStars(round($rating * 2)) . '</span>';
     echo '</div>';
@@ -184,13 +185,14 @@ function createReviewListing($review, $rating, $authorName)
 
                         foreach ($imageReviews as $review) {
                             $author = $users->getById($review->uId);
-                            createReviewListing($review->review, $review->rating, $author->getName());
+                            createReviewListing($review->review, $review->rating, $author->getName(), $author->uId);
                         }
 
                         echo '</div>';
                     }
 
                     ?>
+                    <!-- Add check if user has rated post or not -->
                     <div class="card-footer">
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">Leave a review</button>
                     </div>
@@ -284,7 +286,7 @@ function createReviewListing($review, $rating, $authorName)
         </div>
     </div>
 
-    <!-- Review Modal -->
+    <!-- Add Review Modal -->
     <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -292,7 +294,7 @@ function createReviewListing($review, $rating, $authorName)
                     <h5 class="modal-title" id="reviewModalLabel">Leave a Review</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="utils/modifyReview.php" method="post">
+                <form action="utils/addReview.php" method="post">
                     <div class="modal-body">
 
                         <div class="mb-3">
@@ -305,10 +307,36 @@ function createReviewListing($review, $rating, $authorName)
                             <textarea class="form-control" id="reviewTextarea" rows="3" name="reviewText"></textarea>
                         </div>
                         <input name="imageId" value="<?= $imageId ?>" hidden>
+                        <!-- add session id here -->
+                        <input name="userId" value="1" hidden>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Delete Review Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Delete Review</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="utils/deleteReview.php" method="post">
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this review?</p>
+                        <input name="imageId" value="<?= $imageId ?>" hidden>
+                        <!-- add session id here -->
+                        <input id="deleteReviewUserId" name="userId" value="1" hidden>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
                     </div>
                 </form>
             </div>

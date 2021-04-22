@@ -1,6 +1,6 @@
 <?php
 
-// needed for star ratings in review modal
+// needed to show updated star ratings in add review modal
 if(isset($_GET['rating'])) {
     echo convertRatingToStars(round($_GET['rating'] * 2));
 }

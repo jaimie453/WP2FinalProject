@@ -98,6 +98,19 @@
             echo "<h3>get ratings for image id 1</h3>";
             print_r($reviews->getReviewsForImage(1));
 
+            echo "<h3>has user 1 reviewed image 1 (should be true)</h3>";
+            $result = $reviews->hasUserReviewedImage(1, 2);
+            if($result)
+                echo 'review exists';
+            else 
+                echo 'review does not exist';
+
+            echo "<h3>has user 3 reviewed image 1 (should be false)</h3>";
+            $result = $reviews->hasUserReviewedImage(1, 3);
+            if($result)
+                echo 'review exists';
+            else 
+                echo 'review does not exist';
             ?>        
         </div>
     </div>
