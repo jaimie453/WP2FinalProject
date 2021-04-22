@@ -19,6 +19,8 @@ unset($_GET['countryId']);
     <title>Advanced Search</title>
 
     <script src="./static/js/search.js"></script>
+
+    <?php include_once 'utils/general.php'; ?>
 </head>
 
 <body class="fixed-mountain-bg">
