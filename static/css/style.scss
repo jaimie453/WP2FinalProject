@@ -209,8 +209,7 @@ header {
 .post-img {
     width: 330px;
     height: 238px;
-    opacity: .3;
-
+    opacity: 0.3;
 }
 
 .post-img[alt]:after {
@@ -220,7 +219,7 @@ header {
     left: 0;
     width: 330px;
     height: 238px;
-    background-color: #1B1B1B;
+    background-color: #1b1b1b;
     content: attr(alt);
 }
 
@@ -252,8 +251,6 @@ div.carousel-caption {
 .images-group-close {
     float: right;
     color: lightgray;
-    position: relative;
-    top: 4px;
     border: 0;
     background: rgba(0, 0, 0, 0);
     padding-right: 0;
@@ -262,6 +259,15 @@ div.carousel-caption {
         text-decoration: underline;
     }
 }
+
+.recent-review-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
 
 // Rating stars
 
@@ -339,9 +345,9 @@ $unfilledStarColor: #4c4444;
     }
 }
 
-.review-listing {  
+.review-listing {
     &:not(:last-child) {
-        margin-bottom: 2rem; 
+        margin-bottom: 2rem;
     }
 
     p {
@@ -350,7 +356,7 @@ $unfilledStarColor: #4c4444;
     }
 }
 
-.delete-review-btn {   
+.delete-review-btn {
     margin-left: 1rem;
 
     i {
@@ -363,7 +369,7 @@ $unfilledStarColor: #4c4444;
 }
 
 // Review modal
-#reviewTextarea{
+#reviewTextarea {
     border-radius: 0.25rem;
     color: white;
     background-color: #1b1b1b;

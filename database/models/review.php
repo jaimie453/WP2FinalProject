@@ -18,4 +18,8 @@ class Rating
         $this->review = $review;
         $this->reviewTime = $reviewTime;
     }
+
+    public function getReviewDate() {
+        return explode(" ", $this->reviewTime)[0];
+    }
 }

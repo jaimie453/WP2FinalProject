@@ -25,13 +25,18 @@ class reviewsDAO extends baseDAO
         return $this->fetch($imageId, 'ImageID');
     }
 
+    public function getMostRecentReviews($results = 2)
+    {
+        return $this->getAll(0, $results, "ReviewTime desc");
+    }
+
     public function addReview($imageId, $uId, $rating, $review)
     {
         $sql = "INSERT INTO {$this->_tableName} (ImageID, Rating, UID, Review, ReviewTime) VALUES (?,?,?,?,?)";
         $stmt = $this->_connection->prepare($sql);
 
-        $dateTime = new DateTime();
-        $reviewTime = $dateTime->format('Y-m-d H:i:s'); 
+        $now = new DateTime();
+        $reviewTime = $now->format('Y-m-d H:i:s');
 
         $stmt->bind_param("iiiss", $imageId, $rating, $uId, $review, $reviewTime);
         $stmt->execute();
