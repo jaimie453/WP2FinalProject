@@ -15,7 +15,7 @@ class citiesDAO extends baseDAO
     // finds only cities with associated images
     public function getCitiesWithImages() {
       // find from table all where GeoNameID is found in all CityCodes
-      $query = $this->__connection->prepare("
+      $query = $this->_connection->prepare("
         select *
         from {$this->_tableName}
         where GeoNameID in (

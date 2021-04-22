@@ -18,7 +18,7 @@ class countriesDAO extends baseDAO
     // select all from table where they have images
     public function getCountriesWithImages() {
       // select all from table where the id is in the images table
-      $query = $this->__connection->prepare("
+      $query = $this->_connection->prepare("
         select *
         from {$this->_tableName}
         where ISO in (

@@ -1,5 +1,10 @@
 <?php
 
+// needed for star ratings in review modal
+if(isset($_GET['rating'])) {
+    echo convertRatingToStars(round($_GET['rating'] * 2));
+}
+
 // returns 5 svg star icons based on avg rating
 // avg rating is an integer 1-10
 function convertRatingToStars($rating) {
@@ -19,7 +24,7 @@ function convertRatingToStars($rating) {
 
     return $result;
 }
-
+ 
 // print filled star
 function getFilledStar() {
     return '

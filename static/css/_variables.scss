@@ -3,6 +3,7 @@
 
 // Colors
 $primary: rgb(5, 81, 96);
+$primary-text: #81beca;
 $secondary: #4c4c4c;
 $text-muted: #8d969e;
 
@@ -30,7 +31,7 @@ $accordion-button-active-color: $body-color;
 
 // Links
 $link-decoration: none;
-$link-color: #81beca;
+$link-color: $primary-text;
 
 // Inputs
 // $input-bg: $primary;
@@ -48,3 +49,8 @@ $toast-header-background-color: $primary;
 $toast-header-border-color: transparent;
 $toast-header-color: white;
 $btn-close-color: white;
+
+// Modals
+$modal-content-border-radius: 1rem;
+$modal-content-bg: #1b1b1b;
+$modal-header-border-color: transparent;

@@ -7,6 +7,16 @@ $(document).ready(function() {
         setReviewCardHeight();
     });
 
+    // For review modal
+    // change the amount of stars shown whenever the user changes the rating
+    $("#ratingRange").change(function() {
+        const rating = $("#ratingRange").val();
+
+        $.get("utils/ratingsToStars.php", { rating: rating }, function (response) {
+            $("#review-rating-stars").html(response);
+        });
+    });
+
      // equalize the height of the image page card and the reviews card
     function setReviewCardHeight() {
         reviewCard.css("max-height", imageCard.height());

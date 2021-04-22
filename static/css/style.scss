@@ -68,6 +68,15 @@ a.btn:active {
     opacity: 0.8;
 }
 
+.modal-body {
+    background-color: #2b2b2b;
+}
+
+textarea.form-control {
+    font-family: $font-family-sans-serif;
+    font-size: 0.9rem;
+}
+
 // Utility classes
 
 .truncate {
@@ -310,6 +319,7 @@ $unfilledStarColor: #4c4444;
 
 // Image Page
 
+// Reviews card
 #review-card {
     background-color: #2b2b2b;
 
@@ -325,11 +335,41 @@ $unfilledStarColor: #4c4444;
     }
 
     .card-body {
-        color: #bdbdbd;
         overflow-y: scroll;
     }
 }
 
+.review-listing {  
+    &:not(:last-child) {
+        margin-bottom: 2rem; 
+    }
+
+    p {
+        margin-bottom: 0;
+        color: #bdbdbd;
+    }
+}
+
+.delete-review-btn {   
+    margin-left: 1rem;
+
+    i {
+        color: gray;
+
+        &:hover {
+            color: $primary-text;
+        }
+    }
+}
+
+// Review modal
+#reviewTextarea{
+    border-radius: 0.25rem;
+    color: white;
+    background-color: #1b1b1b;
+}
+
+// Lightbox
 #lightbox-img {
     border-radius: 1rem;
 }

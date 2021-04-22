@@ -87,7 +87,7 @@ class imagesDAO extends baseDAO
             $sort = "desc";
 
           // select all from table where image matches parameters, sort
-          $query = $this->__connection->prepare("
+          $query = $this->_connection->prepare("
             select *
             from {$this->_tableName}
             where CityCode like '{$cityId}'

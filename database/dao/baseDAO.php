@@ -4,7 +4,7 @@
 
 abstract class baseDAO
 {
-    protected $__connection;
+    protected $_connection;
 
     // will be overridden by concrete classes
     protected $_tableName;      // can be a single table name or a join
@@ -13,8 +13,8 @@ abstract class baseDAO
 
     public function __construct()
     {
-        $this->__connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-        if (!$this->__connection->set_charset("utf8mb4")) {
+        $this->_connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+        if (!$this->_connection->set_charset("utf8mb4")) {
             printf("Error loading character set utf8mb4: %s\n", $mysqli->error);
             exit();
         }
@@ -43,7 +43,7 @@ abstract class baseDAO
         }
 
         $rows = array();
-        if ($result = $this->__connection->query($query)) {
+        if ($result = $this->_connection->query($query)) {
             foreach($result as $row)
                 $rows[] = $this->convertToObject($row);
 
@@ -66,7 +66,7 @@ abstract class baseDAO
     // can only be accessed by other DAOs
     protected function fetch($value, $searchColumn)
     {
-        $query = $this->__connection->prepare("select * from {$this->_tableName} where {$searchColumn} = ?");
+        $query = $this->_connection->prepare("select * from {$this->_tableName} where {$searchColumn} = ?");
 
         if (is_int($value))
             $query->bind_param("i", $value);

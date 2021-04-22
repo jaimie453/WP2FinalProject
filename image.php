@@ -37,6 +37,11 @@ $city = $cities->getById($image->cityCode);
 $posts = new postsDAO();
 $post = $posts->getById($image->postId);
 
+@include_once './database/dao/reviewsDAO.php';
+$reviews = new reviewsDAO();
+$imageReviews = $reviews->getReviewsForImage($imageId);
+
+
 @include_once './utils/displayImage.php';
 @include_once './utils/ratingsToStars.php';
 
@@ -51,6 +56,26 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
     $otherImagePostsContainerClasses = "col";
     $otherImagePostsColumns = $fullWidthImageColumns;
 }
+
+
+function createReviewListing($review, $rating, $authorName)
+{
+    echo '<div class="review-listing">';
+
+    echo '<div class="mb-2">';
+    echo '<h6 class="d-inline">' . $authorName . '</h6>';
+
+    // add administrator check here
+    echo '<button class="delete-review-btn button-no-style"><i class="far fa-trash-alt"></i></button>';
+
+    echo '<span class="float-end">' . convertRatingToStars(round($rating * 2)) . '</span>';
+    echo '</div>';
+
+    echo '<p>' . $review . '</p>';
+
+    echo '</div>';
+}
+ 
 
 ?>
 
@@ -128,7 +153,7 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
                         </form>
 
                         <a class="btn btn-secondary float-end" href="post.php?id=<?= $post->postId ?>">
-                            View post
+                            View Post
                         </a>
                     </div>
                 </div>
@@ -154,24 +179,20 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
 
                     <?php
 
-                    // if rating exists, show placeholder
                     if ($image->totalRatings > 0) {
-                        echo '<div class="card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet libero lorem. Vivamus placerat leo at eleifend venenatis. Mauris sed elit porttitor, auctor ligula ut, imperdiet felis. Morbi eu risus massa. Vivamus nisl tortor, scelerisque at elit malesuada, semper pellentesque nulla. Integer sit amet condimentum massa. Proin consectetur sed orci sed aliquam. Integer quis est pharetra erat ullamcorper condimentum eget a elit. Mauris euismod nunc ut diam porttitor, malesuada mattis ipsum condimentum. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                        echo '<div class="card-body">';
 
-                            Aenean venenatis eleifend lacinia. Suspendisse et purus vitae elit tempus mattis. Donec at porta elit. Sed rutrum quam ut risus tincidunt congue. Suspendisse accumsan, nunc et sagittis blandit, enim leo commodo neque, eget blandit erat magna quis metus. Mauris molestie lacus ac risus pharetra, ac pharetra leo tristique. Curabitur non dolor et eros ultrices consectetur. Sed luctus lacinia tincidunt. Nulla et tellus a nisi semper feugiat ut et ligula. In eget venenatis ligula. Etiam sodales, libero id auctor iaculis, augue urna blandit felis, vel ultricies dui ligula vel orci. Cras mollis massa vitae diam elementum, ut molestie justo finibus. Phasellus rutrum hendrerit sem, nec faucibus lorem rutrum vitae. Nulla justo leo, facilisis sed interdum pretium, malesuada non odio. Etiam quis imperdiet quam. Donec vitae turpis ac nulla molestie aliquet.
+                        foreach ($imageReviews as $review) {
+                            $author = $users->getById($review->uId);
+                            createReviewListing($review->review, $review->rating, $author->getName());
+                        }
 
-                            Sed id leo nec arcu aliquam auctor vel non lorem. Nulla tincidunt quam eget porta auctor. Etiam imperdiet lacus sit amet ex bibendum iaculis. Sed suscipit lobortis risus, eu placerat eros accumsan quis. Etiam sit amet massa a mauris sodales porttitor vulputate porta turpis. In euismod risus placerat metus interdum suscipit at viverra lectus. Donec enim ligula, gravida ac mollis eget, consequat sit amet quam. Sed luctus maximus ligula. Nam dignissim velit a elit porta efficitur. Donec sapien tellus, tempus hendrerit aliquam sit amet, ultricies id justo. Fusce iaculis orci vitae arcu ultricies, vel dictum purus facilisis. Vivamus tristique, nunc nec fermentum fermentum, augue mauris pretium ipsum, non lobortis neque dui quis mi. Integer eget efficitur velit. Quisque fermentum venenatis risus, in maximus elit. Morbi pulvinar porta turpis sed lacinia.
-
-                            Integer congue lectus quis hendrerit porta. Suspendisse vel lorem urna. Mauris id sapien odio. Praesent hendrerit orci quis felis mollis aliquam id id leo. Cras imperdiet ante ut tellus sagittis, id ultricies nisl viverra. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed vitae volutpat neque, vel eleifend libero.
-
-                            Aenean tempor sapien mauris. Nunc sit amet dui efficitur, posuere massa eget, scelerisque purus. Suspendisse iaculis nunc et felis varius blandit. Pellentesque facilisis vehicula ex. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque accumsan ultricies nulla a venenatis. Nam id urna at lorem posuere accumsan. Quisque lobortis fermentum erat eget dignissim. Duis eget consectetur magna. Sed vehicula massa turpis, vel lacinia orci dapibus ac. Etiam lacinia urna sapien, a feugiat justo auctor id. Donec sit amet commodo nisi, non condimentum erat. Nam sollicitudin et urna vitae convallis. Aenean eget gravida turpis, at aliquam lacus. Nullam tincidunt fringilla massa, nec auctor nibh sodales id.</p>
-                    </div>';
+                        echo '</div>';
                     }
 
                     ?>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Leave a review</a>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">Leave a review</button>
                     </div>
                 </div>
             </div>
@@ -263,10 +284,39 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
         </div>
     </div>
 
+    <!-- Review Modal -->
+    <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reviewModalLabel">Leave a Review</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="utils/modifyReview.php" method="post">
+                    <div class="modal-body">
 
+                        <div class="mb-3">
+                            <label for="ratingRange" class="form-label">Rating</label>
+                            <span class="float-end" id="review-rating-stars"> <?= convertRatingToStars(6) ?> </span>
+                            <input type="range" class="form-range" min="1" max="5" id="ratingRange" name="reviewRating">
+                        </div>
+                        <div class="mb-3">
+                            <label for="reviewTextarea" class="form-label">Review</label>
+                            <textarea class="form-control" id="reviewTextarea" rows="3" name="reviewText"></textarea>
+                        </div>
+                        <input name="imageId" value="<?= $imageId ?>" hidden>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Lightbox -->
-    <div class="modal fade" id="lightbox" tabindex="-1" aria-labelledby="lightboxLabel" aria-hidden="true" >
+    <div class="modal fade" id="lightbox" tabindex="-1" aria-labelledby="lightboxLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered justify-content-center mw-100">
             <div>
                 <img src="<?= $largeImgPath ?>" id="lightbox-img" alt="...">

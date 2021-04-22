@@ -33,6 +33,21 @@ if (isset($_SESSION['showImageMessage']) && $_SESSION['showImageMessage'])
     showImageMessage($_SESSION['isAdding']);
 else if (isset($_SESSION['showPostMessage']) && $_SESSION['showPostMessage'])
     showPostMessage($_SESSION['isAdding']);
+else if(isset($_SESSION['showReviewMessage']) && $_SESSION['showReviewMessage'])
+    showReviewMessage($_SESSION['isAdding']);
+
+
+// user added/removed a review for an image
+function showReviewMessage($isAdding)
+{
+    $message = "Review removed successfully.";
+    if ($isAdding)
+        $message = "Your review was added successfully!";
+
+    showToastMessage($message);
+
+    $_SESSION['showReviewMessage'] = false;
+}
 
 // image in favorites
 function showImageMessage($isAdding)
@@ -41,14 +56,7 @@ function showImageMessage($isAdding)
     if ($isAdding)
         $message = "Added image to favorites!";
 
-    echo    '<script type="text/javascript">
-                $(document).ready(function () {
-                    var toast = new bootstrap.Toast($(".toast")[0]);
-                    var toastText = $("#toast-text")[0];
-                    toastText.innerText = "' . $message . '";
-                    toast.show();
-                });
-            </script>';
+    showToastMessage($message);
 
     $_SESSION['showImageMessage'] = false;
 }
@@ -60,6 +68,14 @@ function showPostMessage($isAdding)
     if ($isAdding)
         $message = "Added post to favorites!";
 
+    showToastMessage($message);
+
+    $_SESSION['showPostMessage'] = false;
+}
+
+
+function showToastMessage($message)
+{
     echo    '<script "text/javascript">
                 $(document).ready(function () {
                     var toast = new bootstrap.Toast($(".toast")[0]);
@@ -68,8 +84,6 @@ function showPostMessage($isAdding)
                     toast.show();
                 });
             </script>';
-
-    $_SESSION['showPostMessage'] = false;
 }
 
 ?>

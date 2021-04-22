@@ -4723,10 +4723,10 @@ textarea.form-control-lg {
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: #fff;
+  background-color: #1b1b1b;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.3rem;
+  border-radius: 1rem;
   outline: 0;
 }
 
@@ -4752,9 +4752,9 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: space-between;
   padding: 1rem 1rem;
-  border-bottom: 1px solid #dee2e6;
-  border-top-left-radius: calc(0.3rem - 1px);
-  border-top-right-radius: calc(0.3rem - 1px);
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: calc(1rem - 1px);
+  border-top-right-radius: calc(1rem - 1px);
 }
 .modal-header .btn-close {
   padding: 0.5rem 0.5rem;
@@ -4779,9 +4779,9 @@ textarea.form-control-lg {
   align-items: center;
   justify-content: flex-end;
   padding: 0.75rem;
-  border-top: 1px solid #dee2e6;
-  border-bottom-right-radius: calc(0.3rem - 1px);
-  border-bottom-left-radius: calc(0.3rem - 1px);
+  border-top: 1px solid transparent;
+  border-bottom-right-radius: calc(1rem - 1px);
+  border-bottom-left-radius: calc(1rem - 1px);
 }
 .modal-footer > * {
   margin: 0.25rem;
@@ -5452,7 +5452,7 @@ textarea.form-control-lg {
   flex-direction: column;
   max-width: 100%;
   visibility: hidden;
-  background-color: #fff;
+  background-color: #1b1b1b;
   background-clip: padding-box;
   outline: 0;
   transition: transform 0.3s ease-in-out;
@@ -10211,6 +10211,15 @@ a.btn:active {
   opacity: 0.8;
 }
 
+.modal-body {
+  background-color: #2b2b2b;
+}
+
+textarea.form-control {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 0.9rem;
+}
+
 .truncate {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -10425,8 +10434,31 @@ div.carousel-caption {
   background-color: #1b1b1b;
 }
 #review-card .card-body {
-  color: #bdbdbd;
   overflow-y: scroll;
+}
+
+.review-listing:not(:last-child) {
+  margin-bottom: 2rem;
+}
+.review-listing p {
+  margin-bottom: 0;
+  color: #bdbdbd;
+}
+
+.delete-review-btn {
+  margin-left: 1rem;
+}
+.delete-review-btn i {
+  color: gray;
+}
+.delete-review-btn i:hover {
+  color: #81beca;
+}
+
+#reviewTextarea {
+  border-radius: 0.25rem;
+  color: white;
+  background-color: #1b1b1b;
 }
 
 #lightbox-img {

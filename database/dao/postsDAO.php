@@ -26,7 +26,7 @@ class postsDAO extends baseDAO
           $sort = "desc";
 
         // select all from table where title matches keyword, sort
-        $query = $this->__connection->prepare("
+        $query = $this->_connection->prepare("
           select *
           from {$this->_tableName}
           where Title like '%{$keyword}%'
