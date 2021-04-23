@@ -1,3 +1,6 @@
+<!-- must add .col to main content
+and </div> after -->
+
 <img id="top-ad" class="container row col-4 mx-auto my-5"
   src="./static/ads/explore the world cropped.jpg" alt="ad here">
 

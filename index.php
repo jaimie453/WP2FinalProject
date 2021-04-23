@@ -35,13 +35,9 @@ function createListItem($title, $avgRating, $totalRatings, $id)
 </head>
 
 <body>
-    <header>
-        <?php include_once 'components/navbar.php'; ?>
-    </header>
-    <?php //include_once 'components/ads.php'; ?>
+    <?php include_once 'components/navbar.php'; ?>
 
-    <div class="col-10">
-
+    <div>
     <!-- dropdown boxes -->
     <div class="container-fluid mt-2 position-relative" style="z-index: 1;">
         <div class="row">
@@ -135,9 +131,12 @@ function createListItem($title, $avgRating, $totalRatings, $id)
         </button>
     </div>
 
-  <!-- </div>
- for ads
-    </div> -->
+    <img id="carousel-left-ad"
+      src="./static/ads/travel guide cropped.jpg" alt="ad here">
+
+  </div>
+
+  <script type="text/javascript" src="./static/js/homeBottomAd.js"></script>
 
 </body>
 

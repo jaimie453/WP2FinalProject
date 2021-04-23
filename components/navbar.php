@@ -34,6 +34,7 @@ $relevantCities = $navCities->getCitiesWithImages();
 
 <script src="./static/js/nav.js"></script>
 
+<header>
 <div class="container-fluid">
   <!-- Utilities, 1st Row -->
   <div class="utility-bar row px-2 py-1">
@@ -44,10 +45,12 @@ $relevantCities = $navCities->getCitiesWithImages();
       <a class="utility-link" href="<?php echo $account; ?>">
         <span class="fas fa-user-circle"></span> My Account&nbsp;&nbsp;
       </a>
-      <a class="utility-link" href="<?php echo $register; ?>">
+      <a class="utility-link" href="" type="button"
+          data-bs-toggle="modal" data-bs-target="#registerPortal">
         <span class="fas fa-user-plus"></span> Register&nbsp;&nbsp;
       </a>
-      <a class="utility-link" href="<?php echo $login; ?>">
+      <a class="utility-link" href="" type="button"
+          data-bs-toggle="modal" data-bs-target="#loginPortal">
         <span class="fas fa-sign-in-alt"></span> Login
       </a>
     </div>
@@ -176,5 +179,78 @@ $relevantCities = $navCities->getCitiesWithImages();
         </div>
       </div>
     </nav>
+  </div>
+</div>
+</header>
+
+<!-- Register Modal -->
+<div id="registerPortal" class="modal fade"
+    tabindex="-1" role="dialog"
+    aria-labelledby="registerTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="registerTitle" class="modal-title">
+          Register
+        </h5>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="col-form-label" for="username">Username:</label>
+            <input id="username" class="form-control" type="text"></input>
+          </div>
+          <div class="form-group my-3">
+            <label class="col-form-label" for="password">Password:</label>
+            <input id="password" class="form-control" type="text"></input>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"
+              data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Login Modal -->
+<div id="loginPortal" class="modal fade"
+    tabindex="-1" role="dialog"
+    aria-labelledby="loginTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="loginTitle" class="modal-title">
+          Login
+        </h5>
+      </div>
+      <form>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="col-form-label" for="username">Username:</label>
+            <input id="username" class="form-control" type="text"></input>
+          </div>
+          <div class="form-group my-3">
+            <label class="col-form-label" for="password">Password:</label>
+            <input id="password" class="form-control" type="text"></input>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary"
+              data-bs-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

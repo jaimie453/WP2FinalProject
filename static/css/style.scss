@@ -195,7 +195,31 @@ header {
     }
 }
 
+// Login
+
+#loginPortal, #registerPortal  {
+    .modal-content{
+      background-color: rgba(0, 0, 0, 0.80);
+    }
+}
+
 // Ads
+
+.carousel-bottom-ad {
+    max-height:75px;
+}
+
+#carousel-left-ad {
+    position: absolute;
+    z-index: 3;
+
+    bottom: 20px;
+    left: 15px;
+
+    width: 10vw;
+    max-width: 90px;
+    height: 40vh;
+}
 
 #top-ad {
     min-width: 390px;
