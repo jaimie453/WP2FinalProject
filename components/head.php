@@ -28,48 +28,16 @@
 if (session_status() !== PHP_SESSION_ACTIVE)
     session_start();
 
+@include_once './utils/toastMessages.php';
+
 // checks for toast flags
 if (isset($_SESSION['showImageMessage']) && $_SESSION['showImageMessage'])
     showImageMessage($_SESSION['isAdding']);
 else if (isset($_SESSION['showPostMessage']) && $_SESSION['showPostMessage'])
     showPostMessage($_SESSION['isAdding']);
 
-// image in favorites
-function showImageMessage($isAdding)
-{
-    $message = "Removed image from favorites.";
-    if ($isAdding)
-        $message = "Added image to favorites!";
+@include_once './components/accounts.php';
 
-    echo    '<script type="text/javascript">
-                $(document).ready(function () {
-                    var toast = new bootstrap.Toast($(".toast")[0]);
-                    var toastText = $("#toast-text")[0];
-                    toastText.innerText = "' . $message . '";
-                    toast.show();
-                });
-            </script>';
-
-    $_SESSION['showImageMessage'] = false;
-}
-
-// post in favorites
-function showPostMessage($isAdding)
-{
-    $message = "Removed post from favorites.";
-    if ($isAdding)
-        $message = "Added post to favorites!";
-
-    echo    '<script "text/javascript">
-                $(document).ready(function () {
-                    var toast = new bootstrap.Toast($(".toast")[0]);
-                    var toastText = $("#toast-text")[0];
-                    toastText.innerText = "' . $message . '";
-                    toast.show();
-                });
-            </script>';
-
-    $_SESSION['showPostMessage'] = false;
-}
+include_once 'components/toast.php';
 
 ?>

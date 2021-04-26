@@ -8,9 +8,7 @@
 
 </head>
 <body class="fixed-mountain-bg">
-    <header class="mb-3">
-      <?php include_once 'components/navbar.php'; ?>
-    </header>
+    <?php include_once 'components/navbar.php'; ?>
     <?php include_once 'components/ads.php'; ?>
 
     <main class="col pt-4 mx-4">

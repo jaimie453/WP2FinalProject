@@ -8,11 +8,7 @@
 </head>
 
 <body class="fixed-mountain-bg">
-    <?php include_once 'components/toast.php'; ?>
-
-    <header>
-        <?php include_once 'components/navbar.php'; ?>
-    </header>
+    <?php include_once 'components/navbar.php'; ?>
     <?php include_once 'components/ads.php'; ?>
 
     <div class="col container mb-5">

@@ -20,9 +20,7 @@ $allUsers = $users->getAll();
 </head>
 
 <body class="fixed-mountain-bg">
-  <header>
-    <?php include_once 'components/navbar.php'; ?>
-  </header>
+  <?php include_once 'components/navbar.php'; ?>
   <?php include_once 'components/ads.php'; ?>
 
   <!-- Page Content -->

@@ -10326,6 +10326,9 @@ header {
 #loginPortal .modal-content, #registerPortal .modal-content {
   background-color: rgba(0, 0, 0, 0.8);
 }
+#loginPortal input, #registerPortal input {
+  color: black;
+}
 
 .carousel-bottom-ad {
   max-height: 75px;

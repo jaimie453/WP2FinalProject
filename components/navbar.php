@@ -1,256 +1,199 @@
 <?php
-// link variables (allow for easy edit and recall)
+  // link variables (allow for easy edit and recall)
 
-$home = "index.php";
-$about = "about.php";
-$search = "search.php";
-$advSearch = "advsearch.php";
+  $home = "index.php";
+  $about = "about.php";
+  $search = "search.php";
+  $advSearch = "advsearch.php";
 
-$browsePosts = "browse-posts.php";
-$browseImages = "browse-images.php";
-$browseUsers = "browse-users.php";
+  $browsePosts = "browse-posts.php";
+  $browseImages = "browse-images.php";
+  $browseUsers = "browse-users.php";
 
-$favorites = "favorites.php";
-$account = "#";
-$register = "#";
-$login = "#";
+  $favorites = "favorites.php";
+  $account = "#";
 
 
-// get continents, countries, and cities for nav
+  // get continents, countries, and cities for nav
 
-@include_once './database/dao/continentsDAO.php';
-$navContinents = new continentsDAO();
-$navContinents = $navContinents->getAll();
+  @include_once './database/dao/continentsDAO.php';
+  $navContinents = new continentsDAO();
+  $navContinents = $navContinents->getAll();
 
-@include_once './database/dao/countriesDAO.php';
-$navCountries = new countriesDAO();
-$relevantCountries = $navCountries->getCountriesWithImages();
+  @include_once './database/dao/countriesDAO.php';
+  $navCountries = new countriesDAO();
+  $relevantCountries = $navCountries->getCountriesWithImages();
 
-@include_once './database/dao/citiesDAO.php';
-$navCities = new citiesDAO();
-$relevantCities = $navCities->getCitiesWithImages();
+  @include_once './database/dao/citiesDAO.php';
+  $navCities = new citiesDAO();
+  $relevantCities = $navCities->getCitiesWithImages();
 
 ?>
 
 <script src="./static/js/nav.js"></script>
 
 <header>
-<div class="container-fluid">
-  <!-- Utilities, 1st Row -->
-  <div class="utility-bar row px-2 py-1">
-    <div class="container-fluid d-flex justify-content-end text-light">
-      <a class="utility-link" href="<?php echo $favorites; ?>">
-        <span class="fas fa-star"></span> View Favorites List&nbsp;&nbsp;
-      </a>
-      <a class="utility-link" href="<?php echo $account; ?>">
-        <span class="fas fa-user-circle"></span> My Account&nbsp;&nbsp;
-      </a>
-      <a class="utility-link" href="" type="button"
-          data-bs-toggle="modal" data-bs-target="#registerPortal">
-        <span class="fas fa-user-plus"></span> Register&nbsp;&nbsp;
-      </a>
-      <a class="utility-link" href="" type="button"
-          data-bs-toggle="modal" data-bs-target="#loginPortal">
-        <span class="fas fa-sign-in-alt"></span> Login
-      </a>
+  <div class="container-fluid">
+    <!-- Utilities, 1st Row -->
+    <div class="utility-bar row px-2 py-1">
+      <span class="col"><?php
+        if(isset($_SESSION['user']))
+          echo 'User: <strong>' . $_SESSION['user']->userName . '</strong>';
+      ?></span>
+      <div class="col d-flex justify-content-end text-nowrap">
+        <a class="utility-link" href="<?= $favorites ?>">
+          <span class="fas fa-star"></span> View Favorites List&nbsp;&nbsp;
+        </a>
+        <a class="utility-link" href="<?= $account ?>">
+          <span class="fas fa-user-circle"></span> My Account&nbsp;&nbsp;
+        </a>
+        <a class="utility-link" href="" type="button"
+            data-bs-toggle="modal" data-bs-target="#registerPortal">
+          <span class="fas fa-user-plus"></span> Register&nbsp;&nbsp;
+        </a>
+        <a class="utility-link" type="button"
+          <?php
+          if (isset($_SESSION['user'])) {
+            echo '
+            href="./utils/logout.php">
+              <span class="fas fa-sign-out-alt"></span> Logout
+            </a>
+            ';
+          }
+          else {
+            echo '
+            href="" data-bs-toggle="modal" data-bs-target="#loginPortal">
+              <span class="fas fa-sign-in-alt"></span> Login
+            </a>
+            ';
+          }
+          ?>
+      </div>
+    </div>
+
+    <!-- Main Nav, 2nd Row -->
+    <div class="row">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="<?php echo $home; ?>">Everyone Travels</a>
+          <!-- toggles 2nd and 3rd rows -->
+          <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <!-- items -->
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="<?php echo $home; ?>">
+                  Home Page
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo $about; ?>">
+                  About Us
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<?php echo $advSearch; ?>">
+                  Advanced Search
+                </a>
+              </li>
+              <li id="browseMenu" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Browse
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                  <li><a class="dropdown-item" href="<?php echo $browsePosts; ?>">
+                      Posts
+                    </a></li>
+                  <li><a class="dropdown-item" href="<?php echo $browseImages; ?>">
+                      Images
+                    </a></li>
+                  <li><a class="dropdown-item" href="<?php echo $browseUsers; ?>">
+                      Users
+                    </a></li>
+                </ul>
+              </li>
+            </ul>
+            <!-- search -->
+            <form class="nav-search d-flex" action="<?= $search ?>" method="get">
+              <input class="form-control" name="query" type="search" placeholder="Search" aria-label="Search">
+              <input type="hidden" name="type" value="image">
+              <button type="submit">
+                <i class="fas fa-search text-muted"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Location Pages Sub Nav, 3rd Row -->
+    <div class="row">
+      <nav class="navbar navbar-expand-lg navbar-dark pt-0">
+        <div class="container-fluid">
+          <!-- will collapse from 2nd row nav toggle -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <!-- items -->
+              <!-- continents -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Continents
+                </a>
+                <ul id="continentsMenu" class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <?php
+                    // for each continent, print search link
+                    foreach ($navContinents as $navContinent) {
+                      echo '<li><a class="dropdown-item"
+                        href="search.php?type=image&continentId='
+                        . $navContinent->continentCode . '">';
+                      echo $navContinent->continentName . '</a></li>';
+                    }
+                  ?>
+                </ul>
+              </li>
+
+              <!-- countries -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Countries
+                </a>
+                <ul id="countriesMenu" class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                  <?php
+                    // for each country, print link
+                    foreach ($relevantCountries as $navCountry) {
+                      echo '<li><a class="dropdown-item"
+                        href="country.php?id='
+                        . $navCountry->iso . '">';
+                      echo $navCountry->countryName . '</a></li>';
+                    }
+                  ?>
+                </ul>
+              </li>
+
+              <!-- cities -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Cities
+                </a>
+                <ul id="citiesMenu" class="dropdown-menu dropdown-columns" aria-labelledby="navbarDropdown4">
+                  <?php
+                    // for each city, print link
+                    foreach ($relevantCities as $navCity) {
+                      echo '<li><a class="dropdown-item" href="city.php?id='
+                        . $navCity->geoNameId . '">';
+                      echo $navCity->asciiName . '</a></li>';
+                    }
+                  ?>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     </div>
   </div>
-
-  <!-- Main Nav, 2nd Row -->
-  <div class="row">
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="<?php echo $home; ?>">Everyone Travels</a>
-        <!-- toggles 2nd and 3rd rows -->
-        <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <!-- items -->
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="<?php echo $home; ?>">
-                Home Page
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo $about; ?>">
-                About Us
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?php echo $advSearch; ?>">
-                Advanced Search
-              </a>
-            </li>
-            <li id="browseMenu" class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Browse
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                <li><a class="dropdown-item" href="<?php echo $browsePosts; ?>">
-                    Posts
-                  </a></li>
-                <li><a class="dropdown-item" href="<?php echo $browseImages; ?>">
-                    Images
-                  </a></li>
-                <li><a class="dropdown-item" href="<?php echo $browseUsers; ?>">
-                    Users
-                  </a></li>
-              </ul>
-            </li>
-          </ul>
-          <!-- search -->
-          <form class="nav-search d-flex" action="<?= $search ?>" method="get">
-            <input class="form-control" name="query" type="search" placeholder="Search" aria-label="Search">
-            <input type="hidden" name="type" value="image">
-            <button type="submit">
-              <i class="fas fa-search text-muted"></i>
-            </button>
-          </form>
-        </div>
-      </div>
-    </nav>
-  </div>
-
-  <!-- Location Pages Sub Nav, 3rd Row -->
-  <div class="row">
-    <nav class="navbar navbar-expand-lg navbar-dark pt-0">
-      <div class="container-fluid">
-        <!-- will collapse from 2nd row nav toggle -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <!-- items -->
-            <!-- continents -->
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Continents
-              </a>
-              <ul id="continentsMenu" class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                <?php
-                  // for each continent, print search link
-                  foreach ($navContinents as $navContinent) {
-                    echo '<li><a class="dropdown-item"
-                      href="search.php?type=image&continentId='
-                      . $navContinent->continentCode . '">';
-                    echo $navContinent->continentName . '</a></li>';
-                  }
-                ?>
-              </ul>
-            </li>
-
-            <!-- countries -->
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Countries
-              </a>
-              <ul id="countriesMenu" class="dropdown-menu" aria-labelledby="navbarDropdown3">
-                <?php
-                  // for each country, print link
-                  foreach ($relevantCountries as $navCountry) {
-                    echo '<li><a class="dropdown-item"
-                      href="country.php?id='
-                      . $navCountry->iso . '">';
-                    echo $navCountry->countryName . '</a></li>';
-                  }
-                ?>
-              </ul>
-            </li>
-
-            <!-- cities -->
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown4" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Cities
-              </a>
-              <ul id="citiesMenu" class="dropdown-menu dropdown-columns" aria-labelledby="navbarDropdown4">
-                <?php
-                  // for each city, print link
-                  foreach ($relevantCities as $navCity) {
-                    echo '<li><a class="dropdown-item" href="city.php?id='
-                      . $navCity->geoNameId . '">';
-                    echo $navCity->asciiName . '</a></li>';
-                  }
-                ?>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </div>
-</div>
 </header>
-
-<!-- Register Modal -->
-<div id="registerPortal" class="modal fade"
-    tabindex="-1" role="dialog"
-    aria-labelledby="registerTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="registerTitle" class="modal-title">
-          Register
-        </h5>
-      </div>
-      <form>
-        <div class="modal-body">
-          <div class="form-group">
-            <label class="col-form-label" for="username">Username:</label>
-            <input id="username" class="form-control" type="text"></input>
-          </div>
-          <div class="form-group my-3">
-            <label class="col-form-label" for="password">Password:</label>
-            <input id="password" class="form-control" type="text"></input>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary"
-              data-bs-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="btn btn-primary">
-            Register
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<!-- Login Modal -->
-<div id="loginPortal" class="modal fade"
-    tabindex="-1" role="dialog"
-    aria-labelledby="loginTitle" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 id="loginTitle" class="modal-title">
-          Login
-        </h5>
-      </div>
-      <form>
-        <div class="modal-body">
-          <div class="form-group">
-            <label class="col-form-label" for="username">Username:</label>
-            <input id="username" class="form-control" type="text"></input>
-          </div>
-          <div class="form-group my-3">
-            <label class="col-form-label" for="password">Password:</label>
-            <input id="password" class="form-control" type="text"></input>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary"
-              data-bs-dismiss="modal">
-            Close
-          </button>
-          <button type="button" class="btn btn-primary">
-            Login
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>

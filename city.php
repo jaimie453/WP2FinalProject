@@ -71,11 +71,7 @@ function listImages($images, $columns)
 </head>
 
 <body class="fixed-mountain-bg">
-    <?php include_once 'components/toast.php'; ?>
-
-    <header>
-        <?php include_once 'components/navbar.php'; ?>
-    </header>
+    <?php include_once 'components/navbar.php'; ?>
     <?php include_once 'components/ads.php'; ?>
 
 
