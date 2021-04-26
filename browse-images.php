@@ -123,6 +123,8 @@ $allImages = $images->getAll();
 
     <!-- for ads -->
     </div>
+    </div>
+    
 </body>
 
 </html>

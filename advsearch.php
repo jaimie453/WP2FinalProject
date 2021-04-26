@@ -27,7 +27,7 @@ unset($_GET['countryId']);
     <?php include_once 'components/navbar.php'; ?>
     <?php include_once 'components/ads.php'; ?>
 
-    <main class="col container pt-5 px-5">
+    <main class="col container px-5">
         <h2 class="row mb-4">Advanced Search</h2>
 
         <!-- search selection -->
@@ -95,6 +95,7 @@ unset($_GET['countryId']);
     </main>
 
     <!-- for ads -->
+    </div>
     </div>
 
 </body>

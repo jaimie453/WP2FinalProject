@@ -13,6 +13,8 @@
   $favorites = "favorites.php";
   $account = "#";
 
+  $modifyUsers = "modify-users.php";
+
 
   // get continents, countries, and cities for nav
 
@@ -35,12 +37,22 @@
 <header>
   <div class="container-fluid">
     <!-- Utilities, 1st Row -->
-    <div class="utility-bar row px-2 py-1">
-      <span class="col"><?php
-        if(isset($_SESSION['user']))
-          echo 'User: <strong>' . $_SESSION['user']->userName . '</strong>';
-      ?></span>
-      <div class="col d-flex justify-content-end text-nowrap">
+    <div class="utility-bar row px-2 py-1 text-nowrap">
+      <div class="col">
+        <span><?php
+          if(isset($_SESSION['user']))
+            echo 'User: <strong>' . $_SESSION['user']->userName . '</strong>';
+        ?>&nbsp;&nbsp;</span>
+        <?php
+          if (isset($_SESSION['user'])
+              && $_SESSION['user']->state == 1) {
+            echo  '<a class="utility-link" href="' . $modifyUsers . '">
+                    <span class="fas fa-cog"></span> Modify Users&nbsp;&nbsp;
+                  </a>';
+          }
+        ?>
+      </div>
+      <div class="col d-flex justify-content-end">
         <a class="utility-link" href="<?= $favorites ?>">
           <span class="fas fa-star"></span> View Favorites List&nbsp;&nbsp;
         </a>

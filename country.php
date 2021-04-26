@@ -134,6 +134,7 @@ $countryImages = $images->getImagesForCountry($countryId);
 
     <!-- for ads -->
     </div>
+    </div>
 
 </body>
 

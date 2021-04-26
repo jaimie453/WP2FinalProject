@@ -273,6 +273,7 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
 
     <!-- for ads -->
     </div>
+    </div>
 
     <!-- Google Maps -->
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->

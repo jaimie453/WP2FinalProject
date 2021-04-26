@@ -58,6 +58,7 @@ $allUsers = $users->getAll();
 
   <!-- for ads -->
   </div>
+  </div>
 
 </body>
 

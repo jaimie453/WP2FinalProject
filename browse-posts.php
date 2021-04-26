@@ -64,6 +64,7 @@ $allPosts = $posts->getAll();
 
   <!-- for ads -->
   </div>
+  </div>
 
 </body>
 

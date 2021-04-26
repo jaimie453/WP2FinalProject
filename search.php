@@ -168,6 +168,7 @@ $users = new usersDAO();
 
   <!-- for ads -->
   </div>
+  </div>
 
 </body>
 

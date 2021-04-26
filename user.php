@@ -180,6 +180,7 @@ else {
 
     <!-- for ads -->
     </div>
+    </div>
 
 </body>
 

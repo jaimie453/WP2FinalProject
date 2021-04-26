@@ -29,7 +29,7 @@ class usersDAO extends baseDAO
         (
             '{$userName}',
             '{$pass}',
-            1,
+            2,
             '{$date}',
             '{$date}'
         )

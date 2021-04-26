@@ -148,6 +148,7 @@ $author = $users->getById($post->uId);
 
     <!-- for ads -->
     </div>
+    </div>
 
 </body>
 

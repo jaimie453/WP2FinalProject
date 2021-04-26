@@ -141,6 +141,7 @@ function listImages($images, $columns)
 
     <!-- for ads -->
     </div>
+    </div>
 
 </body>
 
