@@ -1,10 +1,18 @@
 <?php
 
+    // registers new user given vars
     function registerUser() {
         @include_once './database/dao/usersDAO.php';
         $users = new usersDAO();
 
-        if (empty($_POST['email'])) {
+        // input checks
+
+        // regex
+        $emailTemplate = '/^[\-0-9a-zA-Z\.\+_]+@[\-0-9a-zA-Z\.\+_]+\.[a-zA-Z\.]{2,5}$/';
+
+        // email
+        if (empty($_POST['email'])
+            || !preg_match($emailTemplate, $_POST['email'])) {
           showRegistrationErrorMessage("email");
           return;
         }
@@ -12,43 +20,61 @@
           $username = $_POST['email'];
         }
 
+        // password
         if (empty($_POST['password'])) {
           showRegistrationErrorMessage("password");
           return;
         }
+
+        // first name
         if (empty($_POST['firstname'])) {
           showRegistrationErrorMessage("firstname");
           return;
         }
+
+        // last name
         if (empty($_POST['lastname'])) {
           showRegistrationErrorMessage("lastname");
           return;
         }
+
+        // address
         if (empty($_POST['address'])) {
           showRegistrationErrorMessage("address");
           return;
         }
+
+        // city
         if (empty($_POST['city'])) {
           showRegistrationErrorMessage("city");
           return;
         }
+
+        // region
         if (empty($_POST['region'])) {
           showRegistrationErrorMessage("region");
           return;
         }
+
+        // country
         if (empty($_POST['country'])) {
           showRegistrationErrorMessage("country");
           return;
         }
+
+        // postal
         if (empty($_POST['postal'])) {
           showRegistrationErrorMessage("postal");
           return;
         }
+
+        // phone
         if (empty($_POST['phone'])) {
           showRegistrationErrorMessage("phone");
           return;
         }
 
+        // privacy
         if (!empty($_POST['privacy']) && $_POST['privacy'] == "true") {
           $privacy = '2';
         }
@@ -56,6 +82,7 @@
           $privacy = '1';
         }
 
+        // add user to db and store in session
         $_SESSION['user'] = $users->addUser(
           $username,
           $_POST['password'],
@@ -70,29 +97,31 @@
           $_POST['email'],
           $privacy
         );
-
-
     }
 
+    // logs user in given credentials
     function processLogin() {
         @include_once './database/dao/usersDAO.php';
         $users = new usersDAO();
 
+        // if valid input, validate credentials
         $user = NULL;
-        if (!empty($_POST['username']) && isset($_POST['password'])) {
+        if (!empty($_POST['username']) && !empty($_POST['password'])) {
           $user = $users->getUser($_POST['username'], $_POST['password']);
         }
 
-        if ($user) {
+        // if valid user credentials
+        if ($user) {  // login and store in session
           $users->logUserIn($user->uId);
           $_SESSION['user'] = $user;
         }
-        else {
+        else {  // not valid
           showLoginErrorMessage();
         }
 
     }
 
+    // see if registration or login was requested, call appropriate process
     if($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['submit'])) {
         if($_POST['submit'] == "login")
             processLogin();

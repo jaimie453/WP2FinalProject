@@ -38,11 +38,13 @@
   <div class="container-fluid">
     <!-- Utilities, 1st Row -->
     <div class="utility-bar row px-2 py-1 text-nowrap">
+      <!-- Logged in User -->
       <div class="col">
         <span><?php
           if(isset($_SESSION['user']))
             echo 'User: <strong>' . $_SESSION['user']->userName . '</strong>';
         ?>&nbsp;&nbsp;</span>
+        <!-- Admin Modify Users -->
         <?php
           if (isset($_SESSION['user'])
               && $_SESSION['user']->state == 1) {
@@ -52,6 +54,7 @@
           }
         ?>
       </div>
+      <!-- main utilities -->
       <div class="col d-flex justify-content-end">
         <a class="utility-link" href="<?= $favorites ?>">
           <span class="fas fa-star"></span> View Favorites List&nbsp;&nbsp;
@@ -65,6 +68,7 @@
         </a>
         <a class="utility-link" type="button"
           <?php
+          // logout
           if (isset($_SESSION['user'])) {
             echo '
             href="./utils/logout.php">
@@ -72,6 +76,7 @@
             </a>
             ';
           }
+          // login
           else {
             echo '
             href="" data-bs-toggle="modal" data-bs-target="#loginPortal">

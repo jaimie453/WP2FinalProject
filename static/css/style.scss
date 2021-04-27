@@ -195,13 +195,13 @@ header {
     }
 }
 
-// Login
+// Login, Register, Modify
 
-#loginPortal, #registerPortal  {
+#loginPortal, #registerPortal, .modifyUserPortal  {
     .modal-content{
       background-color: rgba(0, 0, 0, 0.80);
     }
-    input {
+    input, input:focus {
         color: black;
     }
 }

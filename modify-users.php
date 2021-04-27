@@ -1,6 +1,7 @@
 <?php
 
 @include_once './database/dao/usersDAO.php';
+@include_once './utils/displayUsers.php';
 
 // get users
 $users = new usersDAO();
@@ -13,8 +14,6 @@ $allUsers = $users->getAll();
 
 <head>
     <?php include 'components/head.php'; ?>
-
-    <?php if (!isset($_SESSION['user'])) header('Location: error.php'); ?>
 
     <title>Modify Users</title>
 
@@ -38,28 +37,42 @@ $allUsers = $users->getAll();
         <!-- users -->
         <div class="row d-flex justify-content-center mb-5">
           <?php
+          // users table setup
           echo '<table class="table">';
 
           echo '<thead><tr>';
           echo '<th scope="col">Username</th>';
-          echo '<th scope="col">Admin</th>';
           echo '<th scope="col">Name</th>';
           echo '<th scope="col">Privacy</th>';
+          echo '<th scope="col">Admin</th>';
           echo '</thead></tr>';
 
+          // table row for each user
           echo '<tbody>';
           $total = 0;
           foreach ($allUsers as $user) {
+            if($user->uId == $_SESSION['user']->uId)
+              continue;
+
+            // create modal
+            modifyUserModal($user);
+
+            // row
             echo '<tr>';
-            echo '<td>' . $user->userName . '</td>';
-            if ($user->state == 1) {
+            echo '<td><a href="" type="button"
+                      data-bs-toggle="modal" data-bs-target="#modifyUserPortal' . $user->uId . '">'
+                    . $user->userName .
+                  '</a></td>';
+            echo '<td>' . $user->getName() . '</td>';
+            // privacy config
+            if ($user->privacy == 2) {
               echo '<td>yes</td>';
             }
             else {
               echo '<td>no</td>';
             }
-            echo '<td>' . $user->getName() . '</td>';
-            if ($user->privacy == 2) {
+            // state config
+            if ($user->state == 1) {
               echo '<td>yes</td>';
             }
             else {

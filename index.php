@@ -131,11 +131,13 @@ function createListItem($title, $avgRating, $totalRatings, $id)
         </button>
     </div>
 
+    <!-- left ad -->
     <img id="carousel-left-ad"
       src="./static/ads/travel guide cropped.jpg" alt="ad here">
 
   </div>
 
+  <!-- bottom ad script -->
   <script type="text/javascript" src="./static/js/homeBottomAd.js"></script>
 
 </body>

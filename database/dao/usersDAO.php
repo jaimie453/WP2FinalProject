@@ -14,13 +14,14 @@ class usersDAO extends baseDAO
             $row['Postal'], $row['Phone'], $row['Email'], $row['Privacy']);
     }
 
+    // add user to db, return new user object
     public function addUser ($userName, $pass, $firstName, $lastName,
         $address, $city, $region, $country, $postal, $phone,
         $email, $privacy) {
 
       $date = date("Y-m-d H:i:s");
 
-      // user
+      // add to traveluser
       if(!($query = $this->__connection->prepare("
         insert
         into traveluser
@@ -33,28 +34,28 @@ class usersDAO extends baseDAO
             '{$date}',
             '{$date}'
         )
-      "))) {
-        //die('prepare()1 failed: ' . htmlspecialchars($mysqli->error));
-        $query->close();
+      "))) {  // not success
+        return NULL;
       }
-
-      if ($query->execute()) {
+      // if execution successful
+      if ($query->execute()) {  // get new UID
         $result = $this->__connection->query("
           select `UID`
           from traveluser
           where `UserName` = '{$userName}'
         ")->fetch_assoc();
+        // if not found, error
         if(!($result) || is_null($result)) {
-          die('get ('. $result .') failed: ' . htmlspecialchars($mysqli->error));
+          $query->close();
+          return NULL;
         }
       }
-      else {
-        //die('execute1() failed: ' . htmlspecialchars($mysqli->error));
+      else {  // not success
         $query->close();
         return NULL;
       }
 
-      // details
+      // add to traveluserdetails
       if(!($query = $this->__connection->prepare("
         insert
         into traveluserdetails
@@ -74,48 +75,87 @@ class usersDAO extends baseDAO
             '{$email}',
             '{$privacy}'
         )
-      "))) {
-        //die('prepare()2 failed: ' . htmlspecialchars($mysqli->error));
-        $query->close();
+      "))) {  // not success
         return NULL;
       }
-
-      if ($query->execute()) {
+      // if execution successful
+      if ($query->execute()) {  // return new user
         $query->close();
         return $this->getById($result['UID']);
       }
 
-      //die('execute()2 failed: ' . htmlspecialchars($mysqli->error));
+      // not found, error
       $query->close();
       return NULL;
 
     }
 
+    // check credentials and return user object if valid
     public function getUser ($userName, $password) {
+        // get user
         $user = $this->fetch($userName, 'UserName')[0];
-        if (!is_null($user) && ($user->pass == $password)) {
+
+        // if user found and password matches
+        if (!is_null($user) && ($user->pass == $password)) {  // return user
             return $user;
         }
-        else {
+        else {  // invalid credentials
             return NULL;
         }
     }
 
+    // log user in by updating time stamp
     public function logUserIn ($uid) {
         $date = date("Y-m-d H:i:s");
 
+        // update user's time stamp
         if($query = $this->__connection->prepare("
           update
           `traveluser`
           set `DateLastModified` = '{$date}'
           where `UID` =  {$uid}
-        ")) {
+        ")) { // success, commit
           $query->execute();
           $query->close();
         }
-        // else
-        //   die('update failed: ' . htmlspecialchars($mysqli->error));
 
+        // fail to update
         $query->close();
     }
+
+    // update user record with user object
+    public function updateUser ($user) {
+      // update user with new (and old) entries
+      if(!($query = $this->__connection->prepare("
+        update {$this->_tableName}
+        set traveluser.UserName = '{$user->userName}',
+        traveluser.Pass = '{$user->pass}',
+        traveluser.State = '{$user->state}',
+        traveluserdetails.FirstName = '{$user->firstName}',
+        traveluserdetails.LastName = '{$user->lastName}',
+        traveluserdetails.Address = '{$user->address}',
+        traveluserdetails.City = '{$user->city}',
+        traveluserdetails.Region = '{$user->region}',
+        traveluserdetails.Country = '{$user->country}',
+        traveluserdetails.Postal = '{$user->postal}',
+        traveluserdetails.Email = '{$user->email}',
+        traveluserdetails.Privacy = '{$user->privacy}'
+        where {$this->_primaryKey} = '{$user->uId}'
+      ")))
+      { // not success
+        return;
+      }
+
+      // if execution fails (can put temp error checking here)
+      if(!$query->execute())
+      {
+        $query->close();
+        return;
+      }
+
+      // execution successful
+      $query->close();
+      return;
+    }
+
 }
