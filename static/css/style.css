@@ -10337,9 +10337,6 @@ header {
     height: 280px;
   }
 }
-#loginPortal .modal-content, #registerPortal .modal-content, .modifyUserPortal .modal-content {
-  background-color: rgba(0, 0, 0, 0.8);
-}
 #loginPortal input, #loginPortal input:focus, #registerPortal input, #registerPortal input:focus, .modifyUserPortal input, .modifyUserPortal input:focus {
   color: black;
 }

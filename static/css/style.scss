@@ -212,9 +212,6 @@ header {
 // Login, Register, Modify
 
 #loginPortal, #registerPortal, .modifyUserPortal  {
-    .modal-content{
-      background-color: rgba(0, 0, 0, 0.80);
-    }
     input, input:focus {
         color: black;
     }

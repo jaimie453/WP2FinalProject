@@ -5,14 +5,7 @@ function showRegistrationErrorMessage($attribute)
 {
     $message = "Incorrect input for " . $attribute . ".";
 
-    echo    '<script type="text/javascript">
-                $(document).ready(function () {
-                    var toast = new bootstrap.Toast($(".toast")[0]);
-                    var toastText = $("#toast-text")[0];
-                    toastText.innerText = "' . $message . '";
-                    toast.show();
-                });
-            </script>';
+    showToastMessage($message);
 }
 
 // login error
@@ -20,14 +13,7 @@ function showLoginErrorMessage()
 {
     $message = "Incorrect credentials.";
 
-    echo    '<script type="text/javascript">
-                $(document).ready(function () {
-                    var toast = new bootstrap.Toast($(".toast")[0]);
-                    var toastText = $("#toast-text")[0];
-                    toastText.innerText = "' . $message . '";
-                    toast.show();
-                });
-            </script>';
+    showToastMessage($message);
 }
 
 // image in favorites
@@ -37,14 +23,7 @@ function showImageMessage($isAdding)
     if ($isAdding)
         $message = "Added image to favorites!";
 
-    echo    '<script type="text/javascript">
-                $(document).ready(function () {
-                    var toast = new bootstrap.Toast($(".toast")[0]);
-                    var toastText = $("#toast-text")[0];
-                    toastText.innerText = "' . $message . '";
-                    toast.show();
-                });
-            </script>';
+    showToastMessage($message);
 
     $_SESSION['showImageMessage'] = false;
 }
@@ -56,6 +35,25 @@ function showPostMessage($isAdding)
     if ($isAdding)
         $message = "Added post to favorites!";
 
+    showToastMessage($message);
+
+    $_SESSION['showPostMessage'] = false;
+}
+
+// user added/removed a review for an image
+function showReviewMessage($isAdding)
+{
+    $message = "Review removed successfully.";
+    if ($isAdding)
+        $message = "Your review was added successfully!";
+
+    showToastMessage($message);
+
+    $_SESSION['showReviewMessage'] = false;
+}
+
+function showToastMessage($message)
+{
     echo    '<script "text/javascript">
                 $(document).ready(function () {
                     var toast = new bootstrap.Toast($(".toast")[0]);
@@ -64,8 +62,6 @@ function showPostMessage($isAdding)
                     toast.show();
                 });
             </script>';
-
-    $_SESSION['showPostMessage'] = false;
 }
 
 ?>
