@@ -46,8 +46,8 @@ else {
     <?php include_once 'components/navbar.php'; ?>
     <?php include_once 'components/ads.php'; ?>
 
-    <main class="col-8 mx-auto">
-      <div class="container">
+    <main>
+      <div class="container small-container">
         <div class="row mb-4 justify-content-between">
           <!-- title -->
           <div class="col-xl-4 mb-2">
@@ -135,7 +135,8 @@ else {
                 $user->getName(),
                 $userPost->title,
                 $userPost->message,
-                $userPost->postTime
+                $userPost->postTime,
+                "col-lg-4 col-sm-6 col-12"
               );
               $total++;
           }
@@ -161,7 +162,7 @@ else {
           $total = 0;
           foreach ($userImages as $userImage) {
 
-            echo '<div class="d-flex col-xl-3 col-md-4 col-sm-6 col-12 p-3">';
+            echo '<div class="d-flex col-lg-4 col-sm-6 col-12 p-3">';
 
             createImageCard($userImage->imageId, $userImage->path, $userImage->title, $user->getName());
             $total++;
