@@ -63,7 +63,7 @@ function createReviewListing($review, $rating, $authorName, $userId, $reviewDate
     echo '<div class="review-listing">';
 
     echo '<div class="mb-2">';
-    echo '<h6 class="d-inline">' . $authorName . ' <span class="text-muted">' . $reviewDate . '</span></h6>';
+    echo '<h6 class="d-inline"><a href="user.php?id=' . $userId . '">' . $authorName . '</a></h6>';
 
     if (isset($_SESSION['user']) && ($userId == $_SESSION['user']->uId || $_SESSION['user']->state == 2)) {
         echo '<button class="delete-review-btn button-no-style"><i class="far fa-trash-alt"></i></button>';
@@ -73,7 +73,8 @@ function createReviewListing($review, $rating, $authorName, $userId, $reviewDate
     echo '<span class="float-end">' . convertRatingToStars(round($rating * 2)) . '</span>';
     echo '</div>';
 
-    echo '<p>' . $review . '</p>';
+    echo '<p class="mb-2">' . $review . '</p>';
+    echo '<span class="text-muted">' . $reviewDate . '</span>';
 
     echo '</div>';
 }
