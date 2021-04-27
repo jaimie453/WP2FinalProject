@@ -68,6 +68,20 @@ a.btn:active {
     opacity: 0.8;
 }
 
+.modal-body {
+    background-color: #2b2b2b;
+}
+
+textarea.form-control {
+    font-family: $font-family-sans-serif;
+    font-size: 0.9rem;
+}
+
+.travel-card-img {
+    height: 300px;
+    object-fit: cover;
+}
+
 // Utility classes
 
 .truncate {
@@ -238,8 +252,7 @@ header {
 .post-img {
     width: 330px;
     height: 238px;
-    opacity: .3;
-
+    opacity: 0.3;
 }
 
 .post-img[alt]:after {
@@ -249,7 +262,7 @@ header {
     left: 0;
     width: 330px;
     height: 238px;
-    background-color: #1B1B1B;
+    background-color: #1b1b1b;
     content: attr(alt);
 }
 
@@ -281,8 +294,6 @@ div.carousel-caption {
 .images-group-close {
     float: right;
     color: lightgray;
-    position: relative;
-    top: 4px;
     border: 0;
     background: rgba(0, 0, 0, 0);
     padding-right: 0;
@@ -291,6 +302,15 @@ div.carousel-caption {
         text-decoration: underline;
     }
 }
+
+.recent-review-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
 
 // Rating stars
 
@@ -348,6 +368,7 @@ $unfilledStarColor: #4c4444;
 
 // Image Page
 
+// Reviews card
 #review-card {
     background-color: #2b2b2b;
 
@@ -363,11 +384,41 @@ $unfilledStarColor: #4c4444;
     }
 
     .card-body {
-        color: #bdbdbd;
         overflow-y: scroll;
     }
 }
 
+.review-listing {
+    &:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+
+    p {
+        margin-bottom: 0;
+        color: #bdbdbd;
+    }
+}
+
+.delete-review-btn {
+    margin-left: 1rem;
+
+    i {
+        color: gray;
+
+        &:hover {
+            color: $primary-text;
+        }
+    }
+}
+
+// Review modal
+#reviewTextarea {
+    border-radius: 0.25rem;
+    color: white;
+    background-color: #1b1b1b;
+}
+
+// Lightbox
 #lightbox-img {
     border-radius: 1rem;
 }
