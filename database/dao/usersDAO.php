@@ -22,7 +22,7 @@ class usersDAO extends baseDAO
       $date = date("Y-m-d H:i:s");
 
       // add to traveluser
-      if(!($query = $this->__connection->prepare("
+      if(!($query = $this->_connection->prepare("
         insert
         into traveluser
         (`UserName`, `Pass`, `State`, `DateJoined`, `DateLastModified`)
@@ -39,7 +39,7 @@ class usersDAO extends baseDAO
       }
       // if execution successful
       if ($query->execute()) {  // get new UID
-        $result = $this->__connection->query("
+        $result = $this->_connection->query("
           select `UID`
           from traveluser
           where `UserName` = '{$userName}'
@@ -56,7 +56,7 @@ class usersDAO extends baseDAO
       }
 
       // add to traveluserdetails
-      if(!($query = $this->__connection->prepare("
+      if(!($query = $this->_connection->prepare("
         insert
         into traveluserdetails
         (`UID`, `FirstName`, `LastName`, `Address`,
@@ -109,7 +109,7 @@ class usersDAO extends baseDAO
         $date = date("Y-m-d H:i:s");
 
         // update user's time stamp
-        if($query = $this->__connection->prepare("
+        if($query = $this->_connection->prepare("
           update
           `traveluser`
           set `DateLastModified` = '{$date}'
@@ -117,16 +117,18 @@ class usersDAO extends baseDAO
         ")) { // success, commit
           $query->execute();
           $query->close();
+        } else {
+          // fail to update
+          $query->close();
         }
 
-        // fail to update
-        $query->close();
+        
     }
 
     // update user record with user object
     public function updateUser ($user) {
       // update user with new (and old) entries
-      if(!($query = $this->__connection->prepare("
+      if(!($query = $this->_connection->prepare("
         update {$this->_tableName}
         set traveluser.UserName = '{$user->userName}',
         traveluser.Pass = '{$user->pass}',

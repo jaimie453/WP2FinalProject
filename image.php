@@ -65,9 +65,10 @@ function createReviewListing($review, $rating, $authorName, $userId)
     echo '<div class="mb-2">';
     echo '<h6 class="d-inline">' . $authorName . '</h6>';
 
-    // add administrator/current user check here
-    echo '<button class="delete-review-btn button-no-style"><i class="far fa-trash-alt"></i></button>';
-    echo '<input value="' . $userId . '" hidden>';
+    if(isset($_SESSION['user']) && ($userId == $_SESSION['user']->uId || $_SESSION['user']->state == 2)){
+        echo '<button class="delete-review-btn button-no-style"><i class="far fa-trash-alt"></i></button>';
+        echo '<input value="' . $userId . '" hidden>';
+    }
 
     echo '<span class="float-end">' . convertRatingToStars(round($rating * 2)) . '</span>';
     echo '</div>';
@@ -190,9 +191,15 @@ function createReviewListing($review, $rating, $authorName, $userId)
 
                     ?>
                     <!-- Add check if user has rated post or not -->
-                    <div class="card-footer">
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">Leave a review</button>
-                    </div>
+                    <?php
+
+                    if(isset($_SESSION['user']) && !$reviews->hasUserReviewedImage($imageId, $_SESSION['user']->uId)){
+                        echo    '<div class="card-footer">
+                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">Leave a review</button>
+                                </div>';
+                    }
+                    
+                    ?>
                 </div>
             </div>
         </div>
@@ -305,7 +312,7 @@ function createReviewListing($review, $rating, $authorName, $userId)
                         </div>
                         <input name="imageId" value="<?= $imageId ?>" hidden>
                         <!-- add session id here -->
-                        <input name="userId" value="1" hidden>
+                        <input name="userId" value="<?= $_SESSION['user']->uId ?>" hidden>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -328,7 +335,8 @@ function createReviewListing($review, $rating, $authorName, $userId)
                     <div class="modal-body">
                         <p>Are you sure you want to delete this review?</p>
                         <input name="imageId" value="<?= $imageId ?>" hidden>
-                        <!-- add session id here -->
+
+                        <!--  id will be updated by js -->
                         <input id="deleteReviewUserId" name="userId" value="1" hidden>
                     </div>
                     <div class="modal-footer">

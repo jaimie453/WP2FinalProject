@@ -10473,7 +10473,7 @@ div.carousel-caption {
   background-color: #1b1b1b;
 }
 #review-card .card-body {
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .review-listing:not(:last-child) {

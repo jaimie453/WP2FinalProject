@@ -154,7 +154,7 @@
             <div class="col-5 my-2">
               <label class="col-form-label" for="passwordr">Password:</label>
               <input id="passwordr" class="form-control"
-                type="text" name="password"></input>
+                type="password" name="password"></input>
             </div>
           </div>
 
@@ -254,7 +254,7 @@
           <div class="form-group my-3">
             <label class="col-form-label" for="passwordl">Password:</label>
             <input id="passwordl" class="form-control"
-              type="text" name="password"></input>
+              type="password" name="password"></input>
           </div>
         </div>
         <div class="modal-footer">
