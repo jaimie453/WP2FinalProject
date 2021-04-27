@@ -58,14 +58,14 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
 }
 
 
-function createReviewListing($review, $rating, $authorName, $userId)
+function createReviewListing($review, $rating, $authorName, $userId, $reviewDate)
 {
     echo '<div class="review-listing">';
 
     echo '<div class="mb-2">';
-    echo '<h6 class="d-inline">' . $authorName . '</h6>';
+    echo '<h6 class="d-inline">' . $authorName . ' <span class="text-muted">' . $reviewDate . '</span></h6>';
 
-    if(isset($_SESSION['user']) && ($userId == $_SESSION['user']->uId || $_SESSION['user']->state == 2)){
+    if (isset($_SESSION['user']) && ($userId == $_SESSION['user']->uId || $_SESSION['user']->state == 2)) {
         echo '<button class="delete-review-btn button-no-style"><i class="far fa-trash-alt"></i></button>';
         echo '<input value="' . $userId . '" hidden>';
     }
@@ -77,7 +77,7 @@ function createReviewListing($review, $rating, $authorName, $userId)
 
     echo '</div>';
 }
- 
+
 
 ?>
 
@@ -183,7 +183,7 @@ function createReviewListing($review, $rating, $authorName, $userId)
 
                         foreach ($imageReviews as $review) {
                             $author = $users->getById($review->uId);
-                            createReviewListing($review->review, $review->rating, $author->getName(), $author->uId);
+                            createReviewListing($review->review, $review->rating, $author->getName(), $author->uId, $review->getReviewDate());
                         }
 
                         echo '</div>';
@@ -193,12 +193,12 @@ function createReviewListing($review, $rating, $authorName, $userId)
                     <!-- Add check if user has rated post or not -->
                     <?php
 
-                    if(isset($_SESSION['user']) && !$reviews->hasUserReviewedImage($imageId, $_SESSION['user']->uId)){
+                    if (isset($_SESSION['user']) && !$reviews->hasUserReviewedImage($imageId, $_SESSION['user']->uId)) {
                         echo    '<div class="card-footer">
                                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">Leave a review</button>
                                 </div>';
                     }
-                    
+
                     ?>
                 </div>
             </div>
@@ -322,7 +322,7 @@ function createReviewListing($review, $rating, $authorName, $userId)
             </div>
         </div>
     </div>
-    
+
     <!-- Delete Review Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
