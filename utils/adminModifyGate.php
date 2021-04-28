@@ -1,7 +1,7 @@
 <?php
 // allow access to modify-users.php if admin
 
-@include_once '../database/models/user.php';
+@include_once '../database/dao/usersDAO.php';
 
 session_start();
 
