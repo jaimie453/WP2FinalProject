@@ -65,14 +65,14 @@ $allUsers = $users->getAll();
                   '</a></td>';
             echo '<td>' . $user->getName() . '</td>';
             // privacy config
-            if ($user->privacy == 2) {
+            if ($user->isPrivate()) {
               echo '<td>yes</td>';
             }
             else {
               echo '<td>no</td>';
             }
             // state config
-            if ($user->state == 1) {
+            if ($user->isAdmin()) {
               echo '<td>yes</td>';
             }
             else {
