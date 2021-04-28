@@ -9,7 +9,7 @@ $images = new imagesDAO();
 $topImages = $images->getTopImages(5);
 $newImages = $images->getNewestImages(5);
 
-
+// creates image item given params
 function createImageListItem($title, $avgRating, $totalRatings, $id)
 {
     echo '<li class="list-group-item d-flex justify-content-between">';
@@ -25,6 +25,7 @@ function createImageListItem($title, $avgRating, $totalRatings, $id)
 $reviews = new reviewsDAO();
 $recentReviews = $reviews->getMostRecentReviews();
 
+// for latest reviews, shows review given params
 function createReviewListItem($imgTitle, $imageId, $rating, $review, $authorName, $reviewTime, $userId)
 {
     echo '<li class="list-group-item">';
@@ -123,8 +124,8 @@ function createReviewListItem($imgTitle, $imageId, $rating, $review, $authorName
                         foreach ($recentReviews as $review) {
                             $image = $images->getById($review->imageId);
                             $author = $users->getById($review->uId);
-                            
-                            createReviewListItem($image->title, $image->imageId, $review->rating, 
+
+                            createReviewListItem($image->title, $image->imageId, $review->rating,
                                 $review->review, $author->getName(), $review->getReviewDate(), $author->uId);
                         }
 
