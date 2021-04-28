@@ -34,14 +34,14 @@ function createUserListing($uId, $userName, $dateJoined, $dateLastModified, $nam
 function modifyUserModal($user) {
     // find out if boxes should be checked
     // state
-    if ($user->state == 1) {
+    if ($user->isAdmin()) {
       $state = 'checked';
     }
     else {
       $state = '';
     }
     // privacy
-    if ($user->privacy == 2) {
+    if ($user->isPrivate()) {
       $privacy = 'checked';
     }
     else {

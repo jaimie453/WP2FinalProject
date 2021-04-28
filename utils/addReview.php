@@ -14,13 +14,14 @@ if (
     @include_once __DIR__ . "/../database/models/user.php";
     session_start();
 
-    // double check that userId == session id before doing anything
-    if ($userId == $_SESSION['user']->uId && !$reviews->hasUserReviewedImage($imageId, $userId)) {
+    // check that userId == session id and user hasnt reviewed image
+    if ($userId == $_SESSION['user']->uId
+            && !$reviews->hasUserReviewedImage($imageId, $userId)) {
         $reviews->addReview($imageId, $userId, $_POST['reviewRating'], $_POST['reviewText']);
 
         session_start();
         $_SESSION['isAdding'] = true;
-        $_SESSION['showReviewMessage'] = true;   
+        $_SESSION['showReviewMessage'] = true;
     }
 
     header('Location: ../image.php?id=' . $imageId);
