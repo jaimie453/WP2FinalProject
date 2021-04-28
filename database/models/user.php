@@ -44,14 +44,4 @@ class User
     public function getName() {
         return $this->firstName . ' ' . $this->lastName;
     }
-
-    // returns if user is administrator
-    public function isAdmin() {
-        return $this->state==1;
-    }
-
-    // returns if user has privacy turned on
-    public function isPrivate() {
-        return $this->state==2;
-    }
 }

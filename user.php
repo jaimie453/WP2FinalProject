@@ -19,7 +19,7 @@ if (is_null($user))
     header('Location: error.php');
 
 // if private, set to hidden. else, recall
-if ($user->isPrivate()) {
+if ($user->privacy == 2) {
     $address = "hidden";
     $postal = "hidden";
     $phone = "hidden";

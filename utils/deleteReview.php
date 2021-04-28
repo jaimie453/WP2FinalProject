@@ -11,9 +11,8 @@ if (isset($_POST['imageId']) && isset($_POST['userId'])) {
     @include_once __DIR__ . "/../database/models/user.php";
     session_start();
 
-    // check that we are deleting the logged in users review or that the user is an admin
-    if ($reviews->hasUserReviewedImage($imageId, $userId)
-            && ($userId == $_SESSION['user']->uId || $_SESSION['user']->isAdmin())) {
+    // double check that we are deleting the logged in users review or that the user is an admin
+    if ($reviews->hasUserReviewedImage($imageId, $userId) && ($userId == $_SESSION['user']->uId || $_SESSION['user']->state == 2)) {
         $reviews->deleteReview($imageId, $userId);
 
         session_start();

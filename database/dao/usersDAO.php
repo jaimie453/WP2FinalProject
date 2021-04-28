@@ -104,7 +104,7 @@ class usersDAO extends baseDAO
         }
     }
 
-    // log user in by updating time stamp, return user
+    // log user in by updating time stamp
     public function logUserIn ($uid) {
         $date = date("Y-m-d H:i:s");
 
@@ -122,7 +122,7 @@ class usersDAO extends baseDAO
           $query->close();
         }
 
-        return $this->getById($uid);
+        
     }
 
     // update user record with user object

@@ -13,7 +13,7 @@
   $favorites = "favorites.php";
   $account = "#";
 
-  $modifyUsers = "utils/adminModifyGate.php";
+  $modifyUsers = "modify-users.php";
 
 
   // get continents, countries, and cities for nav
@@ -47,7 +47,7 @@
         <!-- Admin Modify Users -->
         <?php
           if (isset($_SESSION['user'])
-              && $_SESSION['user']->isAdmin()) {
+              && $_SESSION['user']->state == 1) {
             echo  '<a class="utility-link" href="' . $modifyUsers . '">
                     <span class="fas fa-cog"></span> Modify Users&nbsp;&nbsp;
                   </a>';
@@ -59,21 +59,13 @@
         <a class="utility-link" href="<?= $favorites ?>">
           <span class="fas fa-star"></span> View Favorites List&nbsp;&nbsp;
         </a>
-        <!-- account if logged in -->
-        <?php
-          if(isset($_SESSION['user']))
-            echo  '<a class="utility-link" href="' . $account . '">
-                    <span class="fas fa-user-circle"></span> My Account&nbsp;&nbsp;
-                  </a>';
-        ?>
-        <!-- register if logged out -->
-        <?php
-          if(!isset($_SESSION['user']))
-            echo  '<a class="utility-link" href="" type="button"
-                      data-bs-toggle="modal" data-bs-target="#registerPortal">
-                    <span class="fas fa-user-plus"></span> Register&nbsp;&nbsp;
-                  </a>';
-        ?>
+        <a class="utility-link" href="<?= $account ?>">
+          <span class="fas fa-user-circle"></span> My Account&nbsp;&nbsp;
+        </a>
+        <a class="utility-link" href="" type="button"
+            data-bs-toggle="modal" data-bs-target="#registerPortal">
+          <span class="fas fa-user-plus"></span> Register&nbsp;&nbsp;
+        </a>
         <a class="utility-link" type="button"
           <?php
           // logout

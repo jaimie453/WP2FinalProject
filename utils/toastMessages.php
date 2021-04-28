@@ -52,7 +52,6 @@ function showReviewMessage($isAdding)
     $_SESSION['showReviewMessage'] = false;
 }
 
-// shows message in toast popup
 function showToastMessage($message)
 {
     echo    '<script "text/javascript">

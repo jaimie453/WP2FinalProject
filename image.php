@@ -57,7 +57,7 @@ if (is_null($image->longitude) || is_null($image->latitude)) {
     $otherImagePostsColumns = $fullWidthImageColumns;
 }
 
-// create review element given params
+
 function createReviewListing($review, $rating, $authorName, $userId, $reviewDate)
 {
     echo '<div class="review-listing">';
@@ -65,9 +65,7 @@ function createReviewListing($review, $rating, $authorName, $userId, $reviewDate
     echo '<div class="mb-2">';
     echo '<h6 class="d-inline"><a href="user.php?id=' . $userId . '">' . $authorName . '</a></h6>';
 
-    // if user is logged in and the user made the post or is admin, give deletion button
-    if (isset($_SESSION['user'])
-            && ($userId == $_SESSION['user']->uId || $_SESSION['user']->isAdmin())) {
+    if (isset($_SESSION['user']) && ($userId == $_SESSION['user']->uId || $_SESSION['user']->state == 2)) {
         echo '<button class="delete-review-btn button-no-style"><i class="far fa-trash-alt"></i></button>';
         echo '<input value="' . $userId . '" hidden>';
     }
@@ -180,7 +178,7 @@ function createReviewListing($review, $rating, $authorName, $userId, $reviewDate
                     </div>
 
                     <?php
-                    // show reviews if exists
+
                     if ($image->totalRatings > 0) {
                         echo '<div class="card-body">';
 
@@ -193,11 +191,10 @@ function createReviewListing($review, $rating, $authorName, $userId, $reviewDate
                     }
 
                     ?>
-
+                    <!-- Add check if user has rated post or not -->
                     <?php
-                    // give add review ability if user is logged in and hasnt made a review for this image yet
-                    if (isset($_SESSION['user'])
-                            && !$reviews->hasUserReviewedImage($imageId, $_SESSION['user']->uId)) {
+
+                    if (isset($_SESSION['user']) && !$reviews->hasUserReviewedImage($imageId, $_SESSION['user']->uId)) {
                         echo    '<div class="card-footer">
                                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">Leave a review</button>
                                 </div>';

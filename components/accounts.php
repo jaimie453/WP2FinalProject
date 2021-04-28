@@ -112,7 +112,7 @@
 
         // if valid user credentials
         if ($user) {  // login and store in session
-          $user = $users->logUserIn($user->uId);
+          $users->logUserIn($user->uId);
           $_SESSION['user'] = $user;
         }
         else {  // not valid
