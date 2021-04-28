@@ -52,6 +52,6 @@ class User
 
     // returns if user has privacy turned on
     public function isPrivate() {
-        return $this->state==2;
+        return $this->privacy==2;
     }
 }
